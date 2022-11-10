@@ -11,21 +11,27 @@ namespace CookBookApp
 {
     public partial class MainPage : ContentPage
     {
+        //RecipeServices recipeServices;
+        //List<Recipe> recipes;
+        
         public MainPage()
         {
             InitializeComponent();
+            //recipeServices = new RecipeServices();
 
-            App._context.RecipeImages.getAllAsync();
-            //List<Recipe> recipes;
-            
             //Task.Run(async () =>
             //{
-            //    Recipe recipe = new Recipe();
-            //    await App._context.Recipes.AddAsync(recipe);
-            //    recipe.ID = 4;
-            //    await App._context.Recipes.UpdateAsync(recipe);
-            //    recipes = await App._context.Recipes.getAllAsync();
-            //    recipes.Remove(recipes.Last());
+            //    Recipe testRecipe = new Recipe()
+            //    {
+            //        Author = "Karoly",
+            //        PreparationTime = DateTime.Now,
+            //        Difficulty = 0,
+            //        Price = 1,
+            //        Portion = 4,
+            //        CreationDate = DateTime.Now
+            //    };
+            //    await App._context.Recipes.AddAsync(testRecipe);
+            //    recipes = await recipeServices.getRecipesByLocatization("HU");
             //});
         }
     }

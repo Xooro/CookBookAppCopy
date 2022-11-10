@@ -16,10 +16,10 @@ namespace CookBookApp.Models
         public DateTime CreationDate { get; set; }
 
         [Ignore]
-        public virtual List<RecipeLocalization> Localization { get; set; }
+        public RecipeLocalization Localization { get; set; }
         [Ignore]
-        public virtual List<RecipeCategories> Categories { get; set; }
+        public List<RecipeCategories> Categories { get; set; }
         [Ignore]
-        public virtual List<RecipeImage> Images { get; set; }
+        public List<RecipeImage> Images { get; set; }
     }
 }
