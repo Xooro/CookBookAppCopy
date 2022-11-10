@@ -11,17 +11,19 @@ namespace CookBookApp.Data
     public class SQLiteHelper
     {
         SQLiteAsyncConnection db;
-        public DBSet<Recipe> Recipes;
-        public DBSet<RecipeCategories> RecipeCategories;
-        public DBSet<RecipeImage> RecipeImages;
+        public TableSet<Recipe> Recipes;
+        public TableSet<RecipeCategories> RecipeCategories;
+        public TableSet<RecipeImage> RecipeImages;
+        public TableSet<RecipeLocalization> RecipeLocalizations;
 
         public SQLiteHelper(string dbPath)
         {
             db = new SQLiteAsyncConnection(dbPath);
 
-            Recipes = new DBSet<Recipe>(db);
-            RecipeCategories = new DBSet<RecipeCategories>(db);
-            RecipeImages = new DBSet<RecipeImage>(db);
+            Recipes = new TableSet<Recipe>(db);
+            RecipeCategories = new TableSet<RecipeCategories>(db);
+            RecipeImages = new TableSet<RecipeImage>(db);
+            RecipeLocalizations = new TableSet<RecipeLocalization>(db);
         }
     }
 }

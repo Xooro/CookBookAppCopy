@@ -14,22 +14,17 @@ namespace CookBookApp
         public MainPage()
         {
             InitializeComponent();
-            
+
+            App._context.RecipeImages.getAllAsync();
             //List<Recipe> recipes;
             
             //Task.Run(async () =>
             //{
-            //    Recipe recipe = new Recipe()
-            //    {
-            //        Ingredients = "Só",
-            //        Preparation = "Minden is",
-            //        CreationDate = DateTime.Now
-            //    };
-            //    await App.SQLiteDB.Recipes.AddAsync(recipe);
+            //    Recipe recipe = new Recipe();
+            //    await App._context.Recipes.AddAsync(recipe);
             //    recipe.ID = 4;
-            //    recipe.Ingredients = "Minden is";
-            //    await App.SQLiteDB.Recipes.UpdateAsync(recipe);
-            //    recipes = await App.SQLiteDB.Recipes.getAllAsync();
+            //    await App._context.Recipes.UpdateAsync(recipe);
+            //    recipes = await App._context.Recipes.getAllAsync();
             //    recipes.Remove(recipes.Last());
             //});
         }

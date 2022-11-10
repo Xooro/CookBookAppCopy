@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace CookBookApp.Data.Base
 {
-    public class DBSet<T> where T : new()
+    public class TableSet<T> where T : new()
     {
         SQLiteAsyncConnection db;
 
-        public DBSet(SQLiteAsyncConnection db)
+        public TableSet(SQLiteAsyncConnection db)
         {
             this.db = db;
             db.CreateTableAsync<T>().Wait();

@@ -17,13 +17,14 @@ namespace CookBookApp
 
         static SQLiteHelper db;
 
-        public static SQLiteHelper SQLiteDB
+        public static SQLiteHelper _context
         {
             get
             {
                 if (db == null)
                 {
                     string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "CookBookDB.db3");
+                    //Console.WriteLine(path);
                     db = new SQLiteHelper(path);  
                 }
                 return db;    
