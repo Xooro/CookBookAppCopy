@@ -86,7 +86,7 @@
                         Grid.ColumnSpan="1"
                         TextColor="Black"
                         />
-                <Button Text="Angol nyelvű receptek"
+                <Button Text="Filterelés"
                     Command="{Binding Path=TestCommnd}"
                         Grid.Column="1"
                         Grid.Row="3"/>

@@ -44,10 +44,10 @@ namespace CookBookApp.ViewModels
 
             loadLanguage();
             loadRecipe();
-            TestCommnd = new RelayCommand(testFilter);
+            TestCommnd = new RelayCommand(filter);
         }
 
-        public void loadLanguage()
+        private void loadLanguage()
         {
             Task.Run(async () =>
             {
@@ -55,7 +55,7 @@ namespace CookBookApp.ViewModels
             });
         }
 
-        public void loadRecipe()
+        private void loadRecipe()
         {
             IsBusy = true;
             Task.Run(async () =>
@@ -68,7 +68,7 @@ namespace CookBookApp.ViewModels
             });
         }
 
-        public void testFilter()
+        private void filter()
         {
             SelectedLanguages = new ObservableCollection<Language>(Languages.Where(l => l.IsChecked).ToList());
             loadRecipe();
