@@ -1,27 +1,84 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CookBookApp.Views.RecipesPage">
+             x:Class="CookBookApp.Views.RecipesPage"
+             BackgroundColor="AliceBlue">
+
+
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value ="Black"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="TextColor" Value ="Black"/>
+        </Style>
+    </ContentPage.Resources>
+
+
+
     <ContentPage.Content>
         <StackLayout>
             <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
-            
-            <ListView x:Name ="lstVwRecipes" 
-                      ItemsSource="{Binding Recipes, Mode=TwoWay}"
-                      SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout>
-                                <Label Text="{Binding Author}"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
 
-            <Button Text="Angol nyelvű receptek"
-                    Command="{Binding Path=TestCommnd}"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="500"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ScrollView 
+                    Grid.Row="0"
+                        Grid.RowSpan="3"
+                        Grid.Column="0">
+                    <ListView x:Name ="lstVwRecipes" 
+                      ItemsSource="{Binding Recipes, Mode=TwoWay}"
+                      SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}"
+                      Grid.Column="0">
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout>
+                                        <Label Text="{Binding Author}"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollView>
+
+                <Label Grid.Column="1"
+                             Grid.Row="0"
+                             Margin="0,30" Text="Try1"/>
+
+                <Label Grid.Column="1"
+                    Grid.Row="1"
+                           Text="Try2"
+                           Margin="0,30"/>
+
+                <Label Grid.Column="1"
+                        Grid.Row="2"
+                           Text="Try3"
+                           Margin="0,30,0,0"/>
+
+                <Button Grid.Column="0"
+                        Grid.Row="3"
+                        Text="Arrow to the left"
+                        Margin="0"
+                        Grid.ColumnSpan="1"
+                        TextColor="Black"
+                        />
+                <Button Text="Angol nyelvű receptek"
+                    Command="{Binding Path=TestCommnd}"
+                        Grid.Column="1"
+                        Grid.Row="3"/>
+            </Grid>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
