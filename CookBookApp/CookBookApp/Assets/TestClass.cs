@@ -13,16 +13,7 @@ namespace CookBookApp.Assets
         List<Recipe> recipes;
         public TestClass()
         {
-            //fillSQLiteWithTestData();
             recipeServices = new RecipeServices();
-
-            Task.Run(async () =>
-            {
-                recipes = await recipeServices.getRecipesJoined();
-                Console.WriteLine("TEST 1 PIPA ");
-                recipes = await recipeServices.getRecipesJoinedByLanguage("en");
-                Console.WriteLine("TEST 2 PIPA ");
-            });
         }
 
         public void fillSQLiteWithTestData()
@@ -226,6 +217,17 @@ namespace CookBookApp.Assets
                 await App._context.RecipeImages.AddRangeAsync(recipeImages);
             });
 
+        }
+
+        public void testLanguageFilter()
+        {
+            Task.Run(async () =>
+            {
+                recipes = await recipeServices.getRecipesJoined();
+                Console.WriteLine("TEST 1 PIPA ");
+                recipes = await recipeServices.getRecipesJoinedByLanguage("en");
+                Console.WriteLine("TEST 2 PIPA ");
+            });
         }
     }
 }

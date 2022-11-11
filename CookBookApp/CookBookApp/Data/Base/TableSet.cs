@@ -41,12 +41,12 @@ namespace CookBookApp.Data.Base
             return db.DeleteAsync(modelToRemove);
         }
 
-        public Task<List<T>> getAllAsync()
+        public Task<List<T>> GetAllAsync()
         {
             return db.Table<T>().ToListAsync();
         }
 
-        public Task<int> clearAsync()
+        public Task<int> ClearAsync()
         {
             return db.DeleteAllAsync<T>();
         }

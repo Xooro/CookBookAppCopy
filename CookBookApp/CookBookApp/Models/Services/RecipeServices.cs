@@ -20,7 +20,7 @@ namespace CookBookApp.Models.Services
             {
                 var recipes = await getRecipesJoined();
                 var recipesBuff = new List<Recipe>();
-                var languages = await App._context.Languages.getAllAsync();
+                var languages = await App._context.Languages.GetAllAsync();
                 int languageID = languages.FirstOrDefault(l => l.LanguageName == language).ID;
 
                 foreach (Recipe recipe in recipes)
@@ -62,11 +62,11 @@ namespace CookBookApp.Models.Services
             List<Recipe> recipesResults = new List<Recipe>();
             try
             {
-                var recipes = await App._context.Recipes.getAllAsync();
-                var recipeLocalizations = await App._context.RecipeLocalizations.getAllAsync();
-                var recipeCategories = await App._context.RecipeCategories.getAllAsync();
-                var recipeImages = await App._context.RecipeImages.getAllAsync();
-                var languages = await App._context.Languages.getAllAsync();
+                var recipes = await App._context.Recipes.GetAllAsync();
+                var recipeLocalizations = await App._context.RecipeLocalizations.GetAllAsync();
+                var recipeCategories = await App._context.RecipeCategories.GetAllAsync();
+                var recipeImages = await App._context.RecipeImages.GetAllAsync();
+                var languages = await App._context.Languages.GetAllAsync();
 
                 foreach(Recipe recipe in recipes)
                 {
