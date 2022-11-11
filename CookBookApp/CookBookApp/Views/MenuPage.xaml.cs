@@ -10,11 +10,16 @@ using Xamarin.Forms.Xaml;
 namespace CookBookApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Menu : ContentPage
+    public partial class MenuPage : ContentPage
     {
-        public Menu()
+        public MenuPage()
         {
             InitializeComponent();
+        }
+
+        private void RecipeButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new RecipesPage());
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CookBookApp.Data;
+using CookBookApp.Views;
 using System;
 using System.IO;
 using Xamarin.Forms;
@@ -12,7 +13,8 @@ namespace CookBookApp
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            //MainPage = new MainPage();
+            MainPage = new NavigationPage(new MenuPage());
         }
 
         static SQLiteHelper db;

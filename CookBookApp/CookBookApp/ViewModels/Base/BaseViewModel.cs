@@ -5,8 +5,8 @@ using System.Text;
 
 namespace CookBookApp.ViewModels.Base
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged = (sender, e) => {};
+        public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
     }
 }
