@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace CookBookApp.Models.Services
 {
-    public class RecipeServices
+    public class RecipeService
     {
         //Visszaadja a receptek listáját a megadott nyelvek alapján
         //üres lita esetén minden recept az alapértelmezett nyelvükkel
         //1 elem alapján a megadott nyelvel rendelkező receptek szerint
         //több elem alapján pedig ha valamelyiket teljesíti
-        public async Task<List<Recipe>> getRecipesLocalized(string[] languages)
+        public async Task<List<Recipe>> getRecipesLocalizedAsync(string[] languages)
         {
             for(int i =0; i< languages.Length; ++i)
             {
@@ -29,13 +29,13 @@ namespace CookBookApp.Models.Services
                 switch(languages.Length)
                 {
                     case 0:
-                        recipesResults = await getRecipesLocalizedNoLanguage();
+                        recipesResults = await getRecipesLocalizedNoLanguageAsync();
                         break;
                     case 1:
-                        recipesResults = await getRecipesLocalizedOneLanguage(languages[0]);
+                        recipesResults = await getRecipesLocalizedOneLanguageAsync(languages[0]);
                         break;
                     default:
-                        recipesResults = await getRecipesLocalizedMultipleLanguage(languages);
+                        recipesResults = await getRecipesLocalizedMultipleLanguageAsync(languages);
                         break;
                 }
             }
@@ -48,12 +48,12 @@ namespace CookBookApp.Models.Services
         }
 
         //vissza ad minden receptet az alapértelmezett nyelvük alapján
-        private async Task<List<Recipe>> getRecipesLocalizedNoLanguage()
+        private async Task<List<Recipe>> getRecipesLocalizedNoLanguageAsync()
         {
             List<Recipe> recipesResults = new List<Recipe>();
             try
             {
-                var recipes = await getRecipesJoined();
+                var recipes = await getRecipesJoinedAsync();
                 var recipesBuff = new List<Recipe>();
                 foreach (Recipe recipe in recipes)
                 {
@@ -72,12 +72,12 @@ namespace CookBookApp.Models.Services
         }
 
         //vissza adja a recepteket, amelyek teljesítik az adott nyelv paraméterét
-        private async Task<List<Recipe>> getRecipesLocalizedOneLanguage(string language)
+        private async Task<List<Recipe>> getRecipesLocalizedOneLanguageAsync(string language)
         {
             List<Recipe> recipesResults = new List<Recipe>();
             try
             {
-                var recipes = await getRecipesJoined();
+                var recipes = await getRecipesJoinedAsync();
                 var recipesBuff = new List<Recipe>();
                 var languages = await App._context.Languages.GetAllAsync();
                 int languageID = languages.FirstOrDefault(l => l.LanguageName == language).ID;
@@ -103,13 +103,13 @@ namespace CookBookApp.Models.Services
         }
 
         //vissza adja a recepteket, amelyek teljesítik az adott nyelveket
-        private async Task<List<Recipe>> getRecipesLocalizedMultipleLanguage(string[] languages)
+        private async Task<List<Recipe>> getRecipesLocalizedMultipleLanguageAsync(string[] languages)
         {
             List<Recipe> recipesResults = new List<Recipe>();
             
             try
             {
-                var recipes = await getRecipesLocalizedNoLanguage();
+                var recipes = await getRecipesLocalizedNoLanguageAsync();
                 var recipesBuff = new List<Recipe>();
                 foreach (Recipe recipe in recipes)
                 {
@@ -144,7 +144,7 @@ namespace CookBookApp.Models.Services
         }
 
         //vissza adja a recepteket, amelyek tárolnak minden lokalizációt, de saját lokalizációval nem rendelkezik
-        public async Task<List<Recipe>> getRecipesJoined()
+        public async Task<List<Recipe>> getRecipesJoinedAsync()
         {
             List<Recipe> recipesResults = new List<Recipe>();
             try

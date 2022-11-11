@@ -9,20 +9,20 @@ namespace CookBookApp.Assets
 {
     public class TestClass
     {
-        RecipeServices recipeServices;
+        RecipeService recipeServices;
         List<Recipe> recipes;
         public TestClass()
         {
-            recipeServices = new RecipeServices();
+            recipeServices = new RecipeService();
         }
 
         public void testLanguageFilter(string[] languages)
         {
             Task.Run(async () =>
             {
-                recipes = await recipeServices.getRecipesJoined();
+                recipes = await recipeServices.getRecipesJoinedAsync();
                 Console.WriteLine("TEST 1 PIPA ");
-                recipes = await recipeServices.getRecipesLocalized(languages);
+                recipes = await recipeServices.getRecipesLocalizedAsync(languages);
                 Console.WriteLine("TEST 2 PIPA ");
             });
         }

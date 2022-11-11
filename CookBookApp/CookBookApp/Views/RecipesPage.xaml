@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout>
             <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
-            
+
             <ListView x:Name ="lstVwRecipes" 
                       ItemsSource="{Binding Recipes, Mode=TwoWay}"
                       SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}">
@@ -14,12 +14,26 @@
                         <ViewCell>
                             <StackLayout>
                                 <Label Text="{Binding Author}"/>
+                                <Label Text="{Binding LocalizedRecipe.RecipeName}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
+            <ListView x:Name ="lstVwLanguages" 
+                      ItemsSource="{Binding Languages, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
+                                <Label Text="{Binding LanguageName, Mode=TwoWay}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             <Button Text="Angol nyelvű receptek"
                     Command="{Binding Path=TestCommnd}"/>
         </StackLayout>
