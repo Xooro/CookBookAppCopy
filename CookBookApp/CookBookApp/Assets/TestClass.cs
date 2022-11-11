@@ -14,6 +14,7 @@ namespace CookBookApp.Assets
         public TestClass()
         {
             recipeServices = new RecipeServices();
+            testLanguageFilter("hu");
         }
 
         public void fillSQLiteWithTestData()
@@ -219,13 +220,13 @@ namespace CookBookApp.Assets
 
         }
 
-        public void testLanguageFilter()
+        public void testLanguageFilter(string language)
         {
             Task.Run(async () =>
             {
                 recipes = await recipeServices.getRecipesJoined();
                 Console.WriteLine("TEST 1 PIPA ");
-                recipes = await recipeServices.getRecipesJoinedByLanguage("en");
+                recipes = await recipeServices.getRecipesJoinedByLanguage(language);
                 Console.WriteLine("TEST 2 PIPA ");
             });
         }

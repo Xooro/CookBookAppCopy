@@ -27,21 +27,12 @@ namespace CookBookApp.Models.Services
                 {
                     if (recipe.Languages.Any(l => l.LanguageName == language))
                     {
-                        Recipe recipeBuff = new Recipe()
-                        {
-                            ID = recipe.ID,
-                            DefaultLanguageID = recipe.DefaultLanguageID,
-                            Author = recipe.Author,
-                            PreparationTime = recipe.PreparationTime,
-                            Difficulty = recipe.Difficulty,
-                            Price = recipe.Price,
-                            Portion = recipe.Portion,
-                            CreationDate = recipe.CreationDate,
-                            Languages = recipe.Languages,
-                            LocalizedRecipe = recipe.Localizations.FirstOrDefault(l => l.LanguageID == languageID),
-                            LocalizedCategories = recipe.Categories.Where(c => c.LanguageID == languageID).ToList(),
-                            Images = recipe.Images
-                        };
+                        Recipe recipeBuff = recipe;
+                        recipeBuff.LocalizedRecipe = recipe.Localizations.FirstOrDefault(l => l.LanguageID == languageID);
+                        recipeBuff.LocalizedCategories = recipe.Categories.Where(c => c.LanguageID == languageID).ToList();
+                        recipeBuff.Localizations = null;
+                        recipeBuff.Categories = null;
+
                         recipesBuff.Add(recipeBuff);
                     }
                 }
