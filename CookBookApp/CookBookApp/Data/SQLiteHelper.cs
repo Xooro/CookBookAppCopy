@@ -15,6 +15,7 @@ namespace CookBookApp.Data
         public TableSet<RecipeCategories> RecipeCategories;
         public TableSet<RecipeImage> RecipeImages;
         public TableSet<RecipeLocalization> RecipeLocalizations;
+        public TableSet<Language> Languages;
 
         public SQLiteHelper(string dbPath)
         {
@@ -24,6 +25,7 @@ namespace CookBookApp.Data
             RecipeCategories = new TableSet<RecipeCategories>(db);
             RecipeImages = new TableSet<RecipeImage>(db);
             RecipeLocalizations = new TableSet<RecipeLocalization>(db);
+            Languages = new TableSet<Language>(db);
         }
     }
 }
