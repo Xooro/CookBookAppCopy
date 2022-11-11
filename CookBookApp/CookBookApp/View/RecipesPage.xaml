@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CookBookApp.Views.RecipesPage"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              BackgroundColor="AliceBlue">
 
 
@@ -18,8 +19,6 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
-
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -31,6 +30,9 @@
                     <ColumnDefinition Width="4*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
+
                 <ScrollView 
                     Grid.Row="0"
                         Grid.RowSpan="3"
@@ -53,14 +55,16 @@
                     </ListView>
                 </ScrollView>
 
-                <Label Grid.Column="1"
-                             Grid.Row="0"
-                             Margin="0,30" Text="Try1"/>
+                <SearchBar x:Name="srchBrRecipes"
+                           Placeholder="Keresés...."
+                           Grid.Column="1"
+                           Grid.Row="0"
+                           SearchCommand="{Binding SearchCommandTest}"
+                           SearchCommandParameter="{Binding Text, Source={x:Reference srchBrRecipes}}"/>
 
                 <Label Grid.Column="1"
-                    Grid.Row="1"
-                           Text="Try2"
-                           Margin="0,30"/>
+                             Grid.Row="1"
+                             Margin="0,30" Text="Try1"/>
 
                 <StackLayout Grid.Column="1"
                         Grid.Row="2"
@@ -87,12 +91,12 @@
                         TextColor="Black"
                         />
                 <Button Text="Filterelés"
-                    Command="{Binding Path=TestCommnd}"
+                        Command="{Binding Path=FilterCommand}"
                         Grid.Column="1"
                         Grid.Row="3"/>
             </Grid>
 
-            
+
             <Button Text="Angol nyelvű receptek"
                     Command="{Binding Path=TestCommnd}"/>
         </StackLayout>

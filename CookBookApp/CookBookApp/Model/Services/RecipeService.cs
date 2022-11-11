@@ -17,7 +17,7 @@ namespace CookBookApp.Models.Services
         //üres lita esetén minden recept az alapértelmezett nyelvükkel
         //1 elem alapján a megadott nyelvel rendelkező receptek szerint
         //több elem alapján pedig ha valamelyiket teljesíti
-        public async Task<List<Recipe>> getRecipesLocalizedAsync(string[] languages)
+        public async Task<List<Recipe>> getRecipesLocalizedAsync(string[] languages, string search)
         {
             for(int i =0; i< languages.Length; ++i)
             {
@@ -26,18 +26,27 @@ namespace CookBookApp.Models.Services
             List<Recipe> recipesResults = new List<Recipe>();
             try
             {
-                switch(languages.Length)
+                List<Recipe> recipes = new List<Recipe>();
+                switch (languages.Length)
                 {
                     case 0:
-                        recipesResults = await getRecipesLocalizedNoLanguageAsync();
+                        recipes = await getRecipesLocalizedNoLanguageAsync();
                         break;
                     case 1:
-                        recipesResults = await getRecipesLocalizedOneLanguageAsync(languages[0]);
+                        recipes = await getRecipesLocalizedOneLanguageAsync(languages[0]);
                         break;
                     default:
-                        recipesResults = await getRecipesLocalizedMultipleLanguageAsync(languages);
+                        recipes = await getRecipesLocalizedMultipleLanguageAsync(languages);
                         break;
                 }
+                if(search != "")
+                {
+                    recipes = recipes.Where(r => (r.LocalizedRecipe.RecipeName.Contains(search)) 
+                        || (r.LocalizedRecipe.Preparation.Contains(search))
+                        || (r.LocalizedRecipe.Ingredients.Contains(search))
+                    ).ToList();
+                }
+                recipesResults = recipes;
             }
             catch (Exception ex)
             {

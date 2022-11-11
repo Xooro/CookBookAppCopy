@@ -1,5 +1,4 @@
-﻿using CookBookApp.Assets;
-using CookBookApp.Models;
+﻿using CookBookApp.Models;
 using CookBookApp.Models.Services;
 using System;
 using System.Collections.Generic;
@@ -16,7 +15,6 @@ namespace CookBookApp
         public MainPage()
         {
             InitializeComponent();
-            //TestClass tc = new TestClass();
         }
     }
 }

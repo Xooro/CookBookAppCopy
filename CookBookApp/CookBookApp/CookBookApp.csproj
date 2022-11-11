@@ -19,18 +19,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\MenuPage.xaml.cs">
+    <Compile Update="View\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\RecipesPage.xaml">
+    <EmbeddedResource Update="View\RecipesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Assets\" />
     <Folder Include="Resources\" />
   </ItemGroup>
 </Project>

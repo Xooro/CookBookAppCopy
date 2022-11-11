@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace CookBookApp.ViewModels
@@ -18,41 +19,46 @@ namespace CookBookApp.ViewModels
     {
         public ObservableCollection<Recipe> Recipes { get; set; }
         public ObservableCollection<Language> Languages { get; set; }
-        public ObservableCollection<Language> SelectedLanguages { get; set; }
         public Recipe SelectedRecipe { get; set; }
         public string Message { get; set; }
+        public bool IsBusy { get; set; }
         public RelayCommand OpenCommand { get; }
         public RelayCommand DeleteCommand { get; }
         public RelayCommand SearchCommand { get; }
-        public RelayCommand TestCommnd { get;  }
-        public bool IsBusy { get; set; }
-        
-        string search;
-        
-        
+        public ICommand SearchCommandTest { get; set; }
+        public RelayCommand FilterCommand { get;  }
+
         RecipeService recipeService;
         LanguageService languageService;
+
+        string searchQuery;
+        string[] selectedLanguages;
 
         public RecipesViewModel()
         {
             recipeService = new RecipeService();
             languageService = new LanguageService();
 
-            search = "";
-            Languages = new ObservableCollection<Language>();
-            SelectedLanguages = new ObservableCollection<Language>();
+            searchQuery = "";
+            selectedLanguages = new string[] { };
 
             loadLanguage();
             loadRecipe();
-            TestCommnd = new RelayCommand(filter);
+
+            FilterCommand = new RelayCommand(filter);
+            SearchCommand = new RelayCommand(search);
+
+            SearchCommandTest = new Command<string>(searchTest);
         }
 
         private void loadLanguage()
         {
+            IsBusy = true;
             Task.Run(async () =>
             {
                 Languages = new ObservableCollection<Language>(await languageService.GetLanguagesAsync());
             });
+            IsBusy = false;
         }
 
         private void loadRecipe()
@@ -61,8 +67,7 @@ namespace CookBookApp.ViewModels
             Task.Run(async () =>
             {
                 Thread.Sleep(1000);
-                var languageArray = SelectedLanguages.Select(l => l.LanguageName).ToArray();
-                Recipes = new ObservableCollection<Recipe>(await recipeService.getRecipesLocalizedAsync(languageArray));
+                Recipes = new ObservableCollection<Recipe>(await recipeService.getRecipesLocalizedAsync(selectedLanguages,searchQuery));
 
                 IsBusy = false;
             });
@@ -70,7 +75,21 @@ namespace CookBookApp.ViewModels
 
         private void filter()
         {
-            SelectedLanguages = new ObservableCollection<Language>(Languages.Where(l => l.IsChecked).ToList());
+            searchQuery = "";
+            List<Language> selectedLanguagesList = Languages.Where(l => l.IsChecked).ToList();
+            selectedLanguages = selectedLanguagesList.Select(l => l.LanguageName).ToArray();
+            loadRecipe();
+        }
+
+        //TODO: FIX SEARCH AND DELETE SEARCHTEST AFTER
+        private void search()
+        {
+            loadRecipe();
+        }
+
+        private void searchTest(string searchQuery)
+        {
+            this.searchQuery = searchQuery;
             loadRecipe();
         }
     }
