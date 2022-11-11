@@ -8,6 +8,7 @@ namespace CookBookApp.Models
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
+        public int DefaultLanguageID { get; set; }
         public string Author { get; set; }
         public DateTime PreparationTime { get; set; }
         public int Difficulty { get; set; }

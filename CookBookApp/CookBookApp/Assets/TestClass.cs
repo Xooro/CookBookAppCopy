@@ -34,6 +34,7 @@ namespace CookBookApp.Assets
                     new Recipe()
                     {
                     ID = 1,
+                    DefaultLanguageID = 1,
                     Author = "Karoly",
                     PreparationTime = DateTime.Now,
                     Difficulty = 0,
@@ -44,6 +45,7 @@ namespace CookBookApp.Assets
                     new Recipe()
                     {
                     ID = 2,
+                    DefaultLanguageID = 3,
                     Author = "Dovi",
                     PreparationTime = DateTime.Now,
                     Difficulty = 1,
@@ -54,6 +56,7 @@ namespace CookBookApp.Assets
                     new Recipe()
                     {
                     ID = 3,
+                    DefaultLanguageID = 2,
                     Author = "Name",
                     PreparationTime = DateTime.Now,
                     Difficulty = 2,
