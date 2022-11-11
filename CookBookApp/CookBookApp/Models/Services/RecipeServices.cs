@@ -30,6 +30,7 @@ namespace CookBookApp.Models.Services
                         Recipe recipeBuff = new Recipe()
                         {
                             ID = recipe.ID,
+                            DefaultLanguageID = recipe.DefaultLanguageID,
                             Author = recipe.Author,
                             PreparationTime = recipe.PreparationTime,
                             Difficulty = recipe.Difficulty,
