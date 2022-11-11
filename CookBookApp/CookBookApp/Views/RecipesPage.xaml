@@ -65,6 +65,18 @@
                         Grid.Row="2"
                            Text="Try3"
                            Margin="0,30,0,0"/>
+                      SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding Author}"/>
+                                <Label Text="{Binding LocalizedRecipe.RecipeName}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
                 <Button Grid.Column="0"
                         Grid.Row="3"
@@ -79,6 +91,21 @@
                         Grid.Row="3"/>
             </Grid>
 
+            <ListView x:Name ="lstVwLanguages" 
+                      ItemsSource="{Binding Languages, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
+                                <Label Text="{Binding LanguageName, Mode=TwoWay}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Angol nyelvű receptek"
+                    Command="{Binding Path=TestCommnd}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

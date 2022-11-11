@@ -1,7 +1,4 @@
 ﻿using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CookBookApp.Models
 {
@@ -11,5 +8,8 @@ namespace CookBookApp.Models
         public int ID { get; set; }
         //EN,HU,DE, stb....
         public string LanguageName { get; set; }
+
+        [Ignore]
+        public bool IsChecked { get; set; }
     }
 }

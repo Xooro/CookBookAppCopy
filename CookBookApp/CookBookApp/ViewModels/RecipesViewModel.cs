@@ -5,49 +5,73 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace CookBookApp.ViewModels
 {
     public class RecipesViewModel : BaseViewModel
     {
         public ObservableCollection<Recipe> Recipes { get; set; }
+        public ObservableCollection<Language> Languages { get; set; }
+        public ObservableCollection<Language> SelectedLanguages { get; set; }
         public Recipe SelectedRecipe { get; set; }
         public string Message { get; set; }
         public RelayCommand OpenCommand { get; }
         public RelayCommand DeleteCommand { get; }
         public RelayCommand SearchCommand { get; }
         public RelayCommand TestCommnd { get;  }
-        public bool IsBusy { get; set; } = false;
-
-
-        RecipeServices recipeService;
+        public bool IsBusy { get; set; }
+        
+        string search;
+        
+        
+        RecipeService recipeService;
+        LanguageService languageService;
 
         public RecipesViewModel()
         {
-            recipeService = new RecipeServices();
-            loadRecipe(new string[] { });
+            recipeService = new RecipeService();
+            languageService = new LanguageService();
+
+            search = "";
+            Languages = new ObservableCollection<Language>();
+            SelectedLanguages = new ObservableCollection<Language>();
+
+            loadLanguage();
+            loadRecipe();
             TestCommnd = new RelayCommand(testFilter);
         }
 
-        public void loadRecipe(string[] languages)
+        public void loadLanguage()
+        {
+            Task.Run(async () =>
+            {
+                Languages = new ObservableCollection<Language>(await languageService.GetLanguagesAsync());
+            });
+        }
+
+        public void loadRecipe()
         {
             IsBusy = true;
             Task.Run(async () =>
             {
-                Thread.Sleep(2000);
-                Recipes = new ObservableCollection<Recipe>(await recipeService.getRecipesLocalized(languages));
+                Thread.Sleep(1000);
+                var languageArray = SelectedLanguages.Select(l => l.LanguageName).ToArray();
+                Recipes = new ObservableCollection<Recipe>(await recipeService.getRecipesLocalizedAsync(languageArray));
 
                 IsBusy = false;
             });
-            
         }
 
         public void testFilter()
         {
-            loadRecipe(new string[] { "en" });
+            SelectedLanguages = new ObservableCollection<Language>(Languages.Where(l => l.IsChecked).ToList());
+            loadRecipe();
         }
     }
 }
