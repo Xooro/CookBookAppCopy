@@ -4,21 +4,24 @@
              x:Class="CookBookApp.Views.RecipesPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="kutya"/>
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
+            
             <ListView x:Name ="lstVwRecipes" 
-                      ItemsSource="{Binding Path=Recipes}"
-                      SelectedItem="{Binding Path=SelectedRecipe}">
+                      ItemsSource="{Binding Recipes, Mode=TwoWay}"
+                      SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
-                                <Label Text="kacsa"/>
+                                <Label Text="{Binding Author}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Label Text="cica"/>
+
+            <Button Text="Angol nyelvű receptek"
+                    Command="{Binding Path=TestCommnd}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

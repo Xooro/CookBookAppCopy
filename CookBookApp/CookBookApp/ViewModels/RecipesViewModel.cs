@@ -4,7 +4,9 @@ using CookBookApp.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CookBookApp.ViewModels
@@ -17,6 +19,9 @@ namespace CookBookApp.ViewModels
         public RelayCommand OpenCommand { get; }
         public RelayCommand DeleteCommand { get; }
         public RelayCommand SearchCommand { get; }
+        public RelayCommand TestCommnd { get;  }
+        public bool IsBusy { get; set; } = false;
+
 
         RecipeServices recipeService;
 
@@ -24,16 +29,25 @@ namespace CookBookApp.ViewModels
         {
             recipeService = new RecipeServices();
             loadRecipe(new string[] { });
+            TestCommnd = new RelayCommand(testFilter);
         }
 
         public void loadRecipe(string[] languages)
         {
+            IsBusy = true;
             Task.Run(async () =>
             {
-                var tempRecipes = await recipeService.getRecipesLocalized(languages);
-                Recipes = new ObservableCollection<Recipe>(tempRecipes);
-                Console.WriteLine("csumi");
+                Thread.Sleep(2000);
+                Recipes = new ObservableCollection<Recipe>(await recipeService.getRecipesLocalized(languages));
+
+                IsBusy = false;
             });
+            
+        }
+
+        public void testFilter()
+        {
+            loadRecipe(new string[] { "en" });
         }
     }
 }
