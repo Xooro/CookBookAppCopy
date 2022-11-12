@@ -1,4 +1,5 @@
 ﻿using CookBookApp.Data;
+using CookBookApp.Helpers;
 using CookBookApp.Views;
 using System;
 using System.IO;
@@ -13,8 +14,8 @@ namespace CookBookApp
         {
             InitializeComponent();
 
-            //MainPage = new MainPage();
             MainPage = new NavigationPage(new MenuPage());
+            //ContextHelper.fillSQLiteWithTestData();
         }
 
         static SQLiteHelper db;

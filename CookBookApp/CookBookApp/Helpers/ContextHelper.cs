@@ -9,7 +9,7 @@ namespace CookBookApp.Helpers
 {
     public class ContextHelper
     {
-        public void fillSQLiteWithTestData()
+        public static void fillSQLiteWithTestData()
         {
             Task.Run(async () =>
             {

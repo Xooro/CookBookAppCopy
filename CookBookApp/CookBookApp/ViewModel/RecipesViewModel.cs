@@ -1,6 +1,7 @@
 ﻿using CookBookApp.Models;
 using CookBookApp.Models.Services;
 using CookBookApp.ViewModels.Base;
+using CookBookApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,7 +25,6 @@ namespace CookBookApp.ViewModels
         public string SearchQuery { get; set; }
         public bool IsBusy { get; set; }
         public RelayCommand OpenCommand { get; }
-        public RelayCommand DeleteCommand { get; }
         public RelayCommand<string> SearchCommand { get; }
         public RelayCommand FilterCommand { get;  }
 
@@ -73,6 +73,8 @@ namespace CookBookApp.ViewModels
 
         private void filter()
         {
+            //ez azért szükséges, mert megnyomásakor  törli a searchban található adatot.
+            //Az függ OneWay módban a SearchQuery-től. Ha a query "", akkor nem törli, ezért a kettős módosítás
             SearchQuery = "t";
             SearchQuery = "";
             

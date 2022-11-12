@@ -71,7 +71,7 @@
                         <behavior:EventToCommandBehavior EventName="TextChanged"
                                                          Command="{Binding SearchCommand}"
                                                          CommandParameter="{Binding Text, Source={x:Reference srchBrRecipes}}">
-                            
+
                         </behavior:EventToCommandBehavior>
                     </SearchBar.Behaviors>
                 </SearchBar>
@@ -97,22 +97,21 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </StackLayout>
-                <Button Grid.Column="0"
+                <Button x:Name="bttnBackPage"
+                        Grid.Column="0"
                         Grid.Row="3"
-                        Text="Arrow to the left"
+                        Text="Vissza"
                         Margin="0"
                         Grid.ColumnSpan="1"
                         TextColor="Black"
+                        Clicked="bttnBackPage_Clicked"
                         />
-                <Button Text="Filterelés"
+                <Button x:Name="bttnFilter"
+                        Text="Filterelés"
                         Command="{Binding Path=FilterCommand}"
                         Grid.Column="1"
                         Grid.Row="3"/>
             </Grid>
-
-
-            <Button Text="Angol nyelvű receptek"
-                    Command="{Binding Path=TestCommnd}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
