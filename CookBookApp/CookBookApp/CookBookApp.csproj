@@ -19,6 +19,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Resources\AppResources.hu.Designer.cs">
+      <DependentUpon>AppResources.hu.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resources\AppResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="View\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
@@ -28,6 +38,14 @@
     <EmbeddedResource Update="Behaviors\BehaviorPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AppResources.hu.resx">
+      <LastGenOutput>AppResources.hu.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="View\RecipesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -35,6 +53,5 @@
 
   <ItemGroup>
     <Folder Include="Assets\" />
-    <Folder Include="Resources\" />
   </ItemGroup>
 </Project>

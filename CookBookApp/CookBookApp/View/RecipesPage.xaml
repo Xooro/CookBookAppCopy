@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CookBookApp.Views.RecipesPage"
-             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:resources="clr-namespace:CookBookApp.Resources"
              xmlns:behavior="clr-namespace:CookBookApp.Behaviors"
              BackgroundColor="AliceBlue">
 
@@ -107,7 +107,7 @@
                         Clicked="bttnBackPage_Clicked"
                         />
                 <Button x:Name="bttnFilter"
-                        Text="Filterelés"
+                        Text="{x:Static resources:AppResources.recipes_bttnFilter}"
                         Command="{Binding Path=FilterCommand}"
                         Grid.Column="1"
                         Grid.Row="3"/>

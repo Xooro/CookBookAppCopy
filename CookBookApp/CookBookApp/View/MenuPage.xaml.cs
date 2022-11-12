@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CookBookApp.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace CookBookApp.Views
     {
         public MenuPage()
         {
+            BindingContext = new MenuViewModel();
             InitializeComponent();
         }
 

@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resources="clr-namespace:CookBookApp.Resources"
              x:Class="CookBookApp.Views.MenuPage">
     <ContentPage.Content>
         <Grid>
@@ -13,13 +14,19 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="10"/>
             </Grid.RowDefinitions>
 
-            <Button Text="receptek"
-                    Grid.Row="1"
+            <Label  x:Name="lblMenuTitle" 
+                    Text="{x:Static resources:AppResources.menu_lblMenu}"
                     Grid.Column="1"
+                    Grid.Row="1"/>
+            <Button x:Name="bttnRecipes"
+                    Text="{x:Static resources:AppResources.menu_bttnRecipes}"
+                    Grid.Column="1"
+                    Grid.Row="2"      
                     Clicked="RecipeButton_Clicked"/>
         </Grid>
     </ContentPage.Content>

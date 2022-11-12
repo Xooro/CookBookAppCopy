@@ -182,5 +182,41 @@ namespace CookBookApp.Models.Services
             }
             return await Task.FromResult(recipesResults);
         }
+
+        public async Task<bool> deleteRecipeAsync(Recipe recipeToDelete)
+        {
+            bool isDeleted = false;
+            try
+            {
+                List<Recipe> recipes = await getRecipesJoinedAsync();
+                Recipe recipe = recipes.FirstOrDefault(r => r.ID == recipeToDelete.ID);
+
+                foreach(RecipeImage image in recipe.Images)
+                {
+                    await App._context.RecipeImages.RemoveAsync(image);
+                }
+                
+                foreach(RecipeCategories category in recipe.Categories)
+                {
+                    await App._context.RecipeCategories.RemoveAsync(category);
+                }
+
+                foreach(RecipeLocalization recipeLocalization in recipe.Localizations)
+                {
+                    await App._context.RecipeLocalizations.RemoveAsync(recipeLocalization);
+                }
+
+                await App._context.Recipes.RemoveAsync(recipe);
+
+                isDeleted = true;
+            }
+            catch (Exception ex)
+            {
+                //TODO: LOGGER CW HELYETT
+                Console.WriteLine(ex.Message);
+            }
+
+            return await Task.FromResult(isDeleted);
+        }
     }
 }

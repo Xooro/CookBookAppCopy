@@ -2,7 +2,9 @@
 using CookBookApp.Helpers;
 using CookBookApp.Views;
 using System;
+using System.Globalization;
 using System.IO;
+using System.Threading;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,7 +15,6 @@ namespace CookBookApp
         public App()
         {
             InitializeComponent();
-
             MainPage = new NavigationPage(new MenuPage());
             //ContextHelper.fillSQLiteWithTestData();
         }
