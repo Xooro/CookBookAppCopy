@@ -18,5 +18,10 @@ namespace CookBookApp.Views
             InitializeComponent();
             BindingContext = new RecipesViewModel();
         }
+
+        private void bttnBackPage_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync();
+        }
     }
 }
