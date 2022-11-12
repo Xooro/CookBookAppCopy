@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CookBookApp.Views.RecipesPage"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:behavior="clr-namespace:CookBookApp.Behaviors"
              BackgroundColor="AliceBlue">
 
 
@@ -55,12 +56,25 @@
                     </ListView>
                 </ScrollView>
 
-                <SearchBar x:Name="srchBrRecipes"
+                <!--<SearchBar x:Name="srchBrRecipes"
                            Placeholder="Keresés...."
                            Grid.Column="1"
                            Grid.Row="0"
+                           Text="{Binding searchQuery, Mode=OneWay}"
                            SearchCommand="{Binding SearchCommandTest}"
-                           SearchCommandParameter="{Binding Text, Source={x:Reference srchBrRecipes}}"/>
+                           SearchCommandParameter="{Binding Text, Source={x:Reference srchBrRecipes}}"/>-->
+                <SearchBar x:Name="srchBrRecipes"
+                           Grid.Column="1"
+                           Grid.Row="0"
+                           Text="{Binding SearchQuery, Mode=OneWay}">
+                    <SearchBar.Behaviors>
+                        <behavior:EventToCommandBehavior EventName="TextChanged"
+                                                         Command="{Binding SearchCommand}"
+                                                         CommandParameter="{Binding Text, Source={x:Reference srchBrRecipes}}">
+                            
+                        </behavior:EventToCommandBehavior>
+                    </SearchBar.Behaviors>
+                </SearchBar>
 
                 <Label Grid.Column="1"
                              Grid.Row="1"

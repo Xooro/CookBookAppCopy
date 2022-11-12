@@ -21,17 +21,17 @@ namespace CookBookApp.ViewModels
         public ObservableCollection<Language> Languages { get; set; }
         public Recipe SelectedRecipe { get; set; }
         public string Message { get; set; }
+        public string SearchQuery { get; set; }
         public bool IsBusy { get; set; }
         public RelayCommand OpenCommand { get; }
         public RelayCommand DeleteCommand { get; }
-        public RelayCommand SearchCommand { get; }
-        public ICommand SearchCommandTest { get; set; }
+        public RelayCommand<string> SearchCommand { get; }
         public RelayCommand FilterCommand { get;  }
 
         RecipeService recipeService;
         LanguageService languageService;
 
-        string searchQuery;
+        
         string[] selectedLanguages;
 
         public RecipesViewModel()
@@ -39,16 +39,14 @@ namespace CookBookApp.ViewModels
             recipeService = new RecipeService();
             languageService = new LanguageService();
 
-            searchQuery = "";
+            SearchQuery = "";
             selectedLanguages = new string[] { };
 
             loadLanguage();
             loadRecipe();
 
             FilterCommand = new RelayCommand(filter);
-            SearchCommand = new RelayCommand(search);
-
-            SearchCommandTest = new Command<string>(searchTest);
+            SearchCommand = new RelayCommand<string>(search);
         }
 
         private void loadLanguage()
@@ -67,7 +65,7 @@ namespace CookBookApp.ViewModels
             Task.Run(async () =>
             {
                 Thread.Sleep(1000);
-                Recipes = new ObservableCollection<Recipe>(await recipeService.getRecipesLocalizedAsync(selectedLanguages,searchQuery));
+                Recipes = new ObservableCollection<Recipe>(await recipeService.getRecipesLocalizedAsync(selectedLanguages,SearchQuery));
 
                 IsBusy = false;
             });
@@ -75,21 +73,17 @@ namespace CookBookApp.ViewModels
 
         private void filter()
         {
-            searchQuery = "";
+            SearchQuery = "t";
+            SearchQuery = "";
+            
             List<Language> selectedLanguagesList = Languages.Where(l => l.IsChecked).ToList();
             selectedLanguages = selectedLanguagesList.Select(l => l.LanguageName).ToArray();
             loadRecipe();
         }
 
-        //TODO: FIX SEARCH AND DELETE SEARCHTEST AFTER
-        private void search()
+        private void search(string searchQuery)
         {
-            loadRecipe();
-        }
-
-        private void searchTest(string searchQuery)
-        {
-            this.searchQuery = searchQuery;
+            this.SearchQuery = searchQuery;
             loadRecipe();
         }
     }
