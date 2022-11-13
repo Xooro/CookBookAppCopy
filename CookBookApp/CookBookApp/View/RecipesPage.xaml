@@ -4,7 +4,8 @@
              x:Class="CookBookApp.Views.RecipesPage"
              xmlns:resources="clr-namespace:CookBookApp.Resources"
              xmlns:behavior="clr-namespace:CookBookApp.Behaviors"
-             BackgroundColor="AliceBlue">
+             BackgroundColor="AliceBlue"
+             x:Name="recipePage">
 
 
     <ContentPage.Resources>
@@ -20,16 +21,16 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Grid>
+            <Grid x:Name="grid" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="500"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto" x:Name="gridRow1" />
+                    <RowDefinition Height="*"  x:Name="gridRow2"/>
+                    <RowDefinition Height="500" x:Name="gridRow3"/>
+                    <RowDefinition Height="auto" x:Name="gridRow4"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="4*" x:Name="gridColumn1"/>
+                    <ColumnDefinition Width="*" x:Name="gridColumn2"/>
                 </Grid.ColumnDefinitions>
 
                 <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
@@ -66,7 +67,8 @@
                 <SearchBar x:Name="srchBrRecipes"
                            Grid.Column="1"
                            Grid.Row="0"
-                           Text="{Binding SearchQuery, Mode=OneWay}">
+                           Text="{Binding SearchQuery, Mode=OneWay}"
+                           Margin="10, 10, 50 , 10">
                     <SearchBar.Behaviors>
                         <behavior:EventToCommandBehavior EventName="TextChanged"
                                                          Command="{Binding SearchCommand}"
@@ -76,12 +78,27 @@
                     </SearchBar.Behaviors>
                 </SearchBar>
 
-                <Label Grid.Column="1"
-                             Grid.Row="1"
-                             Margin="0,30" Text="Try1"/>
+                <ScrollView Grid.Column="1"
+                             Grid.Row="2"
+                             Margin="0,30" >
+                    <ListView x:Name ="lstVwRecipeCategories" 
+                      ItemsSource="{Binding RecipeCategories, Mode=TwoWay}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal">
+                                        <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
+                                        <Label Text="{Binding LanguageName, Mode=TwoWay}"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    
+                </ScrollView>
 
-                <StackLayout Grid.Column="1"
-                        Grid.Row="2"
+                <ScrollView Grid.Column="1"
+                        Grid.Row="1"
                            Margin="0,30,0,0">
                     <ListView x:Name ="lstVwLanguages" 
                       ItemsSource="{Binding Languages, Mode=TwoWay}">
@@ -96,7 +113,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                </StackLayout>
+                </ScrollView>
                 <Button x:Name="bttnBackPage"
                         Grid.Column="0"
                         Grid.Row="3"

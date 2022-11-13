@@ -1,4 +1,5 @@
-﻿using CookBookApp.Models;
+﻿using CookBookApp.Model.Services;
+using CookBookApp.Models;
 using CookBookApp.Models.Services;
 using CookBookApp.ViewModels.Base;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace CookBookApp.ViewModels
     {
         public ObservableCollection<Recipe> Recipes { get; set; }
         public ObservableCollection<Language> Languages { get; set; }
+        public ObservableCollection<RecipeCategories> RecipeCategories{ get; set; }
         public Recipe SelectedRecipe { get; set; }
         public string Message { get; set; }
         public string SearchQuery { get; set; }
@@ -23,20 +25,22 @@ namespace CookBookApp.ViewModels
 
         RecipeService recipeService;
         LanguageService languageService;
+        RecipeCategoriesService recipeCategoriesService;
 
-        
         string[] selectedLanguages;
 
         public RecipesViewModel()
         {
             recipeService = new RecipeService();
             languageService = new LanguageService();
+            recipeCategoriesService = new RecipeCategoriesService();
 
             SearchQuery = "";
             selectedLanguages = new string[] { };
 
             loadLanguage();
             loadRecipe();
+            loadRecipeCategories();
 
             FilterCommand = new RelayCommand(filter);
             SearchCommand = new RelayCommand<string>(search);
@@ -61,6 +65,16 @@ namespace CookBookApp.ViewModels
 
                 IsBusy = false;
             });
+        }
+
+        private void loadRecipeCategories()
+        {
+            IsBusy = true;
+            Task.Run(async () =>
+            {
+                RecipeCategories = new ObservableCollection<RecipeCategories>(await recipeCategoriesService.GetRecipeCategoriesAsync());
+            });
+            IsBusy = false;
         }
 
         private void filter()
