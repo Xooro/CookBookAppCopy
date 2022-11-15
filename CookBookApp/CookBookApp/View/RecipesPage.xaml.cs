@@ -29,16 +29,11 @@ namespace CookBookApp.Views
             var x = recipePage.Width;
             var y = recipePage.Height;
 
-            grdMainGrid.WidthRequest = x;
-            grdMainGrid.HeightRequest = x;
-
             gridColumn1.Width = x / 2;
             gridColumn2.Width = x / 2;
 
-            var row1 = gridRow1.Height;
-
             gridRow2.Height = y * 3 / 12;
-            gridRow3.Height = y * 7 / 12;
+            gridRow3.Height = y * 6 / 12;
         }
     }
 }

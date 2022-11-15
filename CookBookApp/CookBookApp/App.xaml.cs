@@ -17,10 +17,12 @@ namespace CookBookApp
             InitializeComponent();
             MainPage = new NavigationPage(new MenuPage());
             //ContextHelper.fillSQLiteWithTestData();
+            
+
         }
 
         static SQLiteHelper db;
-
+        public static UserProperties userProperties = new UserProperties();
         public static SQLiteHelper _context
         {
             get
