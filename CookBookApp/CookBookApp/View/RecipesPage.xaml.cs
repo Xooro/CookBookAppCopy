@@ -13,13 +13,10 @@ namespace CookBookApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RecipesPage : ContentPage
     {
-        public int test { get; set; }
         public RecipesPage()
         {
-            test = 1;
             InitializeComponent();
             BindingContext = new RecipesViewModel();
-            SizeChanged += MainPageSizeChanged;
         }
 
         private void bttnBackPage_Clicked(object sender, EventArgs e)
@@ -27,13 +24,13 @@ namespace CookBookApp.Views
             Navigation.PopAsync();
         }
 
-        void MainPageSizeChanged(object sender, EventArgs e)
+        private void grdPage_SizeChanged(object sender, EventArgs e)
         {
             var x = recipePage.Width;
             var y = recipePage.Height;
 
-            grid.WidthRequest = x;
-            grid.HeightRequest = x;
+            grdMainGrid.WidthRequest = x;
+            grdMainGrid.HeightRequest = x;
 
             gridColumn1.Width = x / 2;
             gridColumn2.Width = x / 2;

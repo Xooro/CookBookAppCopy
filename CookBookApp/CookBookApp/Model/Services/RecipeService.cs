@@ -19,10 +19,11 @@ namespace CookBookApp.Models.Services
         //több elem alapján pedig ha valamelyiket teljesíti
         public async Task<List<Recipe>> getRecipesLocalizedAsync(string[] languages, string search)
         {
-            for(int i =0; i< languages.Length; ++i)
+            for(int i = 0; i < languages.Length; ++i)
             {
                 languages[i] = languages[i].ToUpper();
             }
+            search = search.ToUpper();
             List<Recipe> recipesResults = new List<Recipe>();
             try
             {
@@ -41,10 +42,7 @@ namespace CookBookApp.Models.Services
                 }
                 if(search != "")
                 {
-                    recipes = recipes.Where(r => (r.LocalizedRecipe.RecipeName.Contains(search)) 
-                        || (r.LocalizedRecipe.Preparation.Contains(search))
-                        || (r.LocalizedRecipe.Ingredients.Contains(search))
-                    ).ToList();
+                    recipes = await getRecipesLocalizedSearched(recipes, search);
                 }
                 recipesResults = recipes;
             }
@@ -54,6 +52,18 @@ namespace CookBookApp.Models.Services
                 Console.WriteLine(ex.Message);
             }
             return await Task.FromResult(recipesResults);
+        }
+
+        //a paraméterként megadott receptet átvizsgálja, és visszaadja az elemeket amik megfelelnek a keresésnek
+        private async Task<List<Recipe>> getRecipesLocalizedSearched(List<Recipe> recipesToSearch, string search)
+        {
+            search = search.ToUpper();
+            recipesToSearch = recipesToSearch.Where(r => 
+                        (r.LocalizedRecipe.RecipeName.ToUpper().Contains(search)) ||
+                        (r.LocalizedRecipe.Preparation.ToUpper().Contains(search)) ||
+                        (r.LocalizedRecipe.Ingredients.ToUpper().Contains(search))
+                    ).ToList();
+            return await Task.FromResult(recipesToSearch);
         }
 
         //vissza ad minden receptet az alapértelmezett nyelvük alapján
