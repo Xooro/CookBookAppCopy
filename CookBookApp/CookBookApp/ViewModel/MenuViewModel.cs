@@ -11,17 +11,7 @@ namespace CookBookApp.ViewModel
     {
         public MenuViewModel()
         {
-            InitializeSettings();
-        }
 
-        public void InitializeSettings()
-        {
-            setLanguage();
         }
-        public void setLanguage()
-        {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("hu-HU");
-        }
-
     }
 }

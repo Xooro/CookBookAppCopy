@@ -3,10 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CookBookApp.Views.RecipesPage"
              xmlns:resources="clr-namespace:CookBookApp.Resources"
-             xmlns:behavior="clr-namespace:CookBookApp.Behaviors"
              BackgroundColor="AliceBlue"
              x:Name="recipePage">
-
 
     <ContentPage.Resources>
         <Style TargetType="Label">
@@ -16,8 +14,6 @@
             <Setter Property="TextColor" Value ="Black"/>
         </Style>
     </ContentPage.Resources>
-
-
 
     <ContentPage.Content>
         <Grid x:Name="grdMainGrid" SizeChanged="grdPage_SizeChanged">
@@ -56,38 +52,25 @@
                 </ListView>
             </ScrollView>
 
-            <!--<SearchBar x:Name="srchBrRecipes"
+            <SearchBar x:Name="srchBrRecipes"
                            Placeholder="Keresés...."
                            Grid.Column="1"
                            Grid.Row="0"
-                           Text="{Binding searchQuery, Mode=OneWay}"
-                           SearchCommand="{Binding SearchCommandTest}"
-                           SearchCommandParameter="{Binding Text, Source={x:Reference srchBrRecipes}}"/>-->
-            <SearchBar x:Name="srchBrRecipes"
-                           Grid.Column="1"
-                           Grid.Row="0"
                            Text="{Binding SearchQuery, Mode=OneWay}"
-                           Margin="10, 10, 50 , 10">
-                <SearchBar.Behaviors>
-                    <behavior:EventToCommandBehavior EventName="TextChanged"
-                                                         Command="{Binding SearchCommand}"
-                                                         CommandParameter="{Binding Text, Source={x:Reference srchBrRecipes}}">
-
-                    </behavior:EventToCommandBehavior>
-                </SearchBar.Behaviors>
-            </SearchBar>
+                           SearchCommand="{Binding SearchCommand}"
+                           SearchCommandParameter="{Binding Text, Source={x:Reference srchBrRecipes}}"/>
 
             <ScrollView Grid.Column="1"
                              Grid.Row="2"
                              Margin="0,30" >
                 <ListView x:Name ="lstVwRecipeCategories" 
-                      ItemsSource="{Binding RecipeCategories, Mode=TwoWay}">
+                      ItemsSource="{Binding RecipeCategoryNames, Mode=TwoWay}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal">
                                     <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
-                                    <Label Text="{Binding LanguageName, Mode=TwoWay}"/>
+                                    <Label Text="{Binding CategoryName, Mode=TwoWay}"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

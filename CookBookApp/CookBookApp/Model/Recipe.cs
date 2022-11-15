@@ -24,10 +24,6 @@ namespace CookBookApp.Models
         [Ignore]
         public RecipeLocalization LocalizedRecipe{ get; set; }
 
-        //tárolja a recepthez lekérdezett lokalizált kategóriáit
-        [Ignore]
-        public List<RecipeCategories> LocalizedCategories { get; set; }
-
         //tárolja a recept lokalizációit
         [Ignore]
         public List<RecipeLocalization> Localizations { get; set; }
