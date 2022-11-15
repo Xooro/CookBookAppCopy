@@ -48,37 +48,30 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <!--<Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="10"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="10"/>
-            </Grid.RowDefinitions>
--->
         <StackLayout>
             <Label  x:Name="lblMenuTitle" 
                     Text="{x:Static resources:AppResources.menu_lblMenu}"/>
+            
             <Button x:Name="bttnRecipes"
-                    Text="{x:Static resources:AppResources.menu_bttnRecipes}"
-                    Grid.Column="1"
-                    Grid.Row="2"      
+                    Text="{x:Static resources:AppResources.menu_bttnRecipes}"    
                     Clicked="RecipeButton_Clicked"/>
 
             <StackLayout Orientation="Horizontal">
                 <Entry x:Name="ntrUserNameEntry" Placeholder=""/>
-                <Button x:Name="bttnUserNameUpdate" Text="UpdateUserName"/>
+                <Button x:Name="bttnUserNameUpdate" Text="UpdateUserName"
+                        Command="{Binding SetUserNameCommand}"
+                        CommandParameter="{Binding Text, Source={x:Reference ntrUserNameEntry}}"/>
             </StackLayout>
+            
             <StackLayout Orientation="Horizontal">
-                <Picker Title="langueages"/>
-                <Button x:Name="bttnLanguageUpdate" Text="UpdateLanguage"/>
+                <Picker Title="langueages" 
+                        ItemsSource="{Binding Languages, Mode=TwoWay}"
+                        SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
+                        ItemDisplayBinding="{Binding LanguageName}">
+                </Picker>
+                <Button x:Name="bttnLanguageUpdate" 
+                        Text="UpdateLanguage"
+                        Command="{Binding SetLanguageCommand}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -12,8 +12,8 @@ namespace CookBookApp
 {
     public partial class App : Application
     {
-        static SQLiteHelper db;
         public static UserProperties userProperties = new UserProperties();
+        static SQLiteHelper db; 
         public static SQLiteHelper _context
         {
             get
@@ -32,12 +32,12 @@ namespace CookBookApp
         {
             InitializeComponent();
             InitializeSettings();
-            //ContextHelper.fillSQLiteWithTestData();
             MainPage = new NavigationPage(new MenuPage());
         }
 
         public void InitializeSettings()
         {
+            //ContextHelper.fillSQLiteWithTestData();
             setLanguage();
         }
         public void setLanguage()

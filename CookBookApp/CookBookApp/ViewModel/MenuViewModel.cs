@@ -45,12 +45,12 @@ namespace CookBookApp.ViewModel
 
         void setUserName(string userName)
         {
-
+            userPropertiesService.setUserName(userName);
         }
 
         void setLanguage()
         {
-
+            userPropertiesService.setLanguage(SelectedLanguage);
         }
     }
 }
