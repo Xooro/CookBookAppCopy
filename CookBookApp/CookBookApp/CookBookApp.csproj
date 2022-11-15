@@ -35,9 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Behaviors\BehaviorPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Resources\AppResources.hu.resx">
       <LastGenOutput>AppResources.hu.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>

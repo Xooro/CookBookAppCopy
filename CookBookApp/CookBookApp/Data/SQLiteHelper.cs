@@ -1,4 +1,5 @@
 ﻿using CookBookApp.Data.Base;
+using CookBookApp.Model;
 using CookBookApp.Models;
 using SQLite;
 using System;
@@ -13,6 +14,7 @@ namespace CookBookApp.Data
         SQLiteAsyncConnection db;
         public TableSet<Recipe> Recipes;
         public TableSet<RecipeCategories> RecipeCategories;
+        public TableSet<RecipeCategoryNames> RecipeCategoryNames;
         public TableSet<RecipeImage> RecipeImages;
         public TableSet<RecipeLocalization> RecipeLocalizations;
         public TableSet<Language> Languages;
@@ -23,6 +25,7 @@ namespace CookBookApp.Data
 
             Recipes = new TableSet<Recipe>(db);
             RecipeCategories = new TableSet<RecipeCategories>(db);
+            RecipeCategoryNames = new TableSet<RecipeCategoryNames>(db);
             RecipeImages = new TableSet<RecipeImage>(db);
             RecipeLocalizations = new TableSet<RecipeLocalization>(db);
             Languages = new TableSet<Language>(db);

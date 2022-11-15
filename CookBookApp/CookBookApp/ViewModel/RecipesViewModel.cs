@@ -1,4 +1,5 @@
-﻿using CookBookApp.Model.Services;
+﻿using CookBookApp.Model;
+using CookBookApp.Model.Services;
 using CookBookApp.Models;
 using CookBookApp.Models.Services;
 using CookBookApp.ViewModels.Base;
@@ -14,7 +15,7 @@ namespace CookBookApp.ViewModels
     {
         public ObservableCollection<Recipe> Recipes { get; set; }
         public ObservableCollection<Language> Languages { get; set; }
-        public ObservableCollection<RecipeCategories> RecipeCategories{ get; set; }
+        public ObservableCollection<RecipeCategoryNames> RecipeCategoryNames{ get; set; }
         public Recipe SelectedRecipe { get; set; }
         public string Message { get; set; }
         public string SearchQuery { get; set; }
@@ -28,6 +29,7 @@ namespace CookBookApp.ViewModels
         RecipeCategoriesService recipeCategoriesService;
 
         string[] selectedLanguages;
+        int[] selectedCategoryNameIDs;
 
         public RecipesViewModel()
         {
@@ -37,6 +39,7 @@ namespace CookBookApp.ViewModels
 
             SearchQuery = "";
             selectedLanguages = new string[] { };
+            selectedCategoryNameIDs = new int[] { };
 
             loadLanguage();
             loadRecipe();
@@ -51,7 +54,7 @@ namespace CookBookApp.ViewModels
             IsBusy = true;
             Task.Run(async () =>
             {
-                Languages = new ObservableCollection<Language>(await languageService.GetLanguagesAsync());
+                Languages = new ObservableCollection<Language>(await languageService.getLanguagesAsync());
             });
             IsBusy = false;
         }
@@ -61,7 +64,7 @@ namespace CookBookApp.ViewModels
             IsBusy = true;
             Task.Run(async () =>
             {
-                Recipes = new ObservableCollection<Recipe>(await recipeService.getRecipesLocalizedAsync(selectedLanguages,SearchQuery));
+                Recipes = new ObservableCollection<Recipe>(await recipeService.getRecipesLocalizedAsync(selectedCategoryNameIDs, selectedLanguages, SearchQuery));
 
                 IsBusy = false;
             });
@@ -72,7 +75,7 @@ namespace CookBookApp.ViewModels
             IsBusy = true;
             Task.Run(async () =>
             {
-                RecipeCategories = new ObservableCollection<RecipeCategories>(await recipeCategoriesService.GetRecipeCategoriesAsync());
+                RecipeCategoryNames = new ObservableCollection<RecipeCategoryNames>(await recipeCategoriesService.getLocalizedRecipeCategoriesAsync("hu"));
             });
             IsBusy = false;
         }
@@ -83,7 +86,10 @@ namespace CookBookApp.ViewModels
             //Az függ OneWay módban a SearchQuery-től. Ha a query "", akkor nem törli, ezért a kettős módosítás
             SearchQuery = "t";
             SearchQuery = "";
-            
+
+            List<RecipeCategoryNames> selectedRecipeCategoryNames = RecipeCategoryNames.Where(rcn => rcn.IsChecked).ToList();
+            selectedCategoryNameIDs = selectedRecipeCategoryNames.Select(rcn => rcn.CategoryNameID).ToArray();
+
             List<Language> selectedLanguagesList = Languages.Where(l => l.IsChecked).ToList();
             selectedLanguages = selectedLanguagesList.Select(l => l.LanguageName).ToArray();
             loadRecipe();

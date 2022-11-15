@@ -1,4 +1,5 @@
-﻿using CookBookApp.Models;
+﻿using CookBookApp.Model;
+using CookBookApp.Models;
 using CookBookApp.Models.Services;
 using System;
 using System.Collections.Generic;
@@ -77,53 +78,117 @@ namespace CookBookApp.Helpers
                     {
                         ID = 1,
                         RecipeID = 1,
-                        LanguageID = 2,
-                        CategoryName = "Karácsonyi"
+                        CategoryNameID = 1
                     },
                     new RecipeCategories()
                     {
                         ID = 2,
-                        RecipeID = 1,
-                        LanguageID = 2,
-                        CategoryName = "Leves"
+                        RecipeID = 2,
+                        CategoryNameID = 3
                     },
                     new RecipeCategories()
                     {
                         ID = 3,
-                        RecipeID = 1,
-                        LanguageID = 1,
-                        CategoryName = "Christmas"
+                        RecipeID = 2,
+                        CategoryNameID = 4
                     },
                     new RecipeCategories()
                     {
                         ID = 4,
-                        RecipeID = 1,
-                        LanguageID = 1,
-                        CategoryName = "Soup"
-                    },
-                    new RecipeCategories()
-                    {
-                        ID = 5,
-                        RecipeID = 2,
-                        LanguageID = 3,
-                        CategoryName = "DESSZERT NÉMETÜL"
-                    },
-                    new RecipeCategories()
-                    {
-                        ID = 6,
-                        RecipeID = 2,
-                        LanguageID = 1,
-                        CategoryName = "Dessert"
-                    },
-                    new RecipeCategories()
-                    {
-                        ID = 7,
                         RecipeID = 3,
-                        LanguageID = 2,
-                        CategoryName = "Főétel"
+                        CategoryNameID = 2
                     },
                 };
                 await App._context.RecipeCategories.AddRangeAsync(recipeCategories);
+
+                List<RecipeCategoryNames> recipeCategoryNames = new List<RecipeCategoryNames>()
+                {
+                    new RecipeCategoryNames()
+                    {
+                        ID = 1,
+                        CategoryNameID = 1,
+                        LanguageID = 1,
+                        CategoryName = "Soup"
+                    },
+                    new RecipeCategoryNames()
+                    {
+                        ID = 2,
+                        CategoryNameID = 1,
+                        LanguageID = 2,
+                        CategoryName = "Leves"
+                    },
+                    new RecipeCategoryNames()
+                    {
+                        ID = 3,
+                        CategoryNameID = 1,
+                        LanguageID = 3,
+                        CategoryName = "Suppe"
+                    },
+                    new RecipeCategoryNames()
+                    {
+                        ID = 4,
+                        CategoryNameID = 2,
+                        LanguageID = 1,
+                        CategoryName = "Main course"
+                    },
+                    new RecipeCategoryNames()
+                    {
+                        ID = 5,
+                        CategoryNameID = 2,
+                        LanguageID = 2,
+                        CategoryName = "Főétel"
+                    },
+                    new RecipeCategoryNames()
+                    {
+                        ID = 6,
+                        CategoryNameID = 2,
+                        LanguageID = 3,
+                        CategoryName = "Hauptkurs"
+                    },
+                    new RecipeCategoryNames()
+                    {
+                        ID = 7,
+                        CategoryNameID = 3,
+                        LanguageID = 1,
+                        CategoryName = "Dessert"
+                    },
+                    new RecipeCategoryNames()
+                    {
+                        ID = 8,
+                        CategoryNameID = 3,
+                        LanguageID = 2,
+                        CategoryName = "Desszert"
+                    },
+                    new RecipeCategoryNames()
+                    {
+                        ID = 9,
+                        CategoryNameID = 3,
+                        LanguageID = 3,
+                        CategoryName = "Dessert"
+                    },
+                    new RecipeCategoryNames()
+                    {
+                        ID = 10,
+                        CategoryNameID = 4,
+                        LanguageID = 1,
+                        CategoryName = "Festive"
+                    },
+                    new RecipeCategoryNames()
+                    {
+                        ID = 11,
+                        CategoryNameID = 4,
+                        LanguageID = 2,
+                        CategoryName = "Ünnepi"
+                    },
+                    new RecipeCategoryNames()
+                    {
+                        ID = 12,
+                        CategoryNameID = 4,
+                        LanguageID = 3,
+                        CategoryName = "Festlich"
+                    }
+                };
+                await App._context.RecipeCategoryNames.AddRangeAsync(recipeCategoryNames);
 
                 List<RecipeLocalization> recipeLocalizations = new List<RecipeLocalization>()
                 {

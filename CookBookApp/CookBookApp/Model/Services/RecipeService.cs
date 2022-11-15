@@ -1,4 +1,5 @@
-﻿using SQLitePCL;
+﻿using CookBookApp.Model;
+using SQLitePCL;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -17,17 +18,18 @@ namespace CookBookApp.Models.Services
         //üres lita esetén minden recept az alapértelmezett nyelvükkel
         //1 elem alapján a megadott nyelvel rendelkező receptek szerint
         //több elem alapján pedig ha valamelyiket teljesíti
-        public async Task<List<Recipe>> getRecipesLocalizedAsync(string[] languages, string search)
+        public async Task<List<Recipe>> getRecipesLocalizedAsync(int[] categoryNameIDs, string[] languages, string search)
         {
             for(int i = 0; i < languages.Length; ++i)
             {
                 languages[i] = languages[i].ToUpper();
             }
-            search = search.ToUpper();
+
             List<Recipe> recipesResults = new List<Recipe>();
             try
             {
                 List<Recipe> recipes = new List<Recipe>();
+                
                 switch (languages.Length)
                 {
                     case 0:
@@ -40,10 +42,17 @@ namespace CookBookApp.Models.Services
                         recipes = await getRecipesLocalizedMultipleLanguageAsync(languages);
                         break;
                 }
+                
                 if(search != "")
                 {
                     recipes = await getRecipesLocalizedSearched(recipes, search);
                 }
+
+                if(categoryNameIDs.Length>0)
+                {
+                    recipes = await getRecipesByCategories(recipes, categoryNameIDs);
+                }
+
                 recipesResults = recipes;
             }
             catch (Exception ex)
@@ -54,7 +63,14 @@ namespace CookBookApp.Models.Services
             return await Task.FromResult(recipesResults);
         }
 
-        //a paraméterként megadott receptet átvizsgálja, és visszaadja az elemeket amik megfelelnek a keresésnek
+        //a paraméterként megadott recepteket átvizsgálja a categóriák szerint
+        private async Task<List<Recipe>> getRecipesByCategories(List<Recipe> recipesToSearch, int[] categoryNameIDs)
+        {
+            recipesToSearch = recipesToSearch.Where(r => categoryNameIDs.Intersect(r.Categories.Select(c=>c.CategoryNameID).ToArray()).Any()).ToList();
+            return await Task.FromResult(recipesToSearch);
+        }
+
+        //a paraméterként megadott recepteket átvizsgálja, és visszaadja az elemeket amik megfelelnek a keresésnek
         private async Task<List<Recipe>> getRecipesLocalizedSearched(List<Recipe> recipesToSearch, string search)
         {
             search = search.ToUpper();
@@ -155,11 +171,29 @@ namespace CookBookApp.Models.Services
         {
             Recipe recipe = joinedRecipe;
             recipe.LocalizedRecipe = recipe.Localizations.FirstOrDefault(l => l.LanguageID == languageID);
-            recipe.LocalizedCategories = recipe.Categories.Where(c => c.LanguageID == languageID).ToList();
+            recipe.Categories = getLocalizedRecipeGategories(joinedRecipe, languageID);
+            //recipe.LocalizedCategories = recipe.Categories.Where(c => c.LanguageID == languageID).ToList();
             recipe.Localizations = null;
-            recipe.Categories = null;
 
             return recipe;
+        }
+
+        private List<RecipeCategories> getLocalizedRecipeGategories(Recipe joinedRecipe, int languageID)
+        {
+            List<RecipeCategoryNames> recipeCategoryNames = new List<RecipeCategoryNames>();
+            List<RecipeCategories> recipeCategories = joinedRecipe.Categories;
+            Task.Run(async () =>
+            {
+                recipeCategoryNames = await App._context.RecipeCategoryNames.GetAllAsync();
+            }).Wait();
+            
+            foreach(RecipeCategories category in recipeCategories)
+            {
+                category.CategoryName = recipeCategoryNames.FirstOrDefault(rcn => 
+                    rcn.CategoryNameID == category.CategoryNameID && 
+                    rcn.LanguageID == languageID).CategoryName;                                  
+            }
+            return recipeCategories;
         }
 
         //vissza adja a recepteket, amelyek tárolnak minden lokalizációt, de saját lokalizációval nem rendelkezik
