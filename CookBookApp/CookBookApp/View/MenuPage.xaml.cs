@@ -15,8 +15,8 @@ namespace CookBookApp.Views
     {
         public MenuPage()
         {
-            BindingContext = new MenuViewModel();
             InitializeComponent();
+            BindingContext = new MenuViewModel();
         }
 
         private void RecipeButton_Clicked(object sender, EventArgs e)

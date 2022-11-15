@@ -61,8 +61,8 @@
                            SearchCommandParameter="{Binding Text, Source={x:Reference srchBrRecipes}}"/>
 
             <ScrollView Grid.Column="1"
-                             Grid.Row="2"
-                             Margin="0,30" >
+                        Grid.Row="2"
+                        Margin="0,30" >
                 <ListView x:Name ="lstVwRecipeCategories" 
                       ItemsSource="{Binding RecipeCategoryNames, Mode=TwoWay}">
                     <ListView.ItemTemplate>

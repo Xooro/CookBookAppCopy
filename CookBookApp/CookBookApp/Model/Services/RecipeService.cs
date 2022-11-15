@@ -63,13 +63,14 @@ namespace CookBookApp.Models.Services
             return await Task.FromResult(recipesResults);
         }
 
+        //a paraméterként megadott recepteket átvizsgálja a categóriák szerint
         private async Task<List<Recipe>> getRecipesByCategories(List<Recipe> recipesToSearch, int[] categoryNameIDs)
         {
             recipesToSearch = recipesToSearch.Where(r => categoryNameIDs.Intersect(r.Categories.Select(c=>c.CategoryNameID).ToArray()).Any()).ToList();
             return await Task.FromResult(recipesToSearch);
         }
 
-        //a paraméterként megadott receptet átvizsgálja, és visszaadja az elemeket amik megfelelnek a keresésnek
+        //a paraméterként megadott recepteket átvizsgálja, és visszaadja az elemeket amik megfelelnek a keresésnek
         private async Task<List<Recipe>> getRecipesLocalizedSearched(List<Recipe> recipesToSearch, string search)
         {
             search = search.ToUpper();
