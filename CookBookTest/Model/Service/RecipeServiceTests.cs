@@ -22,7 +22,7 @@ namespace CookBookTest.Model.Service
             Task.Run(async () =>
             {
                 actualRecipes = await new RecipeService().getRecipesJoinedAsync();
-            });
+            }).Wait();
             Console.WriteLine("");
         }
     }

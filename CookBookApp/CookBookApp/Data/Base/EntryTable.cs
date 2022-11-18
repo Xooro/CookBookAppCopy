@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace CookBookApp.Data.Base
 {
-    public class TableSet<T> where T : new()
+    public class EntryTable<T> where T : new()
     {
         SQLiteAsyncConnection db;
 
-        public TableSet(SQLiteAsyncConnection db)
+        public EntryTable(SQLiteAsyncConnection db)
         {
             this.db = db;
             db.CreateTableAsync<T>().Wait();
@@ -39,6 +39,11 @@ namespace CookBookApp.Data.Base
         public Task<int> RemoveAsync(T modelToRemove)
         {
             return db.DeleteAsync(modelToRemove);
+        }
+
+        public Task<T> getAsync(int id)
+        {
+            return db.GetAsync<T>(id);
         }
 
         public Task<List<T>> GetAllAsync()

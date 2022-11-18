@@ -10,18 +10,16 @@ namespace CookBookApp.Model.Services
 {
     class RecipeCategoriesService
     {
-        public async Task<List<RecipeCategoryNames>> getLocalizedRecipeCategoriesAsync(string language)
+        public async Task<List<RecipeCategoryNames>> getLocalizedRecipeCategoriesAsync(string languageName)
         {
             List<RecipeCategoryNames> recipeCategoryNames = new List<RecipeCategoryNames>();
             LanguageService languageService = new LanguageService();
-            int languageID = await languageService.getLanguageIDByName(language);
+            Language language = await languageService.getLanguageByName(languageName);
             
             try
             {
-                List<Language> languages = await App._context.Languages.GetAllAsync();
                 recipeCategoryNames = await App._context.RecipeCategoryNames.GetAllAsync();
-
-                recipeCategoryNames = recipeCategoryNames.Where(rcn => rcn.LanguageID == languageID).ToList();
+                recipeCategoryNames = recipeCategoryNames.Where(rcn => rcn.LanguageID == language.ID).ToList();
             }
             catch (Exception ex)
             {

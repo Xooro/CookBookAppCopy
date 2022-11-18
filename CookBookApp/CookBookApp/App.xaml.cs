@@ -13,16 +13,16 @@ namespace CookBookApp
     public partial class App : Application
     {
         public static UserProperties userProperties = new UserProperties();
-        static SQLiteHelper db; 
-        public static SQLiteHelper _context
+        static RecipeDatabase db; 
+        public static RecipeDatabase _context
         {
             get
             {
                 if (db == null)
                 {
-                    string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "CookBookDB.db3");
-                    //Console.WriteLine(path);
-                    db = new SQLiteHelper(path);
+                    string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), 
+                        "CookBookDB.db3");
+                    db = new RecipeDatabase(path);
                 }
                 return db;
             }

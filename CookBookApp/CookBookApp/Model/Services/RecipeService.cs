@@ -71,6 +71,7 @@ namespace CookBookApp.Models.Services
         }
 
         //a paraméterként megadott recepteket átvizsgálja, és visszaadja az elemeket amik megfelelnek a keresésnek
+        //keresés az adott helyeken: recept neve, elkészítés, hozzávalók
         private async Task<List<Recipe>> getRecipesLocalizedSearched(List<Recipe> recipesToSearch, string search)
         {
             search = search.ToUpper();
@@ -172,12 +173,12 @@ namespace CookBookApp.Models.Services
             Recipe recipe = joinedRecipe;
             recipe.LocalizedRecipe = recipe.Localizations.FirstOrDefault(l => l.LanguageID == languageID);
             recipe.Categories = getLocalizedRecipeGategories(joinedRecipe, languageID);
-            //recipe.LocalizedCategories = recipe.Categories.Where(c => c.LanguageID == languageID).ToList();
             recipe.Localizations = null;
 
             return recipe;
         }
 
+        //Visszaadja a lokalizált recept kategóriákat
         private List<RecipeCategories> getLocalizedRecipeGategories(Recipe joinedRecipe, int languageID)
         {
             List<RecipeCategoryNames> recipeCategoryNames = new List<RecipeCategoryNames>();
@@ -197,7 +198,7 @@ namespace CookBookApp.Models.Services
         }
 
         //vissza adja a recepteket, amelyek tárolnak minden lokalizációt, de saját lokalizációval nem rendelkezik
-        public async Task<List<Recipe>> getRecipesJoinedAsync()
+        private async Task<List<Recipe>> getRecipesJoinedAsync()
         {
             List<Recipe> recipesResults = new List<Recipe>();
             try
@@ -213,8 +214,8 @@ namespace CookBookApp.Models.Services
                     recipe.Localizations = recipeLocalizations.Where(rl => rl.RecipeID == recipe.ID).ToList();
                     recipe.Categories = recipeCategories.Where(rc => rc.RecipeID == recipe.ID).ToList();
                     recipe.Images = recipeImages.Where(ri => ri.RecipeID == recipe.ID).ToList();
-                    var test = recipe.Localizations.Select(rl => rl.LanguageID).ToArray();
-                    recipe.Languages = languages.Where(l => test.Contains(l.ID)).ToList();
+                    var languageIDs = recipe.Localizations.Select(rl => rl.LanguageID).ToArray();
+                    recipe.Languages = languages.Where(l => languageIDs.Contains(l.ID)).ToList();
                 }
 
                 recipesResults = recipes;
@@ -227,6 +228,7 @@ namespace CookBookApp.Models.Services
             return await Task.FromResult(recipesResults);
         }
 
+        //Törli a receptet, és a hozzá tartozó elemeket a táblákból
         public async Task<bool> deleteRecipeAsync(Recipe recipeToDelete)
         {
             bool isDeleted = false;

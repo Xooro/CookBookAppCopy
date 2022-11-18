@@ -24,21 +24,21 @@ namespace CookBookApp.Models.Services
             return await Task.FromResult(languageResult);
         }
 
-        public async Task<int> getLanguageIDByName(string languageName)
+        public async Task<Language> getLanguageByName(string languageName)
         {
             languageName = languageName.ToUpper();
-            int languageID = -1;
+            Language languageResult = new Language();
             try
             {
                 List<Language> languages = await App._context.Languages.GetAllAsync();
-                languageID = languages.FirstOrDefault(l => l.LanguageName == languageName).ID;
+                languageResult = languages.FirstOrDefault(l => l.LanguageName == languageName);
             }
             catch (Exception ex)
             {
                 //TODO: LOGGER CW HELYETT
                 Console.WriteLine(ex.Message);
             }
-            return await Task.FromResult(languageID);
+            return await Task.FromResult(languageResult);
         }
     }
 }
