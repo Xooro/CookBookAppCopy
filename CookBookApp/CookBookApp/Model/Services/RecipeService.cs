@@ -20,7 +20,7 @@ namespace CookBookApp.Models.Services
         //több elem alapján pedig ha valamelyiket teljesíti
         public async Task<List<Recipe>> getRecipesLocalizedAsync(int[] categoryNameIDs, string[] languages, string search)
         {
-            for(int i = 0; i < languages.Length; ++i)
+            for (int i = 0; i < languages.Length; ++i)
             {
                 languages[i] = languages[i].ToUpper();
             }
@@ -29,7 +29,7 @@ namespace CookBookApp.Models.Services
             try
             {
                 List<Recipe> recipes = new List<Recipe>();
-                
+
                 switch (languages.Length)
                 {
                     case 0:
@@ -42,13 +42,13 @@ namespace CookBookApp.Models.Services
                         recipes = await getRecipesLocalizedMultipleLanguageAsync(languages);
                         break;
                 }
-                
-                if(search != "")
+
+                if (search != "")
                 {
                     recipes = await getRecipesLocalizedSearched(recipes, search);
                 }
 
-                if(categoryNameIDs.Length>0)
+                if (categoryNameIDs.Length > 0)
                 {
                     recipes = await getRecipesByCategories(recipes, categoryNameIDs);
                 }
@@ -198,7 +198,7 @@ namespace CookBookApp.Models.Services
         }
 
         //vissza adja a recepteket, amelyek tárolnak minden lokalizációt, de saját lokalizációval nem rendelkezik
-        private async Task<List<Recipe>> getRecipesJoinedAsync()
+        public async Task<List<Recipe>> getRecipesJoinedAsync()
         {
             List<Recipe> recipesResults = new List<Recipe>();
             try

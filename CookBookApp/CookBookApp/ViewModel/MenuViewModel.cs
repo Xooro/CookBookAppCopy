@@ -1,4 +1,4 @@
-﻿using CookBookApp.Model.Services;
+﻿using CookBookApp.Helpers;
 using CookBookApp.Models;
 using CookBookApp.Models.Services;
 using CookBookApp.ViewModels.Base;
@@ -22,12 +22,12 @@ namespace CookBookApp.ViewModel
         public Language SelectedLanguage { get; set; }
 
         LanguageService languageService;
-        UserPropertiesService userPropertiesService;
+        UserSettingsManager userPropertiesService;
 
         public MenuViewModel()
         {
             languageService = new LanguageService();
-            userPropertiesService = new UserPropertiesService();
+            userPropertiesService = new UserSettingsManager();
 
             loadLanguages();
 
@@ -43,14 +43,14 @@ namespace CookBookApp.ViewModel
             });
         }
 
-        void setUserName(string userName)
+        async void setUserName(string userName)
         {
-            userPropertiesService.setUserName(userName);
+            await userPropertiesService.setUserName(userName);
         }
 
-        void setLanguage()
+        async void setLanguage()
         {
-            userPropertiesService.setLanguage(SelectedLanguage);
+            await userPropertiesService.setLanguage(SelectedLanguage);
         }
     }
 }

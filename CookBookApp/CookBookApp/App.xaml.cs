@@ -5,6 +5,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,7 +13,6 @@ namespace CookBookApp
 {
     public partial class App : Application
     {
-        public static UserProperties userProperties = new UserProperties();
         static RecipeDatabase db; 
         public static RecipeDatabase _context
         {
@@ -38,11 +38,12 @@ namespace CookBookApp
         public void InitializeSettings()
         {
             //ContextHelper.fillSQLiteWithTestData();
-            setLanguage();
+            UserSettingsManager userPropertiesService = new UserSettingsManager();
+            setLanguage(userPropertiesService.getLanguage());
         }
-        public void setLanguage()
+        public void setLanguage(string languageName)
         {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("hu-HU");
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(languageName);
         }
 
         protected override void OnStart()

@@ -1,4 +1,5 @@
-﻿using CookBookApp.Model;
+﻿using CookBookApp.Helpers;
+using CookBookApp.Model;
 using CookBookApp.Model.Services;
 using CookBookApp.Models;
 using CookBookApp.Models.Services;
@@ -17,9 +18,13 @@ namespace CookBookApp.ViewModels
         public ObservableCollection<Language> Languages { get; set; }
         public ObservableCollection<RecipeCategoryNames> RecipeCategoryNames{ get; set; }
         public Recipe SelectedRecipe { get; set; }
+        
         public string Message { get; set; }
         public string SearchQuery { get; set; }
+        public string UserLanguage { get; set; }
+        public string UserName { get; set; }
         public bool IsBusy { get; set; }
+
         public RelayCommand OpenCommand { get; }
         public RelayCommand<string> SearchCommand { get; }
         public RelayCommand FilterCommand { get;  }
@@ -27,6 +32,8 @@ namespace CookBookApp.ViewModels
         RecipeService recipeService;
         LanguageService languageService;
         RecipeCategoriesService recipeCategoriesService;
+
+        UserSettingsManager userSettingsManager;
 
         string[] selectedLanguages;
         int[] selectedCategoryNameIDs;
@@ -36,20 +43,24 @@ namespace CookBookApp.ViewModels
             recipeService = new RecipeService();
             languageService = new LanguageService();
             recipeCategoriesService = new RecipeCategoriesService();
+            userSettingsManager = new UserSettingsManager();
 
             SearchQuery = "";
             selectedLanguages = new string[] { };
             selectedCategoryNameIDs = new int[] { };
+            
+            UserName = userSettingsManager.getUserName();
+            UserLanguage = userSettingsManager.getLanguage();
 
-            loadLanguage();
-            loadRecipe();
+            loadLanguages();
+            loadRecipes();
             loadRecipeCategories();
 
             FilterCommand = new RelayCommand(filter);
             SearchCommand = new RelayCommand<string>(search);
         }
 
-        private void loadLanguage()
+        private void loadLanguages()
         {
             IsBusy = true;
             Task.Run(async () =>
@@ -59,7 +70,7 @@ namespace CookBookApp.ViewModels
             IsBusy = false;
         }
 
-        private void loadRecipe()
+        private void loadRecipes()
         {
             IsBusy = true;
             Task.Run(async () =>
@@ -75,7 +86,7 @@ namespace CookBookApp.ViewModels
             IsBusy = true;
             Task.Run(async () =>
             {
-                RecipeCategoryNames = new ObservableCollection<RecipeCategoryNames>(await recipeCategoriesService.getLocalizedRecipeCategoriesAsync("hu"));
+                RecipeCategoryNames = new ObservableCollection<RecipeCategoryNames>(await recipeCategoriesService.getLocalizedRecipeCategoriesAsync(UserLanguage));
             });
             IsBusy = false;
         }
@@ -92,13 +103,13 @@ namespace CookBookApp.ViewModels
 
             List<Language> selectedLanguagesList = Languages.Where(l => l.IsChecked).ToList();
             selectedLanguages = selectedLanguagesList.Select(l => l.LanguageName).ToArray();
-            loadRecipe();
+            loadRecipes();
         }
 
         private void search(string searchQuery)
         {
             this.SearchQuery = searchQuery;
-            loadRecipe();
+            loadRecipes();
         }
     }
 }
