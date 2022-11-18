@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBookApp.iOS", "CookBook
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBookApp", "CookBookApp\CookBookApp\CookBookApp.csproj", "{D6D93D8D-63E0-4776-A1BC-65C5B08591C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBookTest", "CookBookTest\CookBookTest.csproj", "{80DFF0D8-6D81-45EE-BD9F-F152933AF9E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBookApp.Tests", "CookBookTest\CookBookApp.Tests.csproj", "{80DFF0D8-6D81-45EE-BD9F-F152933AF9E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
