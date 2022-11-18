@@ -20,6 +20,34 @@ namespace CookBookApp.Models.Services
         //több elem alapján pedig ha valamelyiket teljesíti
         public async Task<List<Recipe>> getRecipesLocalizedAsync(int[] categoryNameIDs, string[] languages, string search)
         {
+            List<Recipe> recipesResults = new List<Recipe>();
+            try
+            {
+                List<Recipe> recipes;
+
+                recipes = await getRecipesByLanguages(languages);
+                
+                if (search != "")
+                {
+                    recipes = await getRecipesLocalizedSearched(recipes, search);
+                }
+
+                if (categoryNameIDs.Length > 0)
+                {
+                    recipes = await getRecipesByCategories(recipes, categoryNameIDs);
+                }
+                recipesResults= recipes;
+            }
+            catch (Exception ex)
+            {
+                //TODO: LOGGER CW HELYETT
+                Console.WriteLine(ex.Message);
+            }
+            return await Task.FromResult(recipesResults);
+        }
+
+        private async Task<List<Recipe>> getRecipesByLanguages(string[] languages)
+        {
             for (int i = 0; i < languages.Length; ++i)
             {
                 languages[i] = languages[i].ToUpper();
@@ -42,23 +70,11 @@ namespace CookBookApp.Models.Services
                         recipes = await getRecipesLocalizedMultipleLanguageAsync(languages);
                         break;
                 }
-
-                if (search != "")
-                {
-                    recipes = await getRecipesLocalizedSearched(recipes, search);
-                }
-
-                if (categoryNameIDs.Length > 0)
-                {
-                    recipes = await getRecipesByCategories(recipes, categoryNameIDs);
-                }
-
                 recipesResults = recipes;
             }
-            catch (Exception ex)
+            catch
             {
-                //TODO: LOGGER CW HELYETT
-                Console.WriteLine(ex.Message);
+                throw new Exception();
             }
             return await Task.FromResult(recipesResults);
         }
@@ -203,13 +219,19 @@ namespace CookBookApp.Models.Services
             List<Recipe> recipesResults = new List<Recipe>();
             try
             {
-                var recipes = await App._context.Recipes.GetAllAsync();
-                var recipeLocalizations = await App._context.RecipeLocalizations.GetAllAsync();
-                var recipeCategories = await App._context.RecipeCategories.GetAllAsync();
-                var recipeImages = await App._context.RecipeImages.GetAllAsync();
-                var languages = await App._context.Languages.GetAllAsync();
+                var recipesTask = App._context.Recipes.GetAllAsync();
+                var recipeLocalizationsTask = App._context.RecipeLocalizations.GetAllAsync();
+                var recipeCategoriesTask = App._context.RecipeCategories.GetAllAsync();
+                var recipeImagesTask = App._context.RecipeImages.GetAllAsync();
+                var languagesTask = App._context.Languages.GetAllAsync();
 
-                foreach(Recipe recipe in recipes)
+                var recipes = await recipesTask;
+                var recipeLocalizations = await recipeLocalizationsTask;
+                var recipeCategories = await recipeCategoriesTask;
+                var recipeImages = await recipeImagesTask;
+                var languages = await languagesTask;
+
+                foreach (Recipe recipe in recipes)
                 {
                     recipe.Localizations = recipeLocalizations.Where(rl => rl.RecipeID == recipe.ID).ToList();
                     recipe.Categories = recipeCategories.Where(rc => rc.RecipeID == recipe.ID).ToList();
