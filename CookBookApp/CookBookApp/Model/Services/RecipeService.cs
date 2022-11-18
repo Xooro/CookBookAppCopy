@@ -20,6 +20,34 @@ namespace CookBookApp.Models.Services
         //több elem alapján pedig ha valamelyiket teljesíti
         public async Task<List<Recipe>> getRecipesLocalizedAsync(int[] categoryNameIDs, string[] languages, string search)
         {
+            List<Recipe> recipesResults = new List<Recipe>();
+            try
+            {
+                List<Recipe> recipes;
+
+                recipes = await getRecipesByLanguages(languages);
+                
+                if (search != "")
+                {
+                    recipes = await getRecipesLocalizedSearched(recipes, search);
+                }
+
+                if (categoryNameIDs.Length > 0)
+                {
+                    recipes = await getRecipesByCategories(recipes, categoryNameIDs);
+                }
+                recipesResults= recipes;
+            }
+            catch (Exception ex)
+            {
+                //TODO: LOGGER CW HELYETT
+                Console.WriteLine(ex.Message);
+            }
+            return await Task.FromResult(recipesResults);
+        }
+
+        private async Task<List<Recipe>> getRecipesByLanguages(string[] languages)
+        {
             for (int i = 0; i < languages.Length; ++i)
             {
                 languages[i] = languages[i].ToUpper();
@@ -42,23 +70,11 @@ namespace CookBookApp.Models.Services
                         recipes = await getRecipesLocalizedMultipleLanguageAsync(languages);
                         break;
                 }
-
-                if (search != "")
-                {
-                    recipes = await getRecipesLocalizedSearched(recipes, search);
-                }
-
-                if (categoryNameIDs.Length > 0)
-                {
-                    recipes = await getRecipesByCategories(recipes, categoryNameIDs);
-                }
-
                 recipesResults = recipes;
             }
-            catch (Exception ex)
+            catch
             {
-                //TODO: LOGGER CW HELYETT
-                Console.WriteLine(ex.Message);
+                throw new Exception();
             }
             return await Task.FromResult(recipesResults);
         }
