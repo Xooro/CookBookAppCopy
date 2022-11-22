@@ -1,4 +1,5 @@
 ﻿using CookBookApp.Helpers;
+using CookBookApp.Helpers.Temporary;
 using CookBookApp.Models;
 using CookBookApp.Models.Services;
 using CookBookApp.ViewModels.Base;
@@ -30,7 +31,7 @@ namespace CookBookApp.ViewModel
             userPropertiesService = new UserSettingsManager();
 
             loadLanguages();
-
+            ContextHelper.fillSQLiteWithTestData();
             SetUserNameCommand = new RelayCommand<string>(setUserName);
             SetLanguageCommand = new RelayCommand(setLanguage);
         }

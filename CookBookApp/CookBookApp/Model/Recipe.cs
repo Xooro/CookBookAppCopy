@@ -1,12 +1,11 @@
-﻿using SQLite;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CookBookApp.Models
 {
     public class Recipe
     {
-        [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
         public int DefaultLanguageID { get; set; }
         public string Author { get; set; }
@@ -17,23 +16,23 @@ namespace CookBookApp.Models
         public DateTime CreationDate { get; set; }
 
         //tárolja a recept lokalizált nyelveit
-        [Ignore]
+        [NotMapped]
         public List<Language> Languages { get; set; }
 
         //tárolja a recepthez lekérdezett lokalizált receptjét
-        [Ignore]
+        [NotMapped]
         public RecipeLocalization LocalizedRecipe{ get; set; }
 
         //tárolja a recept lokalizációit
-        [Ignore]
+        [NotMapped]
         public List<RecipeLocalization> Localizations { get; set; }
 
         //tárolja a recept categóriáit
-        [Ignore]
+        [NotMapped]
         public List<RecipeCategories> Categories { get; set; }
 
         //tárolja a recept képeit
-        [Ignore]
+        [NotMapped]
         public List<RecipeImage> Images { get; set; }
         
     }

@@ -1,16 +1,15 @@
-﻿using SQLite;
-using System;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CookBookApp.Models
 {
     public class RecipeImage
     {
-        [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
         public int RecipeID { get; set; }
         public byte[] ImageBytes { get; set; }
 
-        [Ignore]
+        [NotMapped]
         public string Image
         {
             get

@@ -13,21 +13,6 @@ namespace CookBookApp
 {
     public partial class App : Application
     {
-        static RecipeDatabase db; 
-        public static RecipeDatabase _context
-        {
-            get
-            {
-                if (db == null)
-                {
-                    string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), 
-                        "CookBookDB.db3");
-                    db = new RecipeDatabase(path);
-                }
-                return db;
-            }
-        }
-
         public App()
         {
             InitializeComponent();

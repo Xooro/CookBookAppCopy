@@ -1,4 +1,5 @@
-﻿using CookBookApp.Model;
+﻿using CookBookApp.Data;
+using CookBookApp.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,18 @@ namespace CookBookApp.Models.Services
 {
     public class LanguageService
     {
+        RecipeContext _context;
+        public LanguageService()
+        {
+            _context = new RecipeContext();
+        }
+
         public async Task<List<Language>> getLanguagesAsync()
         {
             List<Language> languageResult = new List<Language>();
             try
             {
-                languageResult = await App._context.Languages.GetAllAsync();
+                languageResult = _context.Language.ToList();
             }
             catch(Exception ex)
             {
@@ -30,7 +37,7 @@ namespace CookBookApp.Models.Services
             Language languageResult = new Language();
             try
             {
-                List<Language> languages = await App._context.Languages.GetAllAsync();
+                List<Language> languages = _context.Language.ToList();
                 languageResult = languages.FirstOrDefault(l => l.LanguageName == languageName);
             }
             catch (Exception ex)

@@ -1,5 +1,7 @@
-﻿using CookBookApp.Models;
+﻿using CookBookApp.Data;
+using CookBookApp.Models;
 using CookBookApp.Models.Services;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,12 @@ namespace CookBookApp.Model.Services
 {
     class RecipeCategoriesService
     {
+        RecipeContext _context;
+        public RecipeCategoriesService()
+        {
+            _context = new RecipeContext();
+        }
+
         public async Task<List<RecipeCategoryNames>> getLocalizedRecipeCategoriesAsync(string languageName)
         {
             List<RecipeCategoryNames> recipeCategoryNames = new List<RecipeCategoryNames>();
@@ -18,7 +26,7 @@ namespace CookBookApp.Model.Services
             
             try
             {
-                recipeCategoryNames = await App._context.RecipeCategoryNames.GetAllAsync();
+                recipeCategoryNames = _context.RecipeCategoryNames.ToList();
                 recipeCategoryNames = recipeCategoryNames.Where(rcn => rcn.LanguageID == language.ID).ToList();
             }
             catch (Exception ex)

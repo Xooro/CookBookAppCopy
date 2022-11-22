@@ -1,4 +1,5 @@
-﻿using CookBookApp.Model;
+﻿using CookBookApp.Data;
+using CookBookApp.Model;
 using CookBookApp.Models;
 using CookBookApp.Models.Services;
 using System;
@@ -12,6 +13,8 @@ namespace CookBookApp.Helpers.Temporary
     {
         public static void fillSQLiteWithTestData()
         {
+            RecipeContext _context = new RecipeContext();
+
             Task.Run(async () =>
             {
                 List<Recipe> recipes = new List<Recipe>()
@@ -50,7 +53,7 @@ namespace CookBookApp.Helpers.Temporary
                     CreationDate = DateTime.Now
                     }
                 };
-                await App._context.Recipes.AddRangeAsync(recipes);
+                _context.Recipe.AddRange(recipes);
 
                 List<Language> languages = new List<Language>()
                 {
@@ -70,7 +73,7 @@ namespace CookBookApp.Helpers.Temporary
                         LanguageName = "DE"
                     }
                 };
-                await App._context.Languages.AddRangeAsync(languages);
+                _context.Language.AddRange(languages);
 
                 List<RecipeCategories> recipeCategories = new List<RecipeCategories>()
                 {
@@ -99,7 +102,7 @@ namespace CookBookApp.Helpers.Temporary
                         CategoryNameID = 2
                     },
                 };
-                await App._context.RecipeCategories.AddRangeAsync(recipeCategories);
+                _context.RecipeCategories.AddRange(recipeCategories);
 
                 List<RecipeCategoryNames> recipeCategoryNames = new List<RecipeCategoryNames>()
                 {
@@ -188,7 +191,7 @@ namespace CookBookApp.Helpers.Temporary
                         CategoryName = "Festlich"
                     }
                 };
-                await App._context.RecipeCategoryNames.AddRangeAsync(recipeCategoryNames);
+                _context.RecipeCategoryNames.AddRange(recipeCategoryNames);
 
                 List<RecipeLocalization> recipeLocalizations = new List<RecipeLocalization>()
                 {
@@ -243,7 +246,7 @@ namespace CookBookApp.Helpers.Temporary
                         Preparation = "Csináld meg a pörköltet"
                     }
                 };
-                await App._context.RecipeLocalizations.AddRangeAsync(recipeLocalizations);
+                _context.RecipeLocalization.AddRange(recipeLocalizations);
 
                 List<RecipeImage> recipeImages = new List<RecipeImage>()
                 {
@@ -272,7 +275,9 @@ namespace CookBookApp.Helpers.Temporary
                         ImageBytes = new byte[10]
                     }
                 };
-                await App._context.RecipeImages.AddRangeAsync(recipeImages);
+                _context.RecipeImage.AddRange(recipeImages);
+
+                await _context.SaveChangesAsync();
             });
 
         }

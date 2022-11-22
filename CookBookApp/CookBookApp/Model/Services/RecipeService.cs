@@ -1,4 +1,5 @@
-﻿using CookBookApp.Model;
+﻿using CookBookApp.Data;
+using CookBookApp.Model;
 using SQLitePCL;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,12 @@ namespace CookBookApp.Models.Services
 {
     public class RecipeService
     {
+        RecipeContext _context;
+        public RecipeService()
+        {
+            _context = new RecipeContext();
+        }
+
         //Visszaadja a receptek listáját a megadott nyelvek alapján
         //üres lita esetén minden recept az alapértelmezett nyelvükkel
         //1 elem alapján a megadott nyelvel rendelkező receptek szerint
@@ -131,7 +138,7 @@ namespace CookBookApp.Models.Services
             {
                 var recipes = await getRecipesJoinedAsync();
                 var recipesBuff = new List<Recipe>();
-                var languages = await App._context.Languages.GetAllAsync();
+                var languages = _context.Language.ToList();
                 int languageID = languages.FirstOrDefault(l => l.LanguageName == language).ID;
 
                 foreach (Recipe recipe in recipes)
@@ -201,7 +208,7 @@ namespace CookBookApp.Models.Services
             List<RecipeCategories> recipeCategories = joinedRecipe.Categories;
             Task.Run(async () =>
             {
-                recipeCategoryNames = await App._context.RecipeCategoryNames.GetAllAsync();
+                recipeCategoryNames = _context.RecipeCategoryNames.ToList();
             }).Wait();
             
             foreach(RecipeCategories category in recipeCategories)
@@ -219,17 +226,11 @@ namespace CookBookApp.Models.Services
             List<Recipe> recipesResults = new List<Recipe>();
             try
             {
-                var recipesTask = App._context.Recipes.GetAllAsync();
-                var recipeLocalizationsTask = App._context.RecipeLocalizations.GetAllAsync();
-                var recipeCategoriesTask = App._context.RecipeCategories.GetAllAsync();
-                var recipeImagesTask = App._context.RecipeImages.GetAllAsync();
-                var languagesTask = App._context.Languages.GetAllAsync();
-
-                var recipes = await recipesTask;
-                var recipeLocalizations = await recipeLocalizationsTask;
-                var recipeCategories = await recipeCategoriesTask;
-                var recipeImages = await recipeImagesTask;
-                var languages = await languagesTask;
+                var recipes = _context.Recipe.ToList();
+                var recipeLocalizations = _context.RecipeLocalization.ToList();
+                var recipeCategories = _context.RecipeCategories.ToList();
+                var recipeImages = _context.RecipeImage.ToList();
+                var languages = _context.Language.ToList();
 
                 foreach (Recipe recipe in recipes)
                 {
@@ -259,23 +260,11 @@ namespace CookBookApp.Models.Services
                 List<Recipe> recipes = await getRecipesJoinedAsync();
                 Recipe recipe = recipes.FirstOrDefault(r => r.ID == recipeToDelete.ID);
 
-                foreach(RecipeImage image in recipe.Images)
-                {
-                    await App._context.RecipeImages.RemoveAsync(image);
-                }
-                
-                foreach(RecipeCategories category in recipe.Categories)
-                {
-                    await App._context.RecipeCategories.RemoveAsync(category);
-                }
-
-                foreach(RecipeLocalization recipeLocalization in recipe.Localizations)
-                {
-                    await App._context.RecipeLocalizations.RemoveAsync(recipeLocalization);
-                }
-
-                await App._context.Recipes.RemoveAsync(recipe);
-
+                _context.RecipeImage.RemoveRange(recipe.Images);
+                _context.RecipeCategories.RemoveRange(recipe.Categories);
+                _context.RecipeLocalization.RemoveRange(recipe.Localizations);
+                _context.Recipe.Remove(recipe);
+                await _context.SaveChangesAsync();
                 isDeleted = true;
             }
             catch (Exception ex)

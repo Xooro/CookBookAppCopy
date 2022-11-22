@@ -61,7 +61,7 @@ namespace CookBookApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recipes.
+        ///   Looks up a localized string similar to Recipe.
         /// </summary>
         public static string menu_bttnRecipes {
             get {
