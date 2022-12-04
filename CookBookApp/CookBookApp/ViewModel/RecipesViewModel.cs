@@ -7,6 +7,7 @@ using CookBookApp.ViewModels.Base;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CookBookApp.ViewModels
@@ -15,18 +16,19 @@ namespace CookBookApp.ViewModels
     {
         public ObservableCollection<Recipe> Recipes { get; set; }
         public ObservableCollection<Language> Languages { get; set; }
-        public ObservableCollection<RecipeCategoryNames> RecipeCategoryNames{ get; set; }
+        public ObservableCollection<RecipeCategoryNames> RecipeCategoryNames { get; set; }
         public Recipe SelectedRecipe { get; set; }
-        
+
         public string Message { get; set; }
         public string SearchQuery { get; set; }
         public string UserLanguage { get; set; }
         public string UserName { get; set; }
+
         public bool IsBusy { get; set; }
 
-        public RelayCommand OpenCommand { get; }
-        public RelayCommand<string> SearchCommand { get; }
-        public RelayCommand FilterCommand { get;  }
+        public RelayCommand OpenCommand { get; set; }
+        public RelayCommand<string> SearchCommand { get; set; }
+        public RelayCommand FilterCommand { get; set; }
 
         RecipeService recipeService;
         LanguageService languageService;
@@ -34,8 +36,10 @@ namespace CookBookApp.ViewModels
 
         UserSettingsManager userSettingsManager;
 
+        int isBusyCounter;
         string[] selectedLanguages;
         int[] selectedCategoryNameIDs;
+        
 
         public RecipesViewModel()
         {
@@ -45,54 +49,60 @@ namespace CookBookApp.ViewModels
             userSettingsManager = new UserSettingsManager();
 
             SearchQuery = "";
+            isBusyCounter = 0;
             selectedLanguages = new string[] { };
             selectedCategoryNameIDs = new int[] { };
-            
+
             UserName = userSettingsManager.getUserName();
             UserLanguage = userSettingsManager.getLanguage();
 
             loadLanguages();
-            loadRecipes();
             loadRecipeCategories();
+            loadRecipes();
 
             FilterCommand = new RelayCommand(filter);
             SearchCommand = new RelayCommand<string>(search);
         }
 
-        private void loadLanguages()
+        void loadLanguages()
         {
-            IsBusy = true;
+            setIsBusy(true);
             Task.Run(async () =>
             {
-                Languages = new ObservableCollection<Language>(await languageService.getLanguagesAsync());
+                Languages = new ObservableCollection<Language>(
+                    await languageService.getLanguagesAsync());
+                setIsBusy(false);
             });
-            IsBusy = false;
+
         }
 
-        private void loadRecipes()
+        void loadRecipeCategories()
         {
-            IsBusy = true;
+            setIsBusy(true);
             Task.Run(async () =>
             {
-                Recipes = new ObservableCollection<Recipe>(await recipeService.getRecipesLocalizedAsync(selectedCategoryNameIDs, selectedLanguages, SearchQuery));
-
-                IsBusy = false;
+                RecipeCategoryNames = new ObservableCollection<RecipeCategoryNames>(
+                    await recipeCategoriesService.getLocalizedRecipeCategoriesAsync(UserLanguage));
+                setIsBusy(false);
             });
+
         }
 
-        private void loadRecipeCategories()
+        void loadRecipes()
         {
-            IsBusy = true;
+            setIsBusy(true);
             Task.Run(async () =>
             {
-                RecipeCategoryNames = new ObservableCollection<RecipeCategoryNames>(await recipeCategoriesService.getLocalizedRecipeCategoriesAsync(UserLanguage));
+                Thread.Sleep(1000);
+                Recipes = new ObservableCollection<Recipe>(
+                    await recipeService.getRecipesLocalizedAsync(selectedCategoryNameIDs, selectedLanguages, SearchQuery));
+                setIsBusy(false);
             });
-            IsBusy = false;
         }
 
-        private void filter()
+        void filter()
         {
-            //ez azért szükséges, mert megnyomásakor  törli a searchban található adatot.
+            //Azért szükséges, mert megnyomásakor  törli a searchban található adatot.
             //Az függ OneWay módban a SearchQuery-től. Ha a query "", akkor nem törli, ezért a kettős módosítás
             SearchQuery = "t";
             SearchQuery = "";
@@ -105,10 +115,23 @@ namespace CookBookApp.ViewModels
             loadRecipes();
         }
 
-        private void search(string searchQuery)
+        void search(string searchQuery)
         {
-            this.SearchQuery = searchQuery;
+            SearchQuery = searchQuery;
             loadRecipes();
+        }
+
+        void setIsBusy(bool toTrue)
+        {
+            if (toTrue)
+                isBusyCounter++;
+            else
+                isBusyCounter--;
+
+            if (isBusyCounter > 0)
+                IsBusy = true;
+            else
+                IsBusy= false;
         }
     }
 }

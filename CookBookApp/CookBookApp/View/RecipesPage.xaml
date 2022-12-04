@@ -29,7 +29,6 @@
             </Grid.ColumnDefinitions>
 
             <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
-
             <ScrollView 
                     Grid.Row="0"
                         Grid.RowSpan="3"

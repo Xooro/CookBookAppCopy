@@ -1,4 +1,5 @@
-﻿using CookBookApp.Model;
+﻿using CookBookApp.Helpers;
+using CookBookApp.Model;
 using CookBookApp.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -22,13 +23,18 @@ namespace CookBookApp.Data
         {
             this.Database.EnsureCreated();
         }
+
+        public RecipeContext(DbContextOptions<RecipeContext> options) : base(options)
+        {
+            this.Database.EnsureCreated();
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                        "CookBookDB.db3");
-
-            optionsBuilder
-                .UseSqlite($"Filename={dbPath}");
+            if (optionsBuilder.IsConfigured)
+                return;
+            string dbPath = Path.Combine(Constants.path, "CookBookDB.db3");
+            optionsBuilder.UseSqlite($"Filename={dbPath}");
         }
     }
 }

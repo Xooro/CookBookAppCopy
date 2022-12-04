@@ -21,6 +21,11 @@ namespace CookBookApp.Models.Services
             _context = new RecipeContext();
         }
 
+        public RecipeService(RecipeContext context)
+        {
+            _context = context;
+        }
+
         //Visszaadja a receptek listáját a megadott nyelvek alapján
         //üres lita esetén minden recept az alapértelmezett nyelvükkel
         //1 elem alapján a megadott nyelvel rendelkező receptek szerint

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CookBookApp.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace CookBookApp.Data
 
         public UserSettings()
         {
-            path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "UserProperties.properties");
+            path = Path.Combine(Constants.path, "UserProperties.properties");
             if(!File.Exists(path))
             {
                 createDefaultFile();

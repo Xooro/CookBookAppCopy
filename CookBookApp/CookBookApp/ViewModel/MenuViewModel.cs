@@ -29,9 +29,7 @@ namespace CookBookApp.ViewModel
         {
             languageService = new LanguageService();
             userPropertiesService = new UserSettingsManager();
-
             loadLanguages();
-            ContextHelper.fillSQLiteWithTestData();
             SetUserNameCommand = new RelayCommand<string>(setUserName);
             SetLanguageCommand = new RelayCommand(setLanguage);
         }

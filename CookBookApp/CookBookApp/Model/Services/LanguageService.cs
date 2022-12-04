@@ -15,6 +15,10 @@ namespace CookBookApp.Models.Services
         {
             _context = new RecipeContext();
         }
+        public LanguageService(RecipeContext context)
+        {
+            _context = context;
+        }
 
         public async Task<List<Language>> getLanguagesAsync()
         {

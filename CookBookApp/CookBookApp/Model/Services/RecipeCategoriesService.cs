@@ -18,6 +18,11 @@ namespace CookBookApp.Model.Services
             _context = new RecipeContext();
         }
 
+        public RecipeCategoriesService(RecipeContext context)
+        {
+            _context = context;
+        }
+
         public async Task<List<RecipeCategoryNames>> getLocalizedRecipeCategoriesAsync(string languageName)
         {
             List<RecipeCategoryNames> recipeCategoryNames = new List<RecipeCategoryNames>();
