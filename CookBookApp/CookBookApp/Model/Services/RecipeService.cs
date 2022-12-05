@@ -1,5 +1,6 @@
 ﻿using CookBookApp.Data;
 using CookBookApp.Model;
+using Microsoft.EntityFrameworkCore;
 using SQLitePCL;
 using System;
 using System.Collections.Generic;
@@ -32,11 +33,17 @@ namespace CookBookApp.Models.Services
             List<Recipe> recipesResults = new List<Recipe>();
             try
             {
-                var recipes = _context.Recipe.ToList();
-                var recipeLocalizations = _context.RecipeLocalization.ToList();
-                var recipeCategories = _context.RecipeCategories.ToList();
-                var recipeImages = _context.RecipeImage.ToList();
-                var languages = _context.Language.ToList();
+                var recipesTask = _context.Recipe.ToListAsync();
+                var recipeLocalizationsTask = _context.RecipeLocalization.ToListAsync();
+                var recipeCategoriesTask = _context.RecipeCategories.ToListAsync();
+                var recipeImagesTask = _context.RecipeImage.ToListAsync();
+                var languagesTask = _context.Language.ToListAsync();
+
+                var recipes = await recipesTask;
+                var recipeLocalizations = await recipeLocalizationsTask;
+                var recipeCategories = await recipeCategoriesTask;
+                var recipeImages = await recipeImagesTask;
+                var languages = await languagesTask;
 
                 foreach (Recipe recipe in recipes)
                 {
