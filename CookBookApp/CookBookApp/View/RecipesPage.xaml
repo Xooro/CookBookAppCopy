@@ -16,17 +16,17 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid x:Name="grdMainGrid" SizeChanged="grdPage_SizeChanged">
+        <Grid x:Name="grdMainGrid">
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" x:Name="gridRow0" />
-                <RowDefinition x:Name="gridRow1" />
-                <RowDefinition x:Name="gridRow2"/>
-                <RowDefinition x:Name="gridRow3"/>
-                <RowDefinition Height="auto" x:Name="gridRow4"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*" x:Name="gridColumn1"/>
-                <ColumnDefinition Width="*" x:Name="gridColumn2"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
@@ -90,7 +90,8 @@
 
             <ScrollView Grid.Column="1"
                         Grid.Row="1"
-                           Margin="0,30,0,0">
+                        Margin="0,30,0,0"
+                        Grid.RowSpan="2">
                 <ListView x:Name ="lstVwLanguages" 
                       ItemsSource="{Binding Languages, Mode=TwoWay}">
                     <ListView.ItemTemplate>

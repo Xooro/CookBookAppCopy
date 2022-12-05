@@ -23,46 +23,5 @@ namespace CookBookApp.Views
         {
             Navigation.PopAsync();
         }
-
-        private void grdPage_SizeChanged(object sender, EventArgs e)
-        {
-            var x = recipePage.Width;
-            var y = recipePage.Height;
-            switch (Device.RuntimePlatform)
-            {
-                case Device.Android:
-
-
-                    gridColumn1.Width = x / 4 * 3;
-                    gridColumn2.Width = x / 4;
-
-
-                    gridRow0.Height = y * 1 / 12;
-                    gridRow1.Height = y * 2 / 12;
-                    gridRow2.Height = y * 2 / 12;
-                    gridRow3.Height = y * 5 / 12;
-                    gridRow4.Height = y * 2 / 12;
-
-
-                    break;
-                case Device.UWP:
-
-                    gridColumn1.Width = x / 4 * 3;
-                    gridColumn2.Width = x / 4;
-
-
-                    gridRow0.Height = y * 1 / 12;
-                    gridRow1.Height = y * 2 / 12;
-                    gridRow2.Height = y * 2 / 12;
-                    gridRow3.Height = y * 5 / 12;
-                    gridRow4.Height = y * 2 / 12;
-
-                    break;
-                default:
-                    break;
-            }
-
-            
-        }
     }
 }

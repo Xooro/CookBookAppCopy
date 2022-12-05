@@ -15,6 +15,11 @@ namespace CookBookApp.View
         public AddRecipe()
         {
             InitializeComponent();
+            SizeChanged += addRecipe_SizeChanged;
+        }
+        private void addRecipe_SizeChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

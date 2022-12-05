@@ -2,28 +2,73 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CookBookApp.View.AddRecipe"
-             BackgroundColor="AliceBlue">
+             BackgroundColor="AliceBlue"
+             Padding="20">
     <ContentPage.Resources>
         <Style TargetType="Label">
             <Setter Property="TextColor" Value ="Black"/>
         </Style>
+        <Style TargetType="Button">
+            <Setter Property="TextColor" Value ="Black"/>
+            <Setter Property="Background" Value="transparent"/>
+        </Style>
+        
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Sad" />
-            <Entry Placeholder="" />
-
-
-            <Label Text="" />
-            <Entry Placeholder="" />
-
-
-            <Label Text="" />
-            <Entry Placeholder="" />
-
-
-            <Label Text="" />
-            <Entry Placeholder="" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackLayout
+                         Grid.Row="0"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2"
+                         Padding="20">
+                <Label Text="Author" />
+                <Entry Placeholder="John Doe" />
+            </StackLayout>
+            <StackLayout 
+                         Grid.Row="1"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2"
+                         Padding="20">
+                <Label Text="Recipe Name" />
+                <Entry Placeholder="Lasagne" />
+            </StackLayout>
+            <StackLayout
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Padding="20">
+                <Label Text="Difficulty"/>
+                <Picker 
+                    x:Name="pckrDifficulty">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Beginner</x:String>
+                        <x:String>Intermediate</x:String>
+                        <x:String>Professional</x:String>
+                        <x:String>SAMURAI++</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            </StackLayout>
+            <Button
+                Grid.Row="5"
+                Grid.Column="0"
+                Text="Back"/>
+            <Button
+                Grid.Row="5"
+                Grid.Column="1"
+                Text="Következő"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
