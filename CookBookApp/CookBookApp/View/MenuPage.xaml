@@ -56,6 +56,10 @@
                     Text="{x:Static resources:AppResources.menu_bttnRecipes}"    
                     Clicked="RecipeButton_Clicked"/>
 
+            <Button x:Name="bttnAddRecipes"
+                    Text="Add Recipe"    
+                    Clicked="AddRecipeButton_Clicked"/>
+
             <StackLayout Orientation="Horizontal">
                 <Entry x:Name="ntrUserNameEntry" Placeholder=""/>
                 <Button x:Name="bttnUserNameUpdate" Text="UpdateUserName"

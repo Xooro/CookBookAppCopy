@@ -1,4 +1,5 @@
-﻿using CookBookApp.ViewModel;
+﻿using CookBookApp.View;
+using CookBookApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,10 @@ namespace CookBookApp.Views
         private void RecipeButton_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new RecipesPage());
+        }
+        private void AddRecipeButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AddRecipe());
         }
     }
 }

@@ -18,9 +18,10 @@
     <ContentPage.Content>
         <Grid x:Name="grdMainGrid" SizeChanged="grdPage_SizeChanged">
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" x:Name="gridRow1" />
-                <RowDefinition Height="*"  x:Name="gridRow2"/>
-                <RowDefinition Height="500" x:Name="gridRow3"/>
+                <RowDefinition Height="auto" x:Name="gridRow0" />
+                <RowDefinition x:Name="gridRow1" />
+                <RowDefinition x:Name="gridRow2"/>
+                <RowDefinition x:Name="gridRow3"/>
                 <RowDefinition Height="auto" x:Name="gridRow4"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -30,7 +31,7 @@
 
             <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
             <ScrollView 
-                    Grid.Row="0"
+                    Grid.Row="1"
                         Grid.RowSpan="3"
                         Grid.Column="0">
                 <ListView x:Name ="lstVwRecipes" 
@@ -41,10 +42,18 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout>
-                                    <Label Text="{Binding Author}"/>
-                                    <Label Text="{Binding LocalizedRecipe.RecipeName}"/>
-                                </StackLayout>
+                                <Frame BackgroundColor="AliceBlue"
+                                       BorderColor="Black"
+                                       CornerRadius="10"
+                                       Margin="10">
+                                    <StackLayout>
+                                        <Image Source=''
+                                           Aspect="AspectFill"
+                                           HeightRequest="60"
+                                           WidthRequest="60" />
+                                        <Label Text="{Binding LocalizedRecipe.RecipeName}"/>
+                                    </StackLayout>
+                                </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -53,8 +62,9 @@
 
             <SearchBar x:Name="srchBrRecipes"
                            Placeholder="Keresés...."
-                           Grid.Column="1"
+                           Grid.Column="0"
                            Grid.Row="0"
+                           Grid.ColumnSpan="2"
                            Text="{Binding SearchQuery, Mode=OneWay}"
                            SearchCommand="{Binding SearchCommand}"
                            SearchCommandParameter="{Binding Text, Source={x:Reference srchBrRecipes}}"/>
@@ -97,18 +107,21 @@
             </ScrollView>
             <Button x:Name="bttnBackPage"
                         Grid.Column="0"
-                        Grid.Row="3"
+                        Grid.Row="4"
                         Text="Vissza"
-                        Margin="0"
-                        Grid.ColumnSpan="1"
+                        Padding="20"
+                        HorizontalOptions="Start"
                         TextColor="Black"
                         Clicked="bttnBackPage_Clicked"
-                        />
+                        Background="transparent"/>
             <Button x:Name="bttnFilter"
                         Text="{x:Static resources:AppResources.recipes_bttnFilter}"
                         Command="{Binding Path=FilterCommand}"
                         Grid.Column="1"
-                        Grid.Row="3"/>
+                        Grid.Row="4"
+                        HorizontalOptions="End"
+                        Padding="20"
+                        Background="transparent"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
