@@ -30,7 +30,7 @@ namespace CookBookApp.ViewModels
         public RelayCommand<string> SearchCommand { get; set; }
         public RelayCommand FilterCommand { get; set; }
 
-        RecipeService recipeService;
+        RecipesListService recipesListService;
         LanguageService languageService;
         RecipeCategoriesService recipeCategoriesService;
 
@@ -43,7 +43,7 @@ namespace CookBookApp.ViewModels
 
         public RecipesViewModel()
         {
-            recipeService = new RecipeService();
+            recipesListService = new RecipesListService();
             languageService = new LanguageService();
             recipeCategoriesService = new RecipeCategoriesService();
             userSettingsManager = new UserSettingsManager();
@@ -95,7 +95,7 @@ namespace CookBookApp.ViewModels
             {
                 Thread.Sleep(1000);
                 Recipes = new ObservableCollection<Recipe>(
-                    await recipeService.getRecipesLocalizedAsync(selectedCategoryNameIDs, selectedLanguages, SearchQuery));
+                    await recipesListService.getRecipesLocalizedAsync(selectedCategoryNameIDs, selectedLanguages, SearchQuery));
                 setIsBusy(false);
             });
         }
