@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CookBookApp.Models
 {
-    public class Recipe
+    public class Recipe : ICloneable
     {
         public int ID { get; set; }
         public int DefaultLanguageID { get; set; }
@@ -34,6 +34,10 @@ namespace CookBookApp.Models
         //tárolja a recept képeit
         [NotMapped]
         public List<RecipeImage> Images { get; set; }
-        
+
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
     }
 }
