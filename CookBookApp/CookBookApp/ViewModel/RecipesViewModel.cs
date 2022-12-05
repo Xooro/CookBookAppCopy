@@ -7,6 +7,7 @@ using CookBookApp.ViewModels.Base;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -29,6 +30,7 @@ namespace CookBookApp.ViewModels
         public RelayCommand OpenCommand { get; set; }
         public RelayCommand<string> SearchCommand { get; set; }
         public RelayCommand FilterCommand { get; set; }
+        public RelayCommand RefreshListCommand { get; set; }
 
         RecipesListService recipesListService;
         LanguageService languageService;
@@ -37,7 +39,7 @@ namespace CookBookApp.ViewModels
         UserSettingsManager userSettingsManager;
 
         int isBusyCounter;
-        string[] selectedLanguages;
+        int[] selectedLanguageIDs;
         int[] selectedCategoryNameIDs;
         
 
@@ -50,7 +52,7 @@ namespace CookBookApp.ViewModels
 
             SearchQuery = "";
             isBusyCounter = 0;
-            selectedLanguages = new string[] { };
+            selectedLanguageIDs = new int[] { };
             selectedCategoryNameIDs = new int[] { };
 
             UserName = userSettingsManager.getUserName();
@@ -62,6 +64,7 @@ namespace CookBookApp.ViewModels
 
             FilterCommand = new RelayCommand(filter);
             SearchCommand = new RelayCommand<string>(search);
+            RefreshListCommand = new RelayCommand(refreshList);
         }
 
         void loadLanguages()
@@ -95,7 +98,7 @@ namespace CookBookApp.ViewModels
             {
                 Thread.Sleep(1000);
                 Recipes = new ObservableCollection<Recipe>(
-                    await recipesListService.getRecipesLocalizedAsync(selectedCategoryNameIDs, selectedLanguages, SearchQuery));
+                    await recipesListService.getRecipesLocalizedAsync(selectedCategoryNameIDs, selectedLanguageIDs, SearchQuery));
                 setIsBusy(false);
             });
         }
@@ -111,7 +114,7 @@ namespace CookBookApp.ViewModels
             selectedCategoryNameIDs = selectedRecipeCategoryNames.Select(rcn => rcn.CategoryNameID).ToArray();
 
             List<Language> selectedLanguagesList = Languages.Where(l => l.IsChecked).ToList();
-            selectedLanguages = selectedLanguagesList.Select(l => l.LanguageName).ToArray();
+            selectedLanguageIDs = selectedLanguagesList.Select(l => l.ID).ToArray();
             loadRecipes();
         }
 
@@ -119,6 +122,14 @@ namespace CookBookApp.ViewModels
         {
             SearchQuery = searchQuery;
             loadRecipes();
+        }
+
+        void refreshList()
+        {
+            setIsBusy(true);
+            recipesListService.setJoinedRecipes();
+            loadRecipes();
+            setIsBusy(false);
         }
 
         void setIsBusy(bool toTrue)
