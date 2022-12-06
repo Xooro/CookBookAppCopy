@@ -40,7 +40,7 @@ namespace CookBookApp.Model.Services
         {
             Task.Run(async () =>
             {
-                recipesJoined = await recipeService.getRecipesJoinedAsync();
+                recipesJoined = await recipeService.getJoinedRecipesAsync();
             }).Wait();
         }
 
@@ -232,6 +232,24 @@ namespace CookBookApp.Model.Services
                         (r.LocalizedRecipe.Ingredients.ToUpper().Contains(search))
                     ).ToList();
             return await Task.FromResult(localizedRecipes);
+        }
+
+        public async Task<bool> deleteMultipleJoinedRecipeAsync(List<Recipe> recipesToDelete)
+        {
+            bool isDeletesSucceeded = true;
+            try
+            {
+                foreach(Recipe recipe in recipesToDelete)
+                {
+                    var isDeleted = await recipeService.deleteJoinedRecipeAsync(recipe);
+                    if (!isDeleted) isDeletesSucceeded = false;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return isDeletesSucceeded;
         }
     }
 }

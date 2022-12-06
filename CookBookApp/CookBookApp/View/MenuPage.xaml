@@ -61,10 +61,9 @@
                     Clicked="AddRecipeButton_Clicked"/>
 
             <StackLayout Orientation="Horizontal">
-                <Entry x:Name="ntrUserNameEntry" Placeholder=""/>
+                <Entry x:Name="ntrUserNameEntry" Placeholder="" Text="{Binding UserName, Mode=TwoWay}"/>
                 <Button x:Name="bttnUserNameUpdate" Text="UpdateUserName"
-                        Command="{Binding SetUserNameCommand}"
-                        CommandParameter="{Binding Text, Source={x:Reference ntrUserNameEntry}}"/>
+                        Command="{Binding SetUserNameCommand}"/>
             </StackLayout>
             
             <StackLayout Orientation="Horizontal">

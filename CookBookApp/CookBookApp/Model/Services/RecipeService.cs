@@ -1,15 +1,8 @@
 ﻿using CookBookApp.Data;
-using CookBookApp.Model;
 using Microsoft.EntityFrameworkCore;
-using SQLitePCL;
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CookBookApp.Models.Services
@@ -28,7 +21,7 @@ namespace CookBookApp.Models.Services
         }
         
         //vissza adja a recepteket, amelyek tárolnak minden lokalizációt, de saját lokalizációval nem rendelkezik
-        public async Task<List<Recipe>> getRecipesJoinedAsync()
+        public async Task<List<Recipe>> getJoinedRecipesAsync()
         {
             List<Recipe> recipesResults = new List<Recipe>();
             try
@@ -58,19 +51,17 @@ namespace CookBookApp.Models.Services
             }
             catch (Exception ex)
             {
-                //TODO: LOGGER CW HELYETT
-                Console.WriteLine(ex.Message);
+                throw ex;
             }
             return await Task.FromResult(recipesResults);
         }
 
-        //Törli a receptet, és a hozzá tartozó elemeket a táblákból
-        public async Task<bool> deleteRecipeAsync(Recipe recipeToDelete)
+        public async Task<bool> deleteJoinedRecipeAsync(Recipe recipeToDelete)
         {
             bool isDeleted = false;
             try
             {
-                List<Recipe> recipes = await getRecipesJoinedAsync();
+                List<Recipe> recipes = await getJoinedRecipesAsync();
                 Recipe recipe = recipes.FirstOrDefault(r => r.ID == recipeToDelete.ID);
 
                 _context.RecipeImage.RemoveRange(recipe.Images);
@@ -82,8 +73,7 @@ namespace CookBookApp.Models.Services
             }
             catch (Exception ex)
             {
-                //TODO: LOGGER CW HELYETT
-                Console.WriteLine(ex.Message);
+                throw ex;
             }
 
             return await Task.FromResult(isDeleted);

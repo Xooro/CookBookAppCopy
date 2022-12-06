@@ -17,7 +17,7 @@ namespace CookBookApp.Helpers
 
         public string getLanguage()
         {
-            return userProperties.Language.ToUpper();
+            return userProperties.Language;
         }
 
         public async Task<bool> setUserName(string newUserName)

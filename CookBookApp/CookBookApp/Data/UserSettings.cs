@@ -14,12 +14,12 @@ namespace CookBookApp.Data
         private string language;
         private string path;
         public string UserName { get { return userName; } set { userName = value; updateUserProperties(); } }
-        public string Language { get { return language; } set { language = value.ToLower(); updateUserProperties(); } }
+        public string Language { get { return language; } set { language = value; updateUserProperties(); } }
 
         public UserSettings()
         {
             path = Path.Combine(Constants.path, "UserProperties.properties");
-            if(!File.Exists(path))
+            if(!File.Exists(path) || File.ReadAllLines(path).Count()==0)
             {
                 createDefaultFile();
             }
@@ -29,7 +29,7 @@ namespace CookBookApp.Data
         private void createDefaultFile()
         {
             UserName = "User";
-            language = "en";
+            Language = "EN";
         }
 
         private void initializeProperties()

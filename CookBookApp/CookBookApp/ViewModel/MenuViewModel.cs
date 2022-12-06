@@ -17,20 +17,23 @@ namespace CookBookApp.ViewModel
     public class MenuViewModel : BaseViewModel
     {
         public string UserName { get; set; }
-        public RelayCommand<string> SetUserNameCommand { get; set; }
+        public RelayCommand SetUserNameCommand { get; set; }
         public RelayCommand SetLanguageCommand { get; set; }
         public ObservableCollection<Language> Languages { get; set; }
         public Language SelectedLanguage { get; set; }
 
         LanguageService languageService;
-        UserSettingsManager userPropertiesService;
+        UserSettingsManager userSettingsManager;
 
         public MenuViewModel()
         {
             languageService = new LanguageService();
-            userPropertiesService = new UserSettingsManager();
+            userSettingsManager = new UserSettingsManager();
+            
             loadLanguages();
-            SetUserNameCommand = new RelayCommand<string>(setUserName);
+            initializeUserSettings();
+            
+            SetUserNameCommand = new RelayCommand(setUserName);
             SetLanguageCommand = new RelayCommand(setLanguage);
         }
 
@@ -38,18 +41,28 @@ namespace CookBookApp.ViewModel
         {
             Task.Run(async () =>
             {
-                Languages = new ObservableCollection<Language>(await languageService.getLanguagesAsync());
+                Languages = new ObservableCollection<Language>(await languageService.getLanguagesAsync()); 
+            }).Wait();
+        }
+
+        void initializeUserSettings()
+        {
+            UserName = userSettingsManager.getUserName();
+            Task.Run(async () =>
+            {
+                Console.WriteLine(userSettingsManager.getLanguage());
+                SelectedLanguage = await languageService.getLanguageByName(userSettingsManager.getLanguage());
             });
         }
 
-        async void setUserName(string userName)
+        async void setUserName()
         {
-            await userPropertiesService.setUserName(userName);
+            await userSettingsManager.setUserName(UserName);
         }
 
         async void setLanguage()
         {
-            await userPropertiesService.setLanguage(SelectedLanguage);
+            await userSettingsManager.setLanguage(SelectedLanguage);
         }
     }
 }
