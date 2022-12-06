@@ -61,11 +61,119 @@ namespace CookBookApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recipe.
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string addRecipes_bttnBack {
+            get {
+                return ResourceManager.GetString("addRecipes_bttnBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string addRecipes_bttnForward {
+            get {
+                return ResourceManager.GetString("addRecipes_bttnForward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allergens.
+        /// </summary>
+        public static string addRecipes_lblAllergens {
+            get {
+                return ResourceManager.GetString("addRecipes_lblAllergens", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Author.
+        /// </summary>
+        public static string addRecipes_lblAuthor {
+            get {
+                return ResourceManager.GetString("addRecipes_lblAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categories.
+        /// </summary>
+        public static string addRecipes_lblCategories {
+            get {
+                return ResourceManager.GetString("addRecipes_lblCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Difficulty.
+        /// </summary>
+        public static string addRecipes_lblDifficulty {
+            get {
+                return ResourceManager.GetString("addRecipes_lblDifficulty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recipe Name.
+        /// </summary>
+        public static string addRecipes_lblRecipeName {
+            get {
+                return ResourceManager.GetString("addRecipes_lblRecipeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lactose, Peanuts, etc....
+        /// </summary>
+        public static string addRecipes_ntrAllergens {
+            get {
+                return ResourceManager.GetString("addRecipes_ntrAllergens", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to John Doe.
+        /// </summary>
+        public static string addRecipes_ntrAuthor {
+            get {
+                return ResourceManager.GetString("addRecipes_ntrAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lasagne.
+        /// </summary>
+        public static string addRecipes_ntrRecipeName {
+            get {
+                return ResourceManager.GetString("addRecipes_ntrRecipeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Recipe.
+        /// </summary>
+        public static string menu_bttnAddRecipes {
+            get {
+                return ResourceManager.GetString("menu_bttnAddRecipes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recipes.
         /// </summary>
         public static string menu_bttnRecipes {
             get {
                 return ResourceManager.GetString("menu_bttnRecipes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string menu_bttnSettings {
+            get {
+                return ResourceManager.GetString("menu_bttnSettings", resourceCulture);
             }
         }
         
@@ -79,11 +187,83 @@ namespace CookBookApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string recipes_bttnBack {
+            get {
+                return ResourceManager.GetString("recipes_bttnBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter.
         /// </summary>
         public static string recipes_bttnFilter {
             get {
                 return ResourceManager.GetString("recipes_bttnFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.....
+        /// </summary>
+        public static string recipes_srchBrRecipes {
+            get {
+                return ResourceManager.GetString("recipes_srchBrRecipes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string setting_bttnBack {
+            get {
+                return ResourceManager.GetString("setting_bttnBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Language.
+        /// </summary>
+        public static string setting_bttnLanguage {
+            get {
+                return ResourceManager.GetString("setting_bttnLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update User.
+        /// </summary>
+        public static string setting_bttnUserName {
+            get {
+                return ResourceManager.GetString("setting_bttnUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Language.
+        /// </summary>
+        public static string setting_lblLanguage {
+            get {
+                return ResourceManager.GetString("setting_lblLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current User(Author).
+        /// </summary>
+        public static string setting_lblUserName {
+            get {
+                return ResourceManager.GetString("setting_lblUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to John Doe.
+        /// </summary>
+        public static string setting_ntrUserName {
+            get {
+                return ResourceManager.GetString("setting_ntrUserName", resourceCulture);
             }
         }
     }

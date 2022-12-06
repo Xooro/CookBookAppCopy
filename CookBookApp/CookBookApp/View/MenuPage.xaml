@@ -57,25 +57,10 @@
                     Clicked="RecipeButton_Clicked"/>
 
             <Button x:Name="bttnAddRecipes"
-                    Text="Add Recipe"    
+                    Text="{x:Static resources:AppResources.menu_bttnAddRecipes}"   
                     Clicked="AddRecipeButton_Clicked"/>
-
-            <StackLayout Orientation="Horizontal">
-                <Entry x:Name="ntrUserNameEntry" Placeholder="" Text="{Binding UserName, Mode=TwoWay}"/>
-                <Button x:Name="bttnUserNameUpdate" Text="UpdateUserName"
-                        Command="{Binding SetUserNameCommand}"/>
-            </StackLayout>
-            
-            <StackLayout Orientation="Horizontal">
-                <Picker Title="langueages" 
-                        ItemsSource="{Binding Languages, Mode=TwoWay}"
-                        SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
-                        ItemDisplayBinding="{Binding LanguageName}">
-                </Picker>
-                <Button x:Name="bttnLanguageUpdate" 
-                        Text="UpdateLanguage"
-                        Command="{Binding SetLanguageCommand}"/>
-            </StackLayout>
+            <Button Text="{x:Static resources:AppResources.menu_bttnSettings}"  
+                    Clicked="SettingButton_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

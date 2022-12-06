@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CookBookApp.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,11 +16,17 @@ namespace CookBookApp.View
         public AddRecipe()
         {
             InitializeComponent();
-            SizeChanged += addRecipe_SizeChanged;
+            BindingContext = new AddRecipeViewModel();
         }
-        private void addRecipe_SizeChanged(object sender, EventArgs e)
-        {
 
+        private void bttnBackPage_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync();
+        }
+
+        private void bttnForwardPage_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AllergensAndCategoriesPage());
         }
     }
 }

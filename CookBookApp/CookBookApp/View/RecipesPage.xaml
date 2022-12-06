@@ -4,7 +4,8 @@
              x:Class="CookBookApp.Views.RecipesPage"
              xmlns:resources="clr-namespace:CookBookApp.Resources"
              BackgroundColor="AliceBlue"
-             x:Name="recipePage">
+             x:Name="recipePage"
+             Padding="10">
 
     <ContentPage.Resources>
         <Style TargetType="Label">
@@ -25,19 +26,22 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
             <ScrollView 
                     Grid.Row="1"
+                        Grid.Column="0"
                         Grid.RowSpan="3"
-                        Grid.Column="0">
+                        Grid.ColumnSpan="3">
                 <ListView x:Name ="lstVwRecipes" 
                       ItemsSource="{Binding Recipes, Mode=TwoWay}"
-                      SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}"
-                      Grid.Column="0">
+                      SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}">
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -61,15 +65,15 @@
             </ScrollView>
 
             <SearchBar x:Name="srchBrRecipes"
-                           Placeholder="Keresés...."
+                           Placeholder="{x:Static resources:AppResources.recipes_srchBrRecipes}"
                            Grid.Column="0"
                            Grid.Row="0"
-                           Grid.ColumnSpan="2"
+                           Grid.ColumnSpan="4"
                            Text="{Binding SearchQuery, Mode=OneWay}"
                            SearchCommand="{Binding SearchCommand}"
                            SearchCommandParameter="{Binding Text, Source={x:Reference srchBrRecipes}}"/>
 
-            <ScrollView Grid.Column="1"
+            <ScrollView Grid.Column="3"
                         Grid.Row="1"
                         Margin="0,30,0,0"
                         Grid.RowSpan="2">
@@ -88,8 +92,9 @@
                 </ListView>
             </ScrollView>
 
-            <ScrollView Grid.Column="1"
+            <ScrollView Grid.Column="3"
                         Grid.Row="2"
+                        Grid.RowSpan="2"
                         Margin="0,30,0,0" >
                 <ListView x:Name ="lstVwRecipeCategories" 
                       ItemsSource="{Binding RecipeCategoryNames, Mode=TwoWay}">
@@ -108,19 +113,21 @@
 
             <Button x:Name="bttnBackPage"
                         Grid.Column="0"
+                        Grid.ColumnSpan="2"
                         Grid.Row="4"
-                        Text="Vissza"
+                        Text="{x:Static resources:AppResources.recipes_bttnBack}"
                         Padding="20"
-                        HorizontalOptions="Start"
+                        HorizontalOptions="Center"
                         TextColor="Black"
                         Clicked="bttnBackPage_Clicked"
                         Background="transparent"/>
             <Button x:Name="bttnFilter"
                         Text="{x:Static resources:AppResources.recipes_bttnFilter}"
                         Command="{Binding Path=FilterCommand}"
-                        Grid.Column="1"
+                        Grid.Column="2"
+                        Grid.ColumnSpan="2"
                         Grid.Row="4"
-                        HorizontalOptions="End"
+                        HorizontalOptions="Center"
                         Padding="20"
                         Background="transparent"/>
         </Grid>

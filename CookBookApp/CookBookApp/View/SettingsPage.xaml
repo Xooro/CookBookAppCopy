@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CookBookApp.View.SettingsPage"
+             xmlns:resources="clr-namespace:CookBookApp.Resources"
+             Background="aliceblue"
+             Padding="20">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value ="Black"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="TextColor" Value ="Black"/>
+            <Setter Property="Background" Value="transparent"/>
+        </Style>
+
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="setting_lblUserName"
+                    Text="{x:Static resources:AppResources.setting_lblUserName}"
+                       Grid.Row="0"
+                       Grid.Column="0"/>
+
+                    <Entry 
+                        x:Name="setting_ntrUserName"
+                        Placeholder="{x:Static resources:AppResources.setting_ntrUserName}"
+                       Grid.Row="1"
+                       Grid.Column="0"/>
+                <Button x:Name="bttnUserNameUpdate" Text="{x:Static resources:AppResources.setting_bttnUserName}"
+                        Command="{Binding SetUserNameCommand}"
+                       Grid.Row="1"
+                       Grid.Column="1"/>
+            </Grid>
+            <Grid Grid.Row="1"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="{x:Static resources:AppResources.setting_lblLanguage}"
+                       Grid.Row="0"
+                       Grid.Column="0"/>
+                <Picker
+                        ItemsSource="{Binding Languages, Mode=TwoWay}"
+                        SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
+                        ItemDisplayBinding="{Binding LanguageName}"
+                        Grid.Row="1"
+                        Grid.Column="0"/>
+                <Button x:Name="bttnLanguageUpdate" 
+                        Text="{x:Static resources:AppResources.setting_bttnLanguage}"
+                        Command="{Binding SetLanguageCommand}"
+                        Grid.Row="1"
+                        Grid.Column="1"/>
+            </Grid>
+
+            <Button Text="{x:Static resources:AppResources.setting_bttnBack}"
+                    Clicked="bttnBackPage_Clicked"
+                    Grid.Row="4"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="1"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

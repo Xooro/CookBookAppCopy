@@ -117,13 +117,73 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="addRecipes_bttnBack" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="addRecipes_bttnForward" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="addRecipes_lblAllergens" xml:space="preserve">
+    <value>Allergens</value>
+  </data>
+  <data name="addRecipes_lblAuthor" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="addRecipes_lblCategories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="addRecipes_lblDifficulty" xml:space="preserve">
+    <value>Difficulty</value>
+  </data>
+  <data name="addRecipes_lblRecipeName" xml:space="preserve">
+    <value>Recipe Name</value>
+  </data>
+  <data name="addRecipes_ntrAllergens" xml:space="preserve">
+    <value>Lactose, Peanuts, etc...</value>
+  </data>
+  <data name="addRecipes_ntrAuthor" xml:space="preserve">
+    <value>John Doe</value>
+  </data>
+  <data name="addRecipes_ntrRecipeName" xml:space="preserve">
+    <value>Lasagne</value>
+  </data>
+  <data name="menu_bttnAddRecipes" xml:space="preserve">
+    <value>Add Recipe</value>
+  </data>
   <data name="menu_bttnRecipes" xml:space="preserve">
     <value>Recipes</value>
+  </data>
+  <data name="menu_bttnSettings" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="menu_lblMenu" xml:space="preserve">
     <value>Main page</value>
   </data>
+  <data name="recipes_bttnBack" xml:space="preserve">
+    <value>Back</value>
+  </data>
   <data name="recipes_bttnFilter" xml:space="preserve">
     <value>Filter</value>
+  </data>
+  <data name="recipes_srchBrRecipes" xml:space="preserve">
+    <value>Search....</value>
+  </data>
+  <data name="setting_bttnBack" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="setting_bttnLanguage" xml:space="preserve">
+    <value>Update Language</value>
+  </data>
+  <data name="setting_bttnUserName" xml:space="preserve">
+    <value>Update User</value>
+  </data>
+  <data name="setting_lblLanguage" xml:space="preserve">
+    <value>Current Language</value>
+  </data>
+  <data name="setting_lblUserName" xml:space="preserve">
+    <value>Current User(Author)</value>
+  </data>
+  <data name="setting_ntrUserName" xml:space="preserve">
+    <value>John Doe</value>
   </data>
 </root>

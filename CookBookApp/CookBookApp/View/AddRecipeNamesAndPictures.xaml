@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CookBookApp.View.AddRecipe"
+             xmlns:resources="clr-namespace:CookBookApp.Resources"
              BackgroundColor="AliceBlue"
              Padding="20">
     <ContentPage.Resources>
@@ -32,23 +33,23 @@
                          Grid.Column="0"
                          Grid.ColumnSpan="2"
                          Padding="20">
-                <Label Text="Author" />
-                <Entry Placeholder="John Doe" />
+                <Label Text="{x:Static resources:AppResources.addRecipes_lblAuthor}" />
+                <Entry Placeholder="{x:Static resources:AppResources.addRecipes_ntrAuthor}" />
             </StackLayout>
             <StackLayout 
                          Grid.Row="1"
                          Grid.Column="0"
                          Grid.ColumnSpan="2"
                          Padding="20">
-                <Label Text="Recipe Name" />
-                <Entry Placeholder="Lasagne" />
+                <Label Text="{x:Static resources:AppResources.addRecipes_lblRecipeName}" />
+                <Entry Placeholder="{x:Static resources:AppResources.addRecipes_ntrAuthor}" />
             </StackLayout>
             <StackLayout
                     Grid.Row="2"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     Padding="20">
-                <Label Text="Difficulty"/>
+                <Label Text="{x:Static resources:AppResources.addRecipes_lblDifficulty}"/>
                 <Picker 
                     x:Name="pckrDifficulty">
                 <Picker.ItemsSource>
@@ -64,11 +65,23 @@
             <Button
                 Grid.Row="5"
                 Grid.Column="0"
-                Text="Back"/>
+                Text="{x:Static resources:AppResources.addRecipes_bttnBack}"
+                Clicked="bttnBackPage_Clicked"
+                Background="transparent"/>
             <Button
                 Grid.Row="5"
                 Grid.Column="1"
-                Text="Következő"/>
+                Text="{x:Static resources:AppResources.addRecipes_bttnForward}"
+                Clicked="bttnForwardPage_Clicked"
+                Background="transparent"/>
+            <Button
+                Grid.Row="4"
+                Grid.Column="0"
+                Text="Krisz, csináld meg, köszce!"/>
+            <Image
+                Source="{Binding PhotoPath}"/>
+            
+                
         </Grid>
     </ContentPage.Content>
 </ContentPage>

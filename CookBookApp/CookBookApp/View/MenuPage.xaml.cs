@@ -28,5 +28,9 @@ namespace CookBookApp.Views
         {
             Navigation.PushAsync(new AddRecipe());
         }
+        private void SettingButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SettingsPage());
+        }
     }
 }

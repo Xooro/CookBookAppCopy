@@ -117,13 +117,73 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="addRecipes_bttnBack" xml:space="preserve">
+    <value>Vissza</value>
+  </data>
+  <data name="addRecipes_bttnForward" xml:space="preserve">
+    <value>Következő</value>
+  </data>
+  <data name="addRecipes_lblAllergens" xml:space="preserve">
+    <value>Allergének</value>
+  </data>
+  <data name="addRecipes_lblAuthor" xml:space="preserve">
+    <value>Készítő</value>
+  </data>
+  <data name="addRecipes_lblCategories" xml:space="preserve">
+    <value>Kategóriák</value>
+  </data>
+  <data name="addRecipes_lblDifficulty" xml:space="preserve">
+    <value>Nehézség</value>
+  </data>
+  <data name="addRecipes_lblRecipeName" xml:space="preserve">
+    <value>Recept név</value>
+  </data>
+  <data name="addRecipes_ntrAllergens" xml:space="preserve">
+    <value>Laktóz, Mogyoró, stb...</value>
+  </data>
+  <data name="addRecipes_ntrAuthor" xml:space="preserve">
+    <value>Vicc Elek</value>
+  </data>
+  <data name="addRecipes_ntrRecipeName" xml:space="preserve">
+    <value>Lasagne</value>
+  </data>
+  <data name="menu_bttnAddRecipes" xml:space="preserve">
+    <value>Recept hozzáadása</value>
+  </data>
   <data name="menu_bttnRecipes" xml:space="preserve">
     <value>Receptek</value>
+  </data>
+  <data name="menu_bttnSettings" xml:space="preserve">
+    <value>Beállítások</value>
   </data>
   <data name="menu_lblMenu" xml:space="preserve">
     <value>Főoldal</value>
   </data>
+  <data name="recipes_bttnBack" xml:space="preserve">
+    <value>Vissza</value>
+  </data>
   <data name="recipes_bttnFilter" xml:space="preserve">
     <value>Szűrés</value>
+  </data>
+  <data name="recipes_srchBrRecipes" xml:space="preserve">
+    <value>Keresés....</value>
+  </data>
+  <data name="setting_bttnBack" xml:space="preserve">
+    <value>Vissza</value>
+  </data>
+  <data name="setting_bttnLanguage" xml:space="preserve">
+    <value>Nyelv frissítése</value>
+  </data>
+  <data name="setting_bttnUserName" xml:space="preserve">
+    <value>Felhasználó frissítése</value>
+  </data>
+  <data name="setting_lblLanguage" xml:space="preserve">
+    <value>Jelenlegi nyelv</value>
+  </data>
+  <data name="setting_lblUserName" xml:space="preserve">
+    <value>Jelenlegi felhasználó(Készítő)</value>
+  </data>
+  <data name="setting_ntrUserName" xml:space="preserve">
+    <value>Vicc Elek</value>
   </data>
 </root>
