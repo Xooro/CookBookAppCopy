@@ -70,25 +70,6 @@
                            SearchCommandParameter="{Binding Text, Source={x:Reference srchBrRecipes}}"/>
 
             <ScrollView Grid.Column="1"
-                        Grid.Row="2"
-                        Margin="0,30" >
-                <ListView x:Name ="lstVwRecipeCategories" 
-                      ItemsSource="{Binding RecipeCategoryNames, Mode=TwoWay}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Orientation="Horizontal">
-                                    <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
-                                    <Label Text="{Binding CategoryName, Mode=TwoWay}"/>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-
-            </ScrollView>
-
-            <ScrollView Grid.Column="1"
                         Grid.Row="1"
                         Margin="0,30,0,0"
                         Grid.RowSpan="2">
@@ -106,6 +87,25 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </ScrollView>
+
+            <ScrollView Grid.Column="1"
+                        Grid.Row="2"
+                        Margin="0,30,0,0" >
+                <ListView x:Name ="lstVwRecipeCategories" 
+                      ItemsSource="{Binding RecipeCategoryNames, Mode=TwoWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
+                                    <Label Text="{Binding CategoryName, Mode=TwoWay}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+
             <Button x:Name="bttnBackPage"
                         Grid.Column="0"
                         Grid.Row="4"

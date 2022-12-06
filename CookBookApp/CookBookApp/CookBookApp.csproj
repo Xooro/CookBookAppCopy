@@ -35,6 +35,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Resources\AppResources.de.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\AppResources.hu.resx">
       <LastGenOutput>AppResources.hu.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
