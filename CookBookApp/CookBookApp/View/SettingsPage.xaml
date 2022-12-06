@@ -27,9 +27,10 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            
             <Grid Grid.Row="0"
-                   Grid.Column="0"
-                   Grid.ColumnSpan="2">
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -39,23 +40,22 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="setting_lblUserName"
-                    Text="{x:Static resources:AppResources.setting_lblUserName}"
+                       Text="{x:Static resources:AppResources.setting_lblUserName}"
                        Grid.Row="0"
                        Grid.Column="0"/>
-
-                    <Entry 
-                        x:Name="setting_ntrUserName"
-                        Placeholder="{x:Static resources:AppResources.setting_ntrUserName}"
-                       Grid.Row="1"
-                       Grid.Column="0"/>
+                <Entry x:Name="setting_ntrUserName"
+                       Text="{Binding UserName}" 
+                       Grid.Column="0"
+                       Grid.Row="1"/>
                 <Button x:Name="bttnUserNameUpdate" Text="{x:Static resources:AppResources.setting_bttnUserName}"
                         Command="{Binding SetUserNameCommand}"
-                       Grid.Row="1"
-                       Grid.Column="1"/>
+                        Grid.Row="1"
+                        Grid.Column="1"/>
             </Grid>
+            
             <Grid Grid.Row="1"
-                         Grid.Column="0"
-                         Grid.ColumnSpan="2">
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -68,8 +68,7 @@
                 <Label Text="{x:Static resources:AppResources.setting_lblLanguage}"
                        Grid.Row="0"
                        Grid.Column="0"/>
-                <Picker
-                        ItemsSource="{Binding Languages, Mode=TwoWay}"
+                <Picker ItemsSource="{Binding Languages, Mode=TwoWay}"
                         SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
                         ItemDisplayBinding="{Binding LanguageName}"
                         Grid.Row="1"
