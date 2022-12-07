@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -23,6 +24,8 @@ namespace CookBookApp.ViewModel
         UserSettingsManager userSettingsManager;
 
         int isBusyCounter;
+        private int[] selectedCategoryNameIDs;
+
         public bool IsBusy { get; set; }
         public string UserLanguage { get; set; }
         public string UserName { get; set; }
@@ -34,15 +37,23 @@ namespace CookBookApp.ViewModel
         public RelayCommand ForwardCommand { get; set; }
         public RelayCommand SelectImageCommand { get; set; }
         public RecipeImage TestImage { get; set; }
+        public RelayCommand UpdateCategoriesCommand { get; set; }
 
         public AddRecipeViewModel()
         {
             recipeCategoriesService = new RecipeCategoriesService();
             userSettingsManager = new UserSettingsManager();
 
+            NewRecipe = new Recipe();
+            NewRecipe.LocalizedRecipe = new RecipeLocalization();
+            NewRecipe.Categories = new List<RecipeCategories>();
+
+            isBusyCounter = 0;
+
             initializeUserSettings();
             loadRecipeCategories();
 
+            UpdateCategoriesCommand = new RelayCommand(UpdateCategories);
             SelectImageCommand = new RelayCommand(selectImage);
             TestImage = new RecipeImage();
         }
@@ -87,6 +98,12 @@ namespace CookBookApp.ViewModel
                 IsBusy = true;
             else
                 IsBusy = false;
+        }
+
+        void UpdateCategories()
+        {
+            List<RecipeCategoryNames> selectedRecipeCategoryNames = RecipeCategoryNames.Where(rcn => rcn.IsChecked).ToList();
+            selectedCategoryNameIDs = selectedRecipeCategoryNames.Select(rcn => rcn.CategoryNameID).ToArray();
         }
     }
 }

@@ -34,7 +34,8 @@
                          Grid.ColumnSpan="2"
                          Padding="20">
                 <Label Text="{x:Static resources:AppResources.addRecipes_lblAuthor}" />
-                <Entry Placeholder="{x:Static resources:AppResources.addRecipes_ntrAuthor}" />
+                <Entry Placeholder="{x:Static resources:AppResources.addRecipes_ntrAuthor}"
+                       Text="{Binding NewRecipe.Author, Mode=TwoWay}"/>
             </StackLayout>
             <StackLayout 
                          Grid.Row="1"
@@ -42,7 +43,8 @@
                          Grid.ColumnSpan="2"
                          Padding="20">
                 <Label Text="{x:Static resources:AppResources.addRecipes_lblRecipeName}" />
-                <Entry Placeholder="{x:Static resources:AppResources.addRecipes_ntrAuthor}" />
+                <Entry Placeholder="{x:Static resources:AppResources.addRecipes_ntrRecipeName}"
+                       Text="{Binding NewRecipe.LocalizedRecipe.RecipeName, Mode=TwoWay}"/>
             </StackLayout>
             <StackLayout
                     Grid.Row="2"
@@ -51,7 +53,8 @@
                     Padding="20">
                 <Label Text="{x:Static resources:AppResources.addRecipes_lblDifficulty}"/>
                 <Picker 
-                    x:Name="pckrDifficulty">
+                    x:Name="pckrDifficulty"
+                    SelectedItem="{Binding newRecipe.Difficulty}">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Beginner</x:String>

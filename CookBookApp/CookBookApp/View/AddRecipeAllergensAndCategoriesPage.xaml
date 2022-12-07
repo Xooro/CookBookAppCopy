@@ -32,8 +32,8 @@
                          Grid.ColumnSpan="2"
                          Padding="20">
                 <Label Text="{x:Static resources:AppResources.addRecipes_lblAllergens}" />
-                <Entry Placeholder="{x:Static resources:AppResources.addRecipes_ntrAllergens}" />
-                <Image Source="{Binding TestImage.Image}"/>
+                <Entry Placeholder="{x:Static resources:AppResources.addRecipes_ntrAllergens}"
+                       Text="{Binding NewRecipe.Allergens}"/>
             </StackLayout>
             <StackLayout
                 Grid.Row="1"
@@ -66,7 +66,8 @@
                 Grid.Row="3"
                 Grid.Column="1"
                 Text="{x:Static resources:AppResources.addRecipes_bttnForward}"
-                Background="transparent"/>
+                Background="transparent"
+                Command="{Binding UpdateCategoriesCommand}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
