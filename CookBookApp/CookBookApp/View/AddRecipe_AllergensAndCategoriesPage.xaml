@@ -63,7 +63,7 @@
                          Padding="20">
                 <Label Text="{x:Static resources:AppResources.addRecipes_lblAllergens}" />
                 <Entry Placeholder="{x:Static resources:AppResources.addRecipes_ntrAllergens}"
-                       Text="{Binding NewRecipe.Allergens}"/>
+                       Text="{Binding NewRecipe.LocalizedRecipe.Allergens}"/>
             </StackLayout>
             <StackLayout
                 Grid.Row="4"
@@ -84,6 +84,8 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <Button Text="Kategóriák frissítése"
+                        Command="{Binding UpdateCategoriesCommand}"/>
             </StackLayout>
             <Button
                 Grid.Row="5"
@@ -96,7 +98,6 @@
                 Grid.Column="1"
                 Text="{x:Static resources:AppResources.addRecipes_bttnForward}"
                 Background="transparent"
-                Command="{Binding UpdateCategoriesCommand}"
                 Clicked="bttnForwardPage_Clicked"/>
         </Grid>
     </ContentPage.Content>

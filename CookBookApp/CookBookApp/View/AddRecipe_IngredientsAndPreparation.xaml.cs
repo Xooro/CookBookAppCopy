@@ -16,8 +16,7 @@ namespace CookBookApp.View
         public AddRecipe_IngredientsAndPreparation()
         {
             InitializeComponent();
-
-            BindingContext = new AddRecipe_IngredientsAndPreparation();
+            BindingContext = new AddRecipe_NgrdntsAndPrprtnVM();
         }
         private void bttnBackPage_Clicked(object sender, EventArgs e)
         {

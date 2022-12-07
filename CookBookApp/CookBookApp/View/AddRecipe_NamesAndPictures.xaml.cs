@@ -23,7 +23,7 @@ namespace CookBookApp.View
         private async void bttnForwardPage_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddRecipe_AllergensAndCategoriesPage());
-            MessagingCenter.Send(viewModel, "NewRecipe", viewModel.NewRecipe);
+            MessagingCenter.Send(viewModel, "NewRecipeToAlrgnsAndCats", viewModel.NewRecipe);
         }
     }
 }

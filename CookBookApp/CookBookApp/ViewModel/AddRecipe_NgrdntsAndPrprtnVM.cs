@@ -11,19 +11,17 @@ using Xamarin.Forms;
 
 namespace CookBookApp.ViewModel
 {
-    class AddRecipe_NgrdntsAndPrprtnVM
+    public class AddRecipe_NgrdntsAndPrprtnVM : BaseViewModel
     {
         UserSettingsManager userSettingsManager;
 
         int isBusyCounter;
-        private int[] selectedCategoryNameIDs;
 
         public bool IsBusy { get; set; }
         public string UserLanguage { get; set; }
         public string UserName { get; set; }
         public Recipe NewRecipe { get; set; }
         public RelayCommand SendRecipeCommand { get; set; }
-        public RelayCommand UpdateCategoriesCommand { get; set; }
 
         public AddRecipe_NgrdntsAndPrprtnVM()
         {
@@ -31,8 +29,7 @@ namespace CookBookApp.ViewModel
 
             isBusyCounter = 0;
 
-
-            MessagingCenter.Subscribe<AddRecipe_AlrgnsAndCtgrsVM, Recipe>(this, "NewRecipe",
+            MessagingCenter.Subscribe<AddRecipe_AlrgnsAndCtgrsVM, Recipe>(this, "NewRecipeToIngAndPrepVM",
                 (page, newRecipe) =>
                 {
                     NewRecipe = newRecipe;

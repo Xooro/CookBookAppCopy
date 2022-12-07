@@ -28,7 +28,7 @@ namespace CookBookApp.View
         private async void bttnForwardPage_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddRecipe_IngredientsAndPreparation());
-            MessagingCenter.Send(viewModel, "NewRecipe", viewModel.NewRecipe);
+            MessagingCenter.Send(viewModel, "NewRecipeToIngAndPrepVM", viewModel.NewRecipe);
         }
     }
 }

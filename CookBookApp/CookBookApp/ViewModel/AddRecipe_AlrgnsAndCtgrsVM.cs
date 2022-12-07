@@ -19,19 +19,17 @@ namespace CookBookApp.ViewModel
     public class AddRecipe_AlrgnsAndCtgrsVM : BaseViewModel
     {
         public ObservableCollection<RecipeCategoryNames> RecipeCategoryNames { get; set; }
-
-        RecipeCategoriesService recipeCategoriesService;
-        UserSettingsManager userSettingsManager;
-
-        int isBusyCounter;
-        private int[] selectedCategoryNameIDs;
-
         public bool IsBusy { get; set; }
         public string UserLanguage { get; set; }
         public string UserName { get; set; }
         public Recipe NewRecipe { get; set; }
         public RelayCommand SendRecipeCommand { get; set; }
         public RelayCommand UpdateCategoriesCommand { get; set; }
+
+        int isBusyCounter;
+
+        RecipeCategoriesService recipeCategoriesService;
+        UserSettingsManager userSettingsManager;
 
         public AddRecipe_AlrgnsAndCtgrsVM()
         {
@@ -43,7 +41,7 @@ namespace CookBookApp.ViewModel
             initializeUserSettings();
             loadRecipeCategories();
 
-            MessagingCenter.Subscribe<AddRecipe_NmsAndPctrsVM, Recipe>(this, "NewRecipe",
+            MessagingCenter.Subscribe<AddRecipe_NmsAndPctrsVM, Recipe>(this, "NewRecipeToAlrgnsAndCats",
                 (page, newRecipe) =>
                 {
                     NewRecipe = newRecipe;
@@ -70,8 +68,10 @@ namespace CookBookApp.ViewModel
 
         void UpdateCategories()
         {
-            List<RecipeCategoryNames> selectedRecipeCategoryNames = RecipeCategoryNames.Where(rcn => rcn.IsChecked).ToList();
-            selectedCategoryNameIDs = selectedRecipeCategoryNames.Select(rcn => rcn.CategoryNameID).ToArray();
+            var categoriesToAdd = (from rcn in RecipeCategoryNames
+                                  where rcn.IsChecked
+                                  select new RecipeCategories { CategoryNameID = rcn.CategoryNameID }).ToList();
+            NewRecipe.Categories = categoriesToAdd;
         }
 
         void setIsBusy(bool toTrue)
