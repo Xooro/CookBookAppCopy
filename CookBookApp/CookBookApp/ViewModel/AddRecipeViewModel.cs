@@ -1,5 +1,6 @@
 ﻿using CookBookApp.Helpers;
 using CookBookApp.Model;
+using CookBookApp.Model.Interfaces;
 using CookBookApp.Model.Services;
 using CookBookApp.Models;
 using CookBookApp.ViewModels.Base;
@@ -10,6 +11,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace CookBookApp.ViewModel
 {
@@ -30,8 +32,8 @@ namespace CookBookApp.ViewModel
         public Recipe NewRecipe { get; set; }
         public RelayCommand BackCommand { get; set; }
         public RelayCommand ForwardCommand { get; set; }
-
-
+        public RelayCommand SelectImageCommand { get; set; }
+        public RecipeImage TestImage { get; set; }
 
         public AddRecipeViewModel()
         {
@@ -41,6 +43,8 @@ namespace CookBookApp.ViewModel
             initializeUserSettings();
             loadRecipeCategories();
 
+            SelectImageCommand = new RelayCommand(selectImage);
+            TestImage = new RecipeImage();
         }
 
         void initializeUserSettings()
@@ -57,6 +61,19 @@ namespace CookBookApp.ViewModel
                     await recipeCategoriesService.getLocalizedRecipeCategoriesAsync(UserLanguage));
                 setIsBusy(false);
             });
+        }
+
+        async void selectImage()
+        {
+            Stream stream = await DependencyService.Get<IPhotoPickerService>().GetImageStreamAsync();
+            if (stream != null)
+            {
+                byte[] result = new byte[stream.Length];
+                stream.Read(result, 0, result.Length);
+                TestImage.ImageBytes = result;
+                Console.WriteLine(TestImage.Image);
+                ImageSource image = ImageSource.FromStream(() => stream);
+            }
         }
 
         void setIsBusy(bool toTrue)

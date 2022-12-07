@@ -33,6 +33,7 @@
                          Padding="20">
                 <Label Text="{x:Static resources:AppResources.addRecipes_lblAllergens}" />
                 <Entry Placeholder="{x:Static resources:AppResources.addRecipes_ntrAllergens}" />
+                <Image Source="{Binding TestImage.Image}"/>
             </StackLayout>
             <StackLayout
                 Grid.Row="1"
