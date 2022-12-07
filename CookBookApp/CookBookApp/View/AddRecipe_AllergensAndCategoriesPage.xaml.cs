@@ -11,14 +11,13 @@ using Xamarin.Forms.Xaml;
 namespace CookBookApp.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddRecipe : ContentPage
+    public partial class AddRecipe_AllergensAndCategoriesPage : ContentPage
     {
-        public AddRecipe()
+        public AddRecipe_AllergensAndCategoriesPage()
         {
             InitializeComponent();
-            BindingContext = new AddRecipeViewModel();
+            BindingContext = new AddRecipe_AlrgnsAndCtgrsVM();
         }
-
         private void bttnBackPage_Clicked(object sender, EventArgs e)
         {
             Navigation.PopAsync();
@@ -26,7 +25,6 @@ namespace CookBookApp.View
 
         private void bttnForwardPage_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new AllergensAndCategoriesPage());
         }
     }
 }

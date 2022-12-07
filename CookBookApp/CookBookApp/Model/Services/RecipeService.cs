@@ -10,14 +10,36 @@ namespace CookBookApp.Models.Services
     public class RecipeService
     {
         RecipeContext _context;
+        LanguageService languageService;
         public RecipeService()
         {
             _context = new RecipeContext();
+            languageService = new LanguageService();
         }
 
         public RecipeService(RecipeContext context)
         {
             _context = context;
+            languageService = new LanguageService(context);
+        }
+
+        public Recipe getDefaultEmptyRecipe(string UserName, string UserLanguage)
+        {
+            Recipe newRecipe = new Recipe();
+            Task.Run(async () =>
+            {
+                newRecipe = new Recipe
+                {
+                    Author = UserName,
+                    CreationDate = DateTime.Now,
+                    DefaultLanguageID = (await languageService.getLanguageByName(UserLanguage)).ID,
+                    LocalizedRecipe = new RecipeLocalization(),
+                    Categories = new List<RecipeCategories>(),
+                    Images = new List<RecipeImage>()
+                };
+            }).Wait();
+            
+            return newRecipe;
         }
         
         //vissza adja a recepteket, amelyek tárolnak minden lokalizációt, de saját lokalizációval nem rendelkezik

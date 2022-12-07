@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CookBookApp.View.AllergensAndCategoriesPage"
+             x:Class="CookBookApp.View.AddRecipe_AllergensAndCategoriesPage"
              xmlns:resources="clr-namespace:CookBookApp.Resources"
              Background="aliceblue"
              Padding="20">
@@ -41,8 +41,7 @@
                 Grid.ColumnSpan="2"
                 Margin="20">
                 <Label Text="{x:Static resources:AppResources.addRecipes_lblCategories}"/>
-                <ListView
-                ItemsSource="{Binding RecipeCategoryNames, Mode=TwoWay}">
+                <ListView ItemsSource="{Binding RecipeCategoryNames, Mode=TwoWay}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

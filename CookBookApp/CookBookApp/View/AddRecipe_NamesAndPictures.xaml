@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CookBookApp.View.AddRecipe"
+             x:Class="CookBookApp.View.AddRecipe_NamesAndPictures"
              xmlns:resources="clr-namespace:CookBookApp.Resources"
              BackgroundColor="AliceBlue"
              Padding="20">
@@ -13,7 +13,7 @@
             <Setter Property="TextColor" Value ="Black"/>
             <Setter Property="Background" Value="transparent"/>
         </Style>
-        
+
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
@@ -34,8 +34,7 @@
                          Grid.ColumnSpan="2"
                          Padding="20">
                 <Label Text="{x:Static resources:AppResources.addRecipes_lblAuthor}" />
-                <Entry Placeholder="{x:Static resources:AppResources.addRecipes_ntrAuthor}"
-                       Text="{Binding NewRecipe.Author, Mode=TwoWay}"/>
+                <Entry Text="{Binding NewRecipe.Author, Mode=TwoWay}"/>
             </StackLayout>
             <StackLayout 
                          Grid.Row="1"
@@ -54,17 +53,44 @@
                 <Label Text="{x:Static resources:AppResources.addRecipes_lblDifficulty}"/>
                 <Picker 
                     x:Name="pckrDifficulty"
-                    SelectedItem="{Binding newRecipe.Difficulty}">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Beginner</x:String>
-                        <x:String>Intermediate</x:String>
-                        <x:String>Professional</x:String>
-                        <x:String>SAMURAI++</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
+                    SelectedItem="{Binding NewRecipe.Difficulty}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Beginner</x:String>
+                            <x:String>Intermediate</x:String>
+                            <x:String>Professional</x:String>
+                            <x:String>SAMURAI++</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
             </StackLayout>
+
+            <ListView x:Name="lstVwImagesToAdd"
+                      ItemsSource="{Binding NewImages, Mode=TwoWay}"
+                      Grid.Row="3"
+                      Grid.Column="0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding ImageSource}"
+                                       HeightRequest="300"
+                                       WidthRequest="300"/>
+                                <Button Text="X (van image button)"
+                                        Command="{Binding BindingContext.RemoveImageCommand, Source={x:Reference lstVwImagesToAdd}}"
+                                        CommandParameter="{Binding }"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button
+                Grid.Row="4"
+                Grid.Column="0"
+                Text="Kép feltöltése!"
+                Command="{Binding SelectImageCommand}"/>
+
             <Button
                 Grid.Row="5"
                 Grid.Column="0"
@@ -77,15 +103,6 @@
                 Text="{x:Static resources:AppResources.addRecipes_bttnForward}"
                 Clicked="bttnForwardPage_Clicked"
                 Background="transparent"/>
-            <Button
-                Grid.Row="4"
-                Grid.Column="0"
-                Text="Krisz, csináld meg, köszce!"
-                Command="{Binding SelectImageCommand}"/>
-            <Image
-                Source="{Binding PhotoPath}"/>
-            
-                
         </Grid>
     </ContentPage.Content>
 </ContentPage>

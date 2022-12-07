@@ -26,7 +26,7 @@ namespace CookBookApp.Views
         }
         private void AddRecipeButton_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new AddRecipe());
+            Navigation.PushAsync(new AddRecipe_NamesAndPictures());
         }
         private void SettingButton_Clicked(object sender, EventArgs e)
         {

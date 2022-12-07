@@ -16,7 +16,7 @@ using Xamarin.Forms;
 
 namespace CookBookApp.ViewModel
 {
-    public class AddRecipeViewModel : BaseViewModel
+    public class AddRecipe_AlrgnsAndCtgrsVM : BaseViewModel
     {
         public ObservableCollection<RecipeCategoryNames> RecipeCategoryNames { get; set; }
 
@@ -29,33 +29,27 @@ namespace CookBookApp.ViewModel
         public bool IsBusy { get; set; }
         public string UserLanguage { get; set; }
         public string UserName { get; set; }
-        public object PhotoPath { get; private set; }
-
-
         public Recipe NewRecipe { get; set; }
-        public RelayCommand BackCommand { get; set; }
-        public RelayCommand ForwardCommand { get; set; }
-        public RelayCommand SelectImageCommand { get; set; }
-        public RecipeImage TestImage { get; set; }
+        public RelayCommand SendRecipeCommand { get; set; }
         public RelayCommand UpdateCategoriesCommand { get; set; }
 
-        public AddRecipeViewModel()
+        public AddRecipe_AlrgnsAndCtgrsVM()
         {
             recipeCategoriesService = new RecipeCategoriesService();
             userSettingsManager = new UserSettingsManager();
-
-            NewRecipe = new Recipe();
-            NewRecipe.LocalizedRecipe = new RecipeLocalization();
-            NewRecipe.Categories = new List<RecipeCategories>();
 
             isBusyCounter = 0;
 
             initializeUserSettings();
             loadRecipeCategories();
 
+            MessagingCenter.Subscribe<AddRecipe_NmsAndPctrsVM, Recipe>(this, "NewRecipe",
+                (page, newRecipe) =>
+                {
+                    NewRecipe = newRecipe;
+                });
+
             UpdateCategoriesCommand = new RelayCommand(UpdateCategories);
-            SelectImageCommand = new RelayCommand(selectImage);
-            TestImage = new RecipeImage();
         }
 
         void initializeUserSettings()
@@ -74,17 +68,10 @@ namespace CookBookApp.ViewModel
             });
         }
 
-        async void selectImage()
+        void UpdateCategories()
         {
-            Stream stream = await DependencyService.Get<IPhotoPickerService>().GetImageStreamAsync();
-            if (stream != null)
-            {
-                byte[] result = new byte[stream.Length];
-                stream.Read(result, 0, result.Length);
-                TestImage.ImageBytes = result;
-                Console.WriteLine(TestImage.Image);
-                ImageSource image = ImageSource.FromStream(() => stream);
-            }
+            List<RecipeCategoryNames> selectedRecipeCategoryNames = RecipeCategoryNames.Where(rcn => rcn.IsChecked).ToList();
+            selectedCategoryNameIDs = selectedRecipeCategoryNames.Select(rcn => rcn.CategoryNameID).ToArray();
         }
 
         void setIsBusy(bool toTrue)
@@ -98,12 +85,6 @@ namespace CookBookApp.ViewModel
                 IsBusy = true;
             else
                 IsBusy = false;
-        }
-
-        void UpdateCategories()
-        {
-            List<RecipeCategoryNames> selectedRecipeCategoryNames = RecipeCategoryNames.Where(rcn => rcn.IsChecked).ToList();
-            selectedCategoryNameIDs = selectedRecipeCategoryNames.Select(rcn => rcn.CategoryNameID).ToArray();
         }
     }
 }
