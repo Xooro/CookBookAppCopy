@@ -17,11 +17,16 @@ namespace CookBookApp.View
         public SettingsPage()
         {
             InitializeComponent();
-            BindingContext = new MenuViewModel();
+            BindingContext = new SettingsViewModel();
         }
         private void bttnBackPage_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new MenuPage());
+        }
+
+        private void bttnLanguageUpdate_Clicked(object sender, EventArgs e)
+        {
+            
         }
     }
 }

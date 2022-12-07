@@ -76,6 +76,7 @@
                 <Button x:Name="bttnLanguageUpdate" 
                         Text="{x:Static resources:AppResources.setting_bttnLanguage}"
                         Command="{Binding SetLanguageCommand}"
+                        Clicked="bttnLanguageUpdate_Clicked"
                         Grid.Row="1"
                         Grid.Column="1"/>
             </Grid>
