@@ -13,18 +13,22 @@ namespace CookBookApp.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddRecipe_AllergensAndCategoriesPage : ContentPage
     {
+        AddRecipe_AlrgnsAndCtgrsVM viewModel = new AddRecipe_AlrgnsAndCtgrsVM();
         public AddRecipe_AllergensAndCategoriesPage()
         {
             InitializeComponent();
-            BindingContext = new AddRecipe_AlrgnsAndCtgrsVM();
+            BindingContext = viewModel;
+
         }
         private void bttnBackPage_Clicked(object sender, EventArgs e)
         {
             Navigation.PopAsync();
         }
 
-        private void bttnForwardPage_Clicked(object sender, EventArgs e)
+        private async void bttnForwardPage_Clicked(object sender, EventArgs e)
         {
+            await Navigation.PushAsync(new AddRecipe_IngredientsAndPreparation());
+            MessagingCenter.Send(viewModel, "NewRecipe", viewModel.NewRecipe);
         }
     }
 }

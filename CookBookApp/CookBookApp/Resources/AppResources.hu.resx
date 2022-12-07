@@ -135,6 +135,15 @@
   <data name="addRecipes_lblDifficulty" xml:space="preserve">
     <value>Nehézség</value>
   </data>
+  <data name="addRecipes_lblPortion" xml:space="preserve">
+    <value>Adagok</value>
+  </data>
+  <data name="addRecipes_lblPreparationTime" xml:space="preserve">
+    <value>Elkészítési idő</value>
+  </data>
+  <data name="addRecipes_lblPrice" xml:space="preserve">
+    <value>Ár</value>
+  </data>
   <data name="addRecipes_lblRecipeName" xml:space="preserve">
     <value>Recept név</value>
   </data>
@@ -143,6 +152,15 @@
   </data>
   <data name="addRecipes_ntrAuthor" xml:space="preserve">
     <value>Vicc Elek</value>
+  </data>
+  <data name="addRecipes_ntrPortion" xml:space="preserve">
+    <value>4...</value>
+  </data>
+  <data name="addRecipes_ntrPreparationTime" xml:space="preserve">
+    <value>2 óra...</value>
+  </data>
+  <data name="addRecipes_ntrPrice" xml:space="preserve">
+    <value>10000...</value>
   </data>
   <data name="addRecipes_ntrRecipeName" xml:space="preserve">
     <value>Lasagne</value>

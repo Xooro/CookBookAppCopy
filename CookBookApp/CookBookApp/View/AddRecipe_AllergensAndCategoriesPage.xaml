@@ -19,7 +19,10 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="8*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="6*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -31,12 +34,39 @@
                          Grid.Column="0"
                          Grid.ColumnSpan="2"
                          Padding="20">
+                <Label Text="{x:Static resources:AppResources.addRecipes_lblPortion}" />
+                <Entry Placeholder="{x:Static resources:AppResources.addRecipes_ntrPortion}"
+                       Text="{Binding NewRecipe.Portion}"/>
+            </StackLayout>
+            <StackLayout
+                         Grid.Row="1"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2"
+                         Padding="20">
+                <Label Text="{x:Static resources:AppResources.addRecipes_lblPrice}" />
+                <Entry Placeholder="{x:Static resources:AppResources.addRecipes_ntrPrice}"
+                       Text="{Binding NewRecipe.Price}"/>
+            </StackLayout>
+            <StackLayout
+                         Grid.Row="2"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2"
+                         Padding="20">
+                <Label Text="{x:Static resources:AppResources.addRecipes_lblPreparationTime}" />
+                <Entry Placeholder="{x:Static resources:AppResources.addRecipes_ntrPreparationTime}"
+                       Text="{Binding NewRecipe.PreparationTime}"/>
+            </StackLayout>
+            <StackLayout
+                         Grid.Row="3"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2"
+                         Padding="20">
                 <Label Text="{x:Static resources:AppResources.addRecipes_lblAllergens}" />
                 <Entry Placeholder="{x:Static resources:AppResources.addRecipes_ntrAllergens}"
                        Text="{Binding NewRecipe.Allergens}"/>
             </StackLayout>
             <StackLayout
-                Grid.Row="1"
+                Grid.Row="4"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Margin="20">
@@ -56,17 +86,18 @@
                 </ListView>
             </StackLayout>
             <Button
-                Grid.Row="3"
+                Grid.Row="5"
                 Grid.Column="0"
                 Text="{x:Static resources:AppResources.addRecipes_bttnBack}"
                 Clicked="bttnBackPage_Clicked"
                 Background="transparent"/>
             <Button
-                Grid.Row="3"
+                Grid.Row="5"
                 Grid.Column="1"
                 Text="{x:Static resources:AppResources.addRecipes_bttnForward}"
                 Background="transparent"
-                Command="{Binding UpdateCategoriesCommand}"/>
+                Command="{Binding UpdateCategoriesCommand}"
+                Clicked="bttnForwardPage_Clicked"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

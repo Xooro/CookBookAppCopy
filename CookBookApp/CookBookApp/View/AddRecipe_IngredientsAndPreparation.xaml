@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CookBookApp.View.AddRecipe_IngredientsAndPreparation"
+             xmlns:resources="clr-namespace:CookBookApp.Resources"
+             Background="aliceblue"
+             Padding="20">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value ="Black"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="TextColor" Value ="Black"/>
+            <Setter Property="Background" Value="transparent"/>
+        </Style>
+
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label
+                VerticalOptions="End"
+                Text="Test"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"/>
+            <Editor 
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"/>
+
+            <Label 
+                VerticalOptions="End"
+                Text="Test"
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"/>
+            <Editor
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"/>
+
+            <Button
+                Grid.Row="4"
+                Grid.Column="0"
+                
+                Text="{x:Static resources:AppResources.addRecipes_bttnBack}"
+                Clicked="bttnBackPage_Clicked"
+                Background="transparent"/>
+            <Button
+                Grid.Row="4"
+                Grid.Column="1"
+                Text="{x:Static resources:AppResources.addRecipes_bttnForward}"
+                Background="transparent"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

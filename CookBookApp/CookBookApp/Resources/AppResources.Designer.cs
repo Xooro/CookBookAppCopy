@@ -115,6 +115,33 @@ namespace CookBookApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Portions.
+        /// </summary>
+        public static string addRecipes_lblPortion {
+            get {
+                return ResourceManager.GetString("addRecipes_lblPortion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preparation time.
+        /// </summary>
+        public static string addRecipes_lblPreparationTime {
+            get {
+                return ResourceManager.GetString("addRecipes_lblPreparationTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price.
+        /// </summary>
+        public static string addRecipes_lblPrice {
+            get {
+                return ResourceManager.GetString("addRecipes_lblPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recipe Name.
         /// </summary>
         public static string addRecipes_lblRecipeName {
@@ -138,6 +165,33 @@ namespace CookBookApp.Resources {
         public static string addRecipes_ntrAuthor {
             get {
                 return ResourceManager.GetString("addRecipes_ntrAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4....
+        /// </summary>
+        public static string addRecipes_ntrPortion {
+            get {
+                return ResourceManager.GetString("addRecipes_ntrPortion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2 hours....
+        /// </summary>
+        public static string addRecipes_ntrPreparationTime {
+            get {
+                return ResourceManager.GetString("addRecipes_ntrPreparationTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 100....
+        /// </summary>
+        public static string addRecipes_ntrPrice {
+            get {
+                return ResourceManager.GetString("addRecipes_ntrPrice", resourceCulture);
             }
         }
         
