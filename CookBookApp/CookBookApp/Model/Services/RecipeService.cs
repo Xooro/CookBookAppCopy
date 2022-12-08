@@ -23,17 +23,22 @@ namespace CookBookApp.Models.Services
             languageService = new LanguageService(context);
         }
 
-        public Recipe getDefaultEmptyRecipe(string UserName, string UserLanguage)
+        //visszaad egy alapértelmezett üres receptet a paraméterként megadott szerzővel és nyelvvel
+        public Recipe getDefaultEmptyRecipe(string author, string language)
         {
             Recipe newRecipe = new Recipe();
             Task.Run(async () =>
             {
+                int languageID = (await languageService.getLanguageByName(language)).ID;
                 newRecipe = new Recipe
                 {
-                    Author = UserName,
+                    Author = author,
                     CreationDate = DateTime.Now,
-                    DefaultLanguageID = (await languageService.getLanguageByName(UserLanguage)).ID,
-                    LocalizedRecipe = new RecipeLocalization(),
+                    DefaultLanguageID = languageID,
+                    LocalizedRecipe = new RecipeLocalization
+                    {
+                        LanguageID = languageID
+                    },
                     Categories = new List<RecipeCategories>(),
                     Images = new List<RecipeImage>()
                 };
@@ -41,7 +46,81 @@ namespace CookBookApp.Models.Services
             
             return newRecipe;
         }
-        
+
+
+        //egy összekapcsolt, id nélküli receptet feltölt, majd feltölti az adatait az új id-vel
+        public async Task<bool> uploadJoinedRecipeWithoutID(Recipe joinedRecipe)
+        {
+            bool isUploaded = false;
+            try
+            {
+                _context.Recipe.Add(joinedRecipe);
+                await _context.SaveChangesAsync();
+                int recipeID = _context.Recipe.ToList().Last().ID;
+
+                await updateJoinedRecipeIDs(recipeID, joinedRecipe);
+                isUploaded = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return await Task.FromResult(isUploaded);
+        }
+
+        async Task<bool> updateJoinedRecipeIDs(int id, Recipe joinedRecipe)
+        {
+            bool isUploaded = false;
+            try
+            {
+                var updatedLocalization = await addIDToRecipeLocalization(id, joinedRecipe.LocalizedRecipe);
+                var updatedCategories = await addIDToRecipeCategories(id, joinedRecipe.Categories);
+                var updatedImages = await addIDToRecipeImages(id, joinedRecipe.Images);
+
+                _context.RecipeLocalization.Add(updatedLocalization);
+                _context.RecipeCategories.AddRange(updatedCategories);
+                _context.RecipeImage.AddRange(updatedImages);
+
+                await _context.SaveChangesAsync();
+
+                isUploaded = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return await Task.FromResult(isUploaded);
+        }
+
+        async Task<RecipeLocalization> addIDToRecipeLocalization(int ID, RecipeLocalization recipeLocalization)
+        {
+            recipeLocalization.RecipeID = ID;
+            return await Task.FromResult(recipeLocalization);
+        }
+
+        async Task<List<RecipeCategories>> addIDToRecipeCategories(int ID, List<RecipeCategories> recipeCategories)
+        {
+            recipeCategories = recipeCategories.Select(rc => { rc.RecipeID = ID; return rc; }).ToList();
+            return await Task.FromResult(recipeCategories);
+        }
+
+        async Task<List<RecipeImage>> addIDToRecipeImages(int ID, List<RecipeImage> recipeImages)
+        {
+            recipeImages = recipeImages.Select(ri => { ri.RecipeID = ID; return ri; }).ToList();
+            return await Task.FromResult(recipeImages);
+        }
+
+
+        //vissza adja a receptet, amely tárol minden lokalizációt, de saját lokalizációval nem rendelkezik
+        public async Task<Recipe> getJoinedRecipeByRecipeAsync(Recipe recipeToBeJoined)
+        {
+            List<Recipe> recipes = await getJoinedRecipesAsync();
+            Recipe joinedRecipe = recipes.FirstOrDefault(r => r.ID == recipeToBeJoined.ID);
+
+            return await Task.FromResult(joinedRecipe);
+        }
+
+
         //vissza adja a recepteket, amelyek tárolnak minden lokalizációt, de saját lokalizációval nem rendelkezik
         public async Task<List<Recipe>> getJoinedRecipesAsync()
         {
@@ -78,13 +157,14 @@ namespace CookBookApp.Models.Services
             return await Task.FromResult(recipesResults);
         }
 
+
+        //törli az adatbázisból a receptet, és a hozzátartozó incormációkat
         public async Task<bool> deleteJoinedRecipeAsync(Recipe recipeToDelete)
         {
             bool isDeleted = false;
             try
             {
-                List<Recipe> recipes = await getJoinedRecipesAsync();
-                Recipe recipe = recipes.FirstOrDefault(r => r.ID == recipeToDelete.ID);
+                Recipe recipe = await getJoinedRecipeByRecipeAsync(recipeToDelete);
 
                 _context.RecipeImage.RemoveRange(recipe.Images);
                 _context.RecipeCategories.RemoveRange(recipe.Categories);

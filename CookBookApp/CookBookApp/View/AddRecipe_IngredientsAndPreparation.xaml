@@ -35,6 +35,7 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="2"/>
             <Editor 
+                Text="{Binding NewRecipe.LocalizedRecipe.Ingredients, Mode=TwoWay}"
                 Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"/>
@@ -46,6 +47,7 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="2"/>
             <Editor
+                Text="{Binding NewRecipe.LocalizedRecipe.Preparation, Mode=TwoWay}"
                 Grid.Row="3"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"/>
