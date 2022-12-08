@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CookBookApp.ViewModels.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace CookBookApp.Model
 {
-    public class RecipeCategoryNames
+    public class RecipeCategoryNames : BaseViewModel
     {
         public int ID { get; set; }
         public int CategoryNameID { get; set; }

@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
              x:Class="CookBookApp.View.AddRecipe_AllergensAndCategoriesPage"
              xmlns:resources="clr-namespace:CookBookApp.Resources"
              Background="aliceblue"
@@ -71,12 +72,15 @@
                 Grid.ColumnSpan="2"
                 Margin="20">
                 <Label Text="{x:Static resources:AppResources.addRecipes_lblCategories}"/>
-                <ListView ItemsSource="{Binding RecipeCategoryNames, Mode=TwoWay}">
+                <ListView ItemsSource="{Binding RecipeCategoryNames, Mode=TwoWay}"
+                          RefreshCommand="{Binding UpdateCategoriesCommand}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal">
-                                    <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
+                                    <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}">
+                                        
+                                    </CheckBox>
                                     <Label Text="{Binding CategoryName, Mode=TwoWay}"
                                        HorizontalOptions="Center"/>
                                 </StackLayout>
@@ -97,6 +101,7 @@
                 Grid.Row="5"
                 Grid.Column="1"
                 Text="{x:Static resources:AppResources.addRecipes_bttnForward}"
+                CommandParameter="{Binding NewRecipe}"
                 Background="transparent"
                 Clicked="bttnForwardPage_Clicked"/>
         </Grid>

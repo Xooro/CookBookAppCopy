@@ -1,4 +1,5 @@
-﻿using CookBookApp.ViewModel;
+﻿using CookBookApp.Models;
+using CookBookApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,10 @@ namespace CookBookApp.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddRecipe_AllergensAndCategoriesPage : ContentPage
     {
-        AddRecipe_AlrgnsAndCtgrsVM viewModel = new AddRecipe_AlrgnsAndCtgrsVM();
-        public AddRecipe_AllergensAndCategoriesPage()
+        public AddRecipe_AllergensAndCategoriesPage(Recipe newRecipe)
         {
             InitializeComponent();
-            BindingContext = viewModel;
+            BindingContext = new AddRecipe_AlrgnsAndCtgrsVM(newRecipe);
 
         }
         private void bttnBackPage_Clicked(object sender, EventArgs e)
@@ -27,8 +27,10 @@ namespace CookBookApp.View
 
         private async void bttnForwardPage_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddRecipe_IngredientsAndPreparation());
-            MessagingCenter.Send(viewModel, "NewRecipeToIngAndPrepVM", viewModel.NewRecipe);
+            var button = (Button)sender;
+            Recipe newRecipe = (Recipe)button.CommandParameter;
+
+            await Navigation.PushAsync(new AddRecipe_IngredientsAndPreparation(newRecipe));
         }
     }
 }

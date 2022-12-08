@@ -102,6 +102,7 @@
                 Grid.Column="1"
                 Text="{x:Static resources:AppResources.addRecipes_bttnForward}"
                 Clicked="bttnForwardPage_Clicked"
+                CommandParameter="{Binding NewRecipe}"
                 Background="transparent"/>
         </Grid>
     </ContentPage.Content>

@@ -23,7 +23,6 @@ namespace CookBookApp.ViewModel
         public string UserLanguage { get; set; }
         public string UserName { get; set; }
         public Recipe NewRecipe { get; set; }
-        public RelayCommand SendRecipeCommand { get; set; }
         public RelayCommand UpdateCategoriesCommand { get; set; }
 
         int isBusyCounter;
@@ -31,7 +30,7 @@ namespace CookBookApp.ViewModel
         RecipeCategoriesService recipeCategoriesService;
         UserSettingsManager userSettingsManager;
 
-        public AddRecipe_AlrgnsAndCtgrsVM()
+        public AddRecipe_AlrgnsAndCtgrsVM(Recipe newRecipe)
         {
             recipeCategoriesService = new RecipeCategoriesService();
             userSettingsManager = new UserSettingsManager();
@@ -41,13 +40,9 @@ namespace CookBookApp.ViewModel
             initializeUserSettings();
             loadRecipeCategories();
 
-            MessagingCenter.Subscribe<AddRecipe_NmsAndPctrsVM, Recipe>(this, "NewRecipeToAlrgnsAndCats",
-                (page, newRecipe) =>
-                {
-                    NewRecipe = newRecipe;
-                });
+            NewRecipe = newRecipe;
 
-            UpdateCategoriesCommand = new RelayCommand(UpdateCategories);
+            UpdateCategoriesCommand = new RelayCommand(updateCategories);
         }
 
         void initializeUserSettings()
@@ -66,12 +61,14 @@ namespace CookBookApp.ViewModel
             });
         }
 
-        void UpdateCategories()
+        void updateCategories()
         {
+            setIsBusy(true);
             var categoriesToAdd = (from rcn in RecipeCategoryNames
                                   where rcn.IsChecked
                                   select new RecipeCategories { CategoryNameID = rcn.CategoryNameID }).ToList();
             NewRecipe.Categories = categoriesToAdd;
+            setIsBusy(false);
         }
 
         void setIsBusy(bool toTrue)

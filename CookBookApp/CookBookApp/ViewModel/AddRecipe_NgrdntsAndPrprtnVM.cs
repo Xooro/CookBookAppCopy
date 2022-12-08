@@ -19,23 +19,18 @@ namespace CookBookApp.ViewModel
         public string UserLanguage { get; set; }
         public string UserName { get; set; }
         public Recipe NewRecipe { get; set; }
-        public RelayCommand SendRecipeCommand { get; set; }
 
         UserSettingsManager userSettingsManager;
 
         int isBusyCounter;
 
-        public AddRecipe_NgrdntsAndPrprtnVM()
+        public AddRecipe_NgrdntsAndPrprtnVM(Recipe newRecipe)
         {
             userSettingsManager = new UserSettingsManager();
 
             isBusyCounter = 0;
 
-            MessagingCenter.Subscribe<AddRecipe_AlrgnsAndCtgrsVM, Recipe>(this, "NewRecipeToIngAndPrepVM",
-                (page, newRecipe) =>
-                {
-                    NewRecipe = newRecipe;
-                });
+            NewRecipe = newRecipe;
         }
 
 
