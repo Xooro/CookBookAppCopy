@@ -73,13 +73,17 @@
                 Margin="20">
                 <Label Text="{x:Static resources:AppResources.addRecipes_lblCategories}"/>
                 <ListView ItemsSource="{Binding RecipeCategoryNames, Mode=TwoWay}"
-                          RefreshCommand="{Binding UpdateCategoriesCommand}">
+                          x:Name="lstVwCategories">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal">
                                     <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}">
-                                        
+                                        <CheckBox.Behaviors>
+                                            <toolkit:EventToCommandBehavior
+                                                EventName="CheckedChanged"
+                                                Command="{Binding BindingContext.UpdateCategoriesCommand, Source={x:Reference lstVwCategories}}" />
+                                        </CheckBox.Behaviors>
                                     </CheckBox>
                                     <Label Text="{Binding CategoryName, Mode=TwoWay}"
                                        HorizontalOptions="Center"/>
@@ -88,8 +92,6 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <Button Text="Kategóriák frissítése"
-                        Command="{Binding UpdateCategoriesCommand}"/>
             </StackLayout>
             <Button
                 Grid.Row="5"
