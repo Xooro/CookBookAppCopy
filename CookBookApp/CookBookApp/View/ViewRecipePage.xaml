@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CookBookApp.View.ViewRecipePage"
+             xmlns:resources="clr-namespace:CookBookApp.Resources"
+             Background="aliceblue"
+             Padding="20">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value ="Black"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="TextColor" Value ="Black"/>
+            <Setter Property="Background" Value="transparent"/>
+        </Style>
+
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Recept yay"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="4"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   FontSize="Header"
+                   TextDecorations="Underline"/>
+            <Button Text="Törlés"
+                    Grid.Row="2"
+                    Grid.Column="2"/>
+            <Button Text="Szerkesztés"
+                    Grid.Row="2"
+                    Grid.Column="3"/>
+
+            <ScrollView
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Background="lightblue">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <CollectionView Grid.Row="1"
+                                    Grid.Column="0"
+                                    ItemsSource="{Binding testList, Mode=TwoWay}"
+                                    ItemsLayout="VerticalGrid, 3"
+                                    ItemSizingStrategy="MeasureAllItems">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <Label Text="{Binding}"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </Grid>
+            </ScrollView>
+            <Button x:Name="bttnBack"
+                    Text="Vissza"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="1"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
