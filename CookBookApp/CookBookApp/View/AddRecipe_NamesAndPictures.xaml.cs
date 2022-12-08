@@ -20,12 +20,12 @@ namespace CookBookApp.View
             Navigation.PopAsync();
         }
 
-        private async void bttnForwardPage_Clicked(object sender, EventArgs e)
+        private void bttnForwardPage_Clicked(object sender, EventArgs e)
         {
             var button = (Button)sender;
             Recipe newRecipe = (Recipe)button.CommandParameter;
             
-            await Navigation.PushAsync(new AddRecipe_AllergensAndCategoriesPage(newRecipe));
+            Navigation.PushAsync(new AddRecipe_AllergensAndCategoriesPage(newRecipe));
         }
     }
 }

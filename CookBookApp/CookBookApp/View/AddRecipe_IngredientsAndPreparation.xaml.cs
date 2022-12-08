@@ -23,5 +23,13 @@ namespace CookBookApp.View
         {
             Navigation.PopAsync();
         }
+
+        private void bttnUpload_Clicked(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            Recipe newRecipe = (Recipe)button.CommandParameter;
+
+            Navigation.PushAsync(new AddRecipe_UploadPage(newRecipe));
+        }
     }
 }

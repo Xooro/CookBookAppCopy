@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:resources="clr-namespace:CookBookApp.Resources"
+             x:Class="CookBookApp.View.AddRecipe_UploadPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Orientation="Vertical"
+                         HorizontalOptions="CenterAndExpand"
+                         VerticalOptions="CenterAndExpand"
+                         Grid.Column="0"
+                         Grid.Row="0"
+                         Grid.ColumnSpan="2"
+                         Grid.RowSpan="2">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                                   IsVisible="{Binding IsBusy}"/>
+                <Label Text="{x:Static resources:AppResources.CONS_Uploading}" IsVisible="{Binding IsBusy}"/>
+            </StackLayout>
+            
+            <Label Text="{x:Static resources:AppResources.CONS_SuccessfulUpload}"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="1"
+                   IsVisible="{Binding IsUploadSuccessful}"/>
+
+            <Button Text="{x:Static resources:AppResources.CONS_Back}"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    x:Name="btnBack"
+                    Clicked="btnBack_Clicked"
+                    IsVisible="{Binding IsVisible, Converter={StaticResource InvertedBoolConverter}}"/>
+
+            <Button Text="{x:Static resources:AppResources.CONS_ViewRecipe}"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    x:Name="btnViewRecipe"
+                    Clicked="btnViewRecipe_Clicked"
+                    CommandParameter="{Binding NewRecipe}"
+                    IsVisible="{Binding IsUploadSuccessful}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

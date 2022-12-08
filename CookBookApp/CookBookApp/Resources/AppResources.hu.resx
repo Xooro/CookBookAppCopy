@@ -123,6 +123,9 @@
   <data name="addRecipes_bttnForward" xml:space="preserve">
     <value>Következő</value>
   </data>
+  <data name="addRecipes_bttnUpload" xml:space="preserve">
+    <value>Feltöltés</value>
+  </data>
   <data name="addRecipes_lblAllergens" xml:space="preserve">
     <value>Allergének</value>
   </data>
@@ -163,7 +166,19 @@
     <value>10000...</value>
   </data>
   <data name="addRecipes_ntrRecipeName" xml:space="preserve">
-    <value>Lasagne</value>
+    <value>Lassagne</value>
+  </data>
+  <data name="CONS_Back" xml:space="preserve">
+    <value>Vissza</value>
+  </data>
+  <data name="CONS_SuccessfulUpload" xml:space="preserve">
+    <value>Sikeresen feltöltve</value>
+  </data>
+  <data name="CONS_Uploading" xml:space="preserve">
+    <value>Feltöltés folyamatban</value>
+  </data>
+  <data name="CONS_ViewRecipe" xml:space="preserve">
+    <value>Recept megtekintése</value>
   </data>
   <data name="menu_bttnAddRecipes" xml:space="preserve">
     <value>Recept hozzáadása</value>
