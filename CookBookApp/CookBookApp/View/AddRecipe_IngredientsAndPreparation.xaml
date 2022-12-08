@@ -55,14 +55,16 @@
             <Button
                 Grid.Row="4"
                 Grid.Column="0"
-                
                 Text="{x:Static resources:AppResources.addRecipes_bttnBack}"
                 Clicked="bttnBackPage_Clicked"
                 Background="transparent"/>
             <Button
+                x:Name="bttnUpload"
                 Grid.Row="4"
                 Grid.Column="1"
-                Text="{x:Static resources:AppResources.addRecipes_bttnForward}"
+                Text="{x:Static resources:AppResources.addRecipes_bttnUpload}"
+                Clicked="bttnUpload_Clicked"
+                CommandParameter="{Binding NewRecipe}"
                 Background="transparent"/>
         </Grid>
     </ContentPage.Content>

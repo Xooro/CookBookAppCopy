@@ -27,23 +27,25 @@ namespace CookBookApp.Models.Services
         public Recipe getDefaultEmptyRecipe(string author, string language)
         {
             Recipe newRecipe = new Recipe();
+            int languageID = 1;
             Task.Run(async () =>
             {
-                int languageID = (await languageService.getLanguageByName(language)).ID;
-                newRecipe = new Recipe
-                {
-                    Author = author,
-                    CreationDate = DateTime.Now,
-                    DefaultLanguageID = languageID,
-                    LocalizedRecipe = new RecipeLocalization
-                    {
-                        LanguageID = languageID
-                    },
-                    Categories = new List<RecipeCategories>(),
-                    Images = new List<RecipeImage>()
-                };
+                languageID = (await languageService.getLanguageByName(language)).ID;
             }).Wait();
             
+            newRecipe = new Recipe
+            {
+                Author = author,
+                CreationDate = DateTime.Now,
+                DefaultLanguageID = languageID,
+                LocalizedRecipe = new RecipeLocalization
+                {
+                    LanguageID = languageID
+                },
+                Categories = new List<RecipeCategories>(),
+                Images = new List<RecipeImage>()
+            };
+
             return newRecipe;
         }
 

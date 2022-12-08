@@ -123,6 +123,9 @@
   <data name="addRecipes_bttnForward" xml:space="preserve">
     <value>Next</value>
   </data>
+  <data name="addRecipes_bttnUpload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
   <data name="addRecipes_lblAllergens" xml:space="preserve">
     <value>Allergens</value>
   </data>
@@ -164,6 +167,18 @@
   </data>
   <data name="addRecipes_ntrRecipeName" xml:space="preserve">
     <value>Lasagne</value>
+  </data>
+  <data name="CONS_Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="CONS_SuccessfulUpload" xml:space="preserve">
+    <value>Successfuly uploaded</value>
+  </data>
+  <data name="CONS_Uploading" xml:space="preserve">
+    <value>Upload in progress</value>
+  </data>
+  <data name="CONS_ViewRecipe" xml:space="preserve">
+    <value>View recipe</value>
   </data>
   <data name="menu_bttnAddRecipes" xml:space="preserve">
     <value>Add Recipe</value>
