@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CookBookApp.View.AddRecipe_NamesAndPictures"
              xmlns:resources="clr-namespace:CookBookApp.Resources"
-             BackgroundColor="AliceBlue"
+             BackgroundColor="lightblue"
              Padding="20">
     <ContentPage.Resources>
         <Style TargetType="Label">

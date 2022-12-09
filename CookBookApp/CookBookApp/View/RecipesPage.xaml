@@ -3,16 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CookBookApp.Views.RecipesPage"
              xmlns:resources="clr-namespace:CookBookApp.Resources"
-             BackgroundColor="AliceBlue"
+             BackgroundColor="lightblue"
              x:Name="recipePage"
              Padding="10">
 
     <ContentPage.Resources>
         <Style TargetType="Label">
             <Setter Property="TextColor" Value ="Black"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
         </Style>
         <Style TargetType="Button">
             <Setter Property="TextColor" Value ="Black"/>
+            <Setter Property="Background" Value="#FFFDD0"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+        </Style>
+        <Style TargetType="ScrollView">
+            <Setter Property="VerticalScrollBarVisibility" Value="Never"/>
+        </Style>
+        <Style TargetType="Frame">
+            <Setter Property="BorderColor" Value="Black"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+        </Style>
+        <Style TargetType="CheckBox">
+            <Setter Property="Color" Value="#FFFDD0"/>
         </Style>
     </ContentPage.Resources>
 
@@ -46,16 +63,34 @@
                         <DataTemplate>
                             <ViewCell>
                                 <Frame BackgroundColor="AliceBlue"
-                                       BorderColor="Black"
                                        CornerRadius="10"
-                                       Margin="10">
-                                    <StackLayout>
+                                       Margin="10"
+                                       HorizontalOptions="FillAndExpand"
+                                       VerticalOptions="FillAndExpand">
+                                    <Grid>
+                                        <Grid.RowDefinitions Height="auto"/>
+                                        <Grid.ColumnDefinitions Width="*"/>
                                         <Image Source=''
-                                           Aspect="AspectFill"
-                                           HeightRequest="60"
-                                           WidthRequest="60" />
-                                        <Label Text="{Binding LocalizedRecipe.RecipeName}"/>
-                                    </StackLayout>
+                                                   Aspect="AspectFill"
+                                                   HeightRequest="60"
+                                                   WidthRequest="60" 
+                                                   Grid.Column="0"
+                                                   Grid.Row="0"
+                                               Grid.ColumnSpan="2"/>
+                                        <Label Text="{Binding LocalizedRecipe.RecipeName}"
+                                                   Grid.Column="0"
+                                                   Grid.Row="1"
+                                                Padding="10"/>
+                                        <Frame
+                                            Grid.Column="1"
+                                            Grid.Row="1"
+                                            BackgroundColor="#FFFDD0">
+                                            <Button Text="View Recipe"
+                                                   Clicked="bttnViewRecipe_Clicked"
+                                                   CommandParameter="{Binding .}"
+                                                Padding="10"/>
+                                        </Frame>
+                                    </Grid>
                                 </Frame>
                             </ViewCell>
                         </DataTemplate>
@@ -94,7 +129,8 @@
             <ScrollView Grid.Column="3"
                         Grid.Row="2"
                         Grid.RowSpan="2"
-                        Margin="0,30,0,0" >
+                        Margin="0,30,0,0"
+                        HeightRequest="0">
                 <ListView x:Name ="lstVwRecipeCategories" 
                       ItemsSource="{Binding RecipeCategoryNames, Mode=TwoWay}">
                     <ListView.ItemTemplate>
@@ -109,26 +145,28 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </ScrollView>
-
-            <Button x:Name="bttnBackPage"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        Grid.Row="4"
+            <Frame
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Grid.Row="4">
+                <Button x:Name="bttnBackPage"
                         Text="{x:Static resources:AppResources.recipes_bttnBack}"
-                        Padding="20"
-                        HorizontalOptions="Center"
+                        Padding="50,20,50,20"
                         TextColor="Black"
                         Clicked="bttnBackPage_Clicked"
-                        Background="transparent"/>
-            <Button x:Name="bttnFilter"
+                        Margin="0"/>
+            </Frame>
+
+            <Frame
+                Grid.Column="2"
+                Grid.ColumnSpan="2"
+                Grid.Row="4">
+                <Button x:Name="bttnFilter"
                         Text="{x:Static resources:AppResources.recipes_bttnFilter}"
                         Command="{Binding Path=FilterCommand}"
-                        Grid.Column="2"
-                        Grid.ColumnSpan="2"
-                        Grid.Row="4"
-                        HorizontalOptions="Center"
-                        Padding="20"
-                        Background="transparent"/>
+                        Padding="50,20,50,20"
+                        Margin="0"/>
+            </Frame>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

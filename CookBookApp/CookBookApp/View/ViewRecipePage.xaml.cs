@@ -1,4 +1,5 @@
-﻿using CookBookApp.ViewModel;
+﻿using CookBookApp.Models;
+using CookBookApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,10 @@ namespace CookBookApp.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViewRecipePage : ContentPage
     {
-        public ViewRecipePage()
+        public ViewRecipePage(Recipe recipe)
         {
             InitializeComponent();
-            BindingContext = new ViewRecipeViewModel();
+            BindingContext = new ViewRecipeViewModel(recipe);
         }
     }
 }

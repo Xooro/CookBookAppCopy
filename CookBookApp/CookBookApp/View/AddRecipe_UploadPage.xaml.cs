@@ -23,7 +23,10 @@ namespace CookBookApp.View
 
         private void btnViewRecipe_Clicked(object sender, EventArgs e)
         {
-            //ÁKOS OLDALA
+            var button = (Button)sender;
+            Recipe newRecipe = (Recipe)button.CommandParameter;
+
+            Navigation.PushAsync(new ViewRecipePage(newRecipe));
         }
 
         private void btnBack_Clicked(object sender, EventArgs e)

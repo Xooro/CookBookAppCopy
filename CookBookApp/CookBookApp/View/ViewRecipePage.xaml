@@ -3,22 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CookBookApp.View.ViewRecipePage"
              xmlns:resources="clr-namespace:CookBookApp.Resources"
-             Background="aliceblue"
+             Background="lightblue"
              Padding="20">
     <ContentPage.Resources>
         <Style TargetType="Label">
             <Setter Property="TextColor" Value ="Black"/>
+            <Setter Property="VerticalOptions" Value="Start"/>
+            <Setter Property="HorizontalOptions" Value="Start"/>
         </Style>
         <Style TargetType="Button">
             <Setter Property="TextColor" Value ="Black"/>
-            <Setter Property="Background" Value="transparent"/>
+            <Setter Property="Background" Value="#FFFDD0"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
         </Style>
-
+        <Style TargetType="Frame">
+            <Setter Property="BorderColor" Value="Black"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Background" Value="aliceblue"/>
+        </Style>
+        <Style TargetType="ScrollView">
+            <Setter Property="VerticalScrollBarVisibility" Value="Never"/>
+        </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
@@ -29,7 +40,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Text="Recept yay"
+            <Label Text="{Binding Recipe.LocalizedRecipe.RecipeName}"
                    Grid.Row="0"
                    Grid.Column="0"
                    Grid.ColumnSpan="4"
@@ -37,48 +48,155 @@
                    HorizontalOptions="Center"
                    FontSize="Header"
                    TextDecorations="Underline"/>
-            <Button Text="Törlés"
-                    Grid.Row="2"
-                    Grid.Column="2"/>
-            <Button Text="Szerkesztés"
-                    Grid.Row="2"
-                    Grid.Column="3"/>
+            <Frame
+                Grid.Row="2"
+                Grid.Column="2"
+                Padding="0"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" >
+                <Button Text="Törlés"/>
+            </Frame>
+            <Frame
+                Grid.Row="2"
+                Grid.Column="3"
+                Padding="0"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
 
+                <Button Text="Szerkesztés"/>
+            </Frame>
             <ScrollView
                 Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="4"
                 Background="lightblue">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+                    <Grid.RowDefinitions Height="auto"/>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <CollectionView Grid.Row="1"
-                                    Grid.Column="0"
-                                    ItemsSource="{Binding testList, Mode=TwoWay}"
-                                    ItemsLayout="VerticalGrid, 3"
-                                    ItemSizingStrategy="MeasureAllItems">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout>
-                                    <Label Text="{Binding}"/>
-                                </StackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
+                    <Frame
+                            Grid.Row="0"
+                                Grid.Column="0">
+                        <ListView
+                        HeightRequest="0">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Recipe.Images}"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Frame>
+                    <Frame
+                           Grid.Row="1"
+                            Grid.Column="0">
+                        <StackLayout>
+                            <Label Text="Categories"
+                                   FontSize="Large"/>
+                            <CollectionView 
+                                ItemsSource="{Binding Recipe.Categories, Mode=TwoWay}"
+                                ItemsLayout="VerticalGrid, 3"
+                                ItemSizingStrategy="MeasureFirstItem"
+                                HeightRequest="100"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Text="{Binding CategoryName}"/>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                           Grid.Row="2"
+                           Grid.Column="0">
+                        <Grid>
+                            <Grid.RowDefinitions Height="*"/>
+                            <Grid.ColumnDefinitions Width="*"/>
+                            <Label Text="General information"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="3"
+                                   FontSize="Large"/>
+                            <StackLayout
+                                   Grid.Row="1"
+                                   Grid.Column="0"
+                                Margin="0,0,0,10">
+                                <Label Text="Author:"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding Recipe.Author}"/>
+                            </StackLayout>
+                            <StackLayout
+                                   Grid.Row="1"
+                                   Grid.Column="1">
+                                <Label Text="Price:"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding Recipe.Price}"/>
+                            </StackLayout>
+                            <StackLayout
+                                   Grid.Row="1"
+                                   Grid.Column="2">
+                                <Label Text="Portion:"
+                                       FontAttributes="Bold"/>
 
+                                <Label Text="{Binding Recipe.Portion}"/>
+                            </StackLayout>
+                            <StackLayout
+                                   Grid.Row="2"
+                                   Grid.Column="0">
+                                <Label Text="Difficulty:"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding Recipe.Difficulty}"/>
+                            </StackLayout>
+                            <StackLayout 
+                                   Grid.Row="2"
+                                   Grid.Column="1" >
+                                <Label Text="Preparation Time"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding Recipe.PreparationTime}"/>
+                            </StackLayout>
+                            <StackLayout
+                                   Grid.Row="2"
+                                   Grid.Column="2">
+                                <Label Text="Creation Date"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding Recipe.CreationDate}"/>
+                            </StackLayout>
+
+                        </Grid>
+                    </Frame>
+                    <Frame
+                        Grid.Row="3">
+                        <Grid>
+                            <Grid.RowDefinitions Height="*"/>
+                            <Grid.ColumnDefinitions Width="*"/>
+                            <StackLayout Grid.Column="0">
+                                <Label Text="Ingredients"
+                                       FontSize="Large"/>
+                                <Label Text="{Binding Recipe.LocalizedRecipe.Ingredients}"/>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1">
+                                <Label Text="Preparation"
+                                       FontSize="Large"/>
+                                <Label Text="{Binding Recipe.LocalizedRecipe.Preparation}"/>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
                 </Grid>
+
             </ScrollView>
-            <Button x:Name="bttnBack"
-                    Text="Vissza"
+            <Frame
                     Grid.Row="2"
                     Grid.Column="0"
-                    Grid.ColumnSpan="1"/>
+                    Grid.ColumnSpan="1"
+                    HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Padding="0">
+                <Button x:Name="bttnBack"
+                    Text="Vissza"/>
+            </Frame>
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

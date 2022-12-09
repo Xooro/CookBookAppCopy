@@ -1,4 +1,6 @@
-﻿using CookBookApp.ViewModels;
+﻿using CookBookApp.Models;
+using CookBookApp.View;
+using CookBookApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +24,14 @@ namespace CookBookApp.Views
         private void bttnBackPage_Clicked(object sender, EventArgs e)
         {
             Navigation.PopAsync();
+        }
+        private void bttnViewRecipe_Clicked(object sender, EventArgs e)
+        {
+
+            var button = (Button)sender;
+            Recipe newRecipe = (Recipe)button.CommandParameter;
+
+            Navigation.PushAsync(new ViewRecipePage(newRecipe));
         }
     }
 }

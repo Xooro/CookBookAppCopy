@@ -4,7 +4,7 @@
              xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
              x:Class="CookBookApp.View.AddRecipe_AllergensAndCategoriesPage"
              xmlns:resources="clr-namespace:CookBookApp.Resources"
-             Background="aliceblue"
+             Background="lightblue"
              Padding="20">
     <ContentPage.Resources>
         <Style TargetType="Label">

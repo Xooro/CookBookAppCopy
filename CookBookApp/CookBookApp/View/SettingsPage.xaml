@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CookBookApp.View.SettingsPage"
              xmlns:resources="clr-namespace:CookBookApp.Resources"
-             Background="aliceblue"
+             Background="lightblue"
              Padding="20">
     <ContentPage.Resources>
         <Style TargetType="Label">
