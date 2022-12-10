@@ -35,7 +35,22 @@ namespace CookBookApp.Models.Services
             return await Task.FromResult(languageResult);
         }
 
-        public async Task<Language> getLanguageByName(string languageName)
+        public async Task<Language> getLanguageByIDAsync(int languageID)
+        {
+            Language languageResult = new Language();
+            try
+            {
+                languageResult = _context.Language.Find(languageID);
+            }
+            catch (Exception ex)
+            {
+                //TODO: LOGGER CW HELYETT
+                Console.WriteLine(ex.Message);
+            }
+            return await Task.FromResult(languageResult);
+        }
+
+        public async Task<Language> getLanguageByNameAsync(string languageName)
         {
             languageName = languageName.ToUpper();
             Language languageResult = new Language();

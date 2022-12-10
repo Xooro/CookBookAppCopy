@@ -1,5 +1,6 @@
 ﻿using CookBookApp.Data;
 using CookBookApp.Models;
+using CookBookApp.Models.Services;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,15 +10,25 @@ namespace CookBookApp.Helpers
     public class UserSettingsManager
     {
         static UserSettings userProperties = new UserSettings();
+        LanguageService languageService;
+        public UserSettingsManager()
+        {
+            languageService= new LanguageService();
+        }
 
         public string getUserName()
         {
             return userProperties.UserName;
         }
 
-        public string getLanguage()
+        public Language getLanguage()
         {
-            return userProperties.Language;
+            int languageID = userProperties.LanguageID;
+            Language languageResult = new Language();
+            Task.Run(async () => {
+                languageResult = await languageService.getLanguageByIDAsync(languageID);
+            }).Wait();
+            return languageResult;
         }
 
         public async Task<bool> setUserName(string newUserName)
@@ -28,8 +39,8 @@ namespace CookBookApp.Helpers
 
         public async Task<bool> setLanguage(Language newLanguage)
         {
-            userProperties.Language = newLanguage.LanguageName;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(userProperties.Language);
+            userProperties.LanguageID = newLanguage.ID;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(newLanguage.LanguageName);
             return await Task.FromResult(true);
         }
     }

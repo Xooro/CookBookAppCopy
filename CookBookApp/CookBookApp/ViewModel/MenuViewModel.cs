@@ -9,11 +9,22 @@ namespace CookBookApp.ViewModel
 {
     public class MenuViewModel : BaseViewModel
     {
+        public string UserName { get; set; }
         public Language UserLanguage { get; set; }
+        
+        UserSettingsManager userSettingsManager;
+        
         public MenuViewModel()
+        { 
+            userSettingsManager = new UserSettingsManager();
+            
+            initializeUserSettings();
+        }
+
+        void initializeUserSettings()
         {
-            RecipeContext _context = new RecipeContext();
-            UserLanguage = _context.Language.First();
+            UserName = userSettingsManager.getUserName();
+            UserLanguage = userSettingsManager.getLanguage();
         }
     }
 }

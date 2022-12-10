@@ -30,7 +30,7 @@ namespace CookBookApp.Models.Services
             int languageID = 1;
             Task.Run(async () =>
             {
-                languageID = (await languageService.getLanguageByName(language)).ID;
+                languageID = (await languageService.getLanguageByNameAsync(language)).ID;
             }).Wait();
             
             newRecipe = new Recipe

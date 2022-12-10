@@ -51,7 +51,7 @@ namespace CookBookApp.ViewModel
         void initializeUserSettings()
         {
             UserName = userSettingsManager.getUserName();
-            UserLanguage = userSettingsManager.getLanguage();
+            UserLanguage = userSettingsManager.getLanguage().LanguageName;
         }
 
         async void selectImage()

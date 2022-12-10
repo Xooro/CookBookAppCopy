@@ -69,7 +69,7 @@ namespace CookBookApp.ViewModels
         void initializeUserSettings()
         {
             UserName = userSettingsManager.getUserName();
-            UserLanguage = userSettingsManager.getLanguage();
+            UserLanguage = userSettingsManager.getLanguage().LanguageName;
         }
 
         void loadLanguages()
@@ -80,7 +80,7 @@ namespace CookBookApp.ViewModels
                 Languages = new ObservableCollection<Language>(
                     await languageService.getLanguagesAsync());
                 Languages.FirstOrDefault(l => l.LanguageName == UserLanguage).IsChecked = true;
-                selectedLanguageIDs = new int[] { (await languageService.getLanguageByName(UserLanguage)).ID};
+                selectedLanguageIDs = new int[] { (await languageService.getLanguageByNameAsync(UserLanguage)).ID};
                 setIsBusy(false);
             });
 

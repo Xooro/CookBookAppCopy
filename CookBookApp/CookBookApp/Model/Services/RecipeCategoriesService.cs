@@ -27,7 +27,7 @@ namespace CookBookApp.Model.Services
         {
             List<RecipeCategoryNames> recipeCategoryNames = new List<RecipeCategoryNames>();
             LanguageService languageService = new LanguageService();
-            Language language = await languageService.getLanguageByName(languageName);
+            Language language = await languageService.getLanguageByNameAsync(languageName);
             
             try
             {

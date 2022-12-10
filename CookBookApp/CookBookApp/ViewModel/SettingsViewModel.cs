@@ -47,7 +47,7 @@ namespace CookBookApp.ViewModel
             Task.Run(async () =>
             {
                 Console.WriteLine(userSettingsManager.getLanguage());
-                SelectedLanguage = await languageService.getLanguageByName(userSettingsManager.getLanguage());
+                SelectedLanguage = userSettingsManager.getLanguage();
             });
         }
 
