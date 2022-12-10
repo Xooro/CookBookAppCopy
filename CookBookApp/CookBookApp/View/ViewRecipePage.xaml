@@ -14,8 +14,8 @@
         <Style TargetType="Button">
             <Setter Property="TextColor" Value ="Black"/>
             <Setter Property="Background" Value="#FFFDD0"/>
-            <Setter Property="VerticalOptions" Value="Center"/>
-            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Fill"/>
+            <Setter Property="HorizontalOptions" Value="Fill"/>
         </Style>
         <Style TargetType="Frame">
             <Setter Property="BorderColor" Value="Black"/>
@@ -52,24 +52,25 @@
                 Grid.Row="2"
                 Grid.Column="2"
                 Padding="0"
-                HorizontalOptions="Center"
-                VerticalOptions="Center" >
-                <Button Text="Törlés"/>
+                Margin="5"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill">
+                <Button Text="{x:Static resources:AppResources.viewRecipes_bttnDelete}"/>
             </Frame>
             <Frame
                 Grid.Row="2"
                 Grid.Column="3"
                 Padding="0"
-                HorizontalOptions="Center"
-                VerticalOptions="Center">
+                Margin="5"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill">
 
-                <Button Text="Szerkesztés"/>
+                <Button Text="{x:Static resources:AppResources.viewRecipes_bttnEdit}"/>
             </Frame>
             <ScrollView
                 Grid.Row="1"
                 Grid.Column="0"
-                Grid.ColumnSpan="4"
-                Background="lightblue">
+                Grid.ColumnSpan="4">
                 <Grid>
                     <Grid.RowDefinitions Height="auto"/>
                     <Grid.ColumnDefinitions>
@@ -91,8 +92,9 @@
                            Grid.Row="1"
                             Grid.Column="0">
                         <StackLayout>
-                            <Label Text="Categories"
-                                   FontSize="Large"/>
+                            <Label Text="{x:Static resources:AppResources.CONS_lblCategories}"
+                                   FontSize="Large"
+                                   FontAttributes="Bold"/>
                             <CollectionView 
                                 ItemsSource="{Binding Recipe.Categories, Mode=TwoWay}"
                                 ItemsLayout="VerticalGrid, 3"
@@ -114,30 +116,31 @@
                         <Grid>
                             <Grid.RowDefinitions Height="*"/>
                             <Grid.ColumnDefinitions Width="*"/>
-                            <Label Text="General information"
+                            <Label Text="{x:Static resources:AppResources.viewRecipes_lblGeneralInformation}"
                                    Grid.Row="0"
                                    Grid.Column="0"
                                    Grid.ColumnSpan="3"
-                                   FontSize="Large"/>
+                                   FontSize="Large"
+                                   FontAttributes="Bold"/>
                             <StackLayout
                                    Grid.Row="1"
                                    Grid.Column="0"
                                 Margin="0,0,0,10">
-                                <Label Text="Author:"
+                                <Label Text="{x:Static resources:AppResources.CONS_lblAuthor}"
                                        FontAttributes="Bold"/>
                                 <Label Text="{Binding Recipe.Author}"/>
                             </StackLayout>
                             <StackLayout
                                    Grid.Row="1"
                                    Grid.Column="1">
-                                <Label Text="Price:"
+                                <Label Text="{x:Static resources:AppResources.CONS_lblPrice}"
                                        FontAttributes="Bold"/>
                                 <Label Text="{Binding Recipe.Price}"/>
                             </StackLayout>
                             <StackLayout
                                    Grid.Row="1"
                                    Grid.Column="2">
-                                <Label Text="Portion:"
+                                <Label Text="{x:Static resources:AppResources.CONS_lblPortion}"
                                        FontAttributes="Bold"/>
 
                                 <Label Text="{Binding Recipe.Portion}"/>
@@ -145,21 +148,21 @@
                             <StackLayout
                                    Grid.Row="2"
                                    Grid.Column="0">
-                                <Label Text="Difficulty:"
+                                <Label Text="{x:Static resources:AppResources.CONS_lblDifficulty}"
                                        FontAttributes="Bold"/>
                                 <Label Text="{Binding Recipe.Difficulty}"/>
                             </StackLayout>
                             <StackLayout 
                                    Grid.Row="2"
                                    Grid.Column="1" >
-                                <Label Text="Preparation Time"
+                                <Label Text="{x:Static resources:AppResources.CONS_lblPreparationTime}"
                                        FontAttributes="Bold"/>
                                 <Label Text="{Binding Recipe.PreparationTime}"/>
                             </StackLayout>
                             <StackLayout
                                    Grid.Row="2"
                                    Grid.Column="2">
-                                <Label Text="Creation Date"
+                                <Label Text="{x:Static resources:AppResources.CONS_lblCreationDate}"
                                        FontAttributes="Bold"/>
                                 <Label Text="{Binding Recipe.CreationDate}"/>
                             </StackLayout>
@@ -172,13 +175,15 @@
                             <Grid.RowDefinitions Height="*"/>
                             <Grid.ColumnDefinitions Width="*"/>
                             <StackLayout Grid.Column="0">
-                                <Label Text="Ingredients"
-                                       FontSize="Large"/>
+                                <Label Text="{x:Static resources:AppResources.CONS_Ingredients}"
+                                       FontSize="Large"
+                                       FontAttributes="Bold"/>
                                 <Label Text="{Binding Recipe.LocalizedRecipe.Ingredients}"/>
                             </StackLayout>
                             <StackLayout Grid.Column="1">
-                                <Label Text="Preparation"
-                                       FontSize="Large"/>
+                                <Label Text="{x:Static resources:AppResources.CONS_Preparation}"
+                                       FontSize="Large"
+                                       FontAttributes="Bold"/>
                                 <Label Text="{Binding Recipe.LocalizedRecipe.Preparation}"/>
                             </StackLayout>
                         </Grid>
@@ -190,11 +195,12 @@
                     Grid.Row="2"
                     Grid.Column="0"
                     Grid.ColumnSpan="1"
-                    HorizontalOptions="Center"
-                VerticalOptions="Center"
-                Padding="0">
+                    Padding="0"
+                    Margin="5"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill">
                 <Button x:Name="bttnBack"
-                    Text="Vissza"/>
+                    Text="{x:Static resources:AppResources.CONS_Back}"/>
             </Frame>
 
         </Grid>

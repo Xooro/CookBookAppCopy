@@ -12,13 +12,13 @@
 
             <Setter Property="HeightRequest" Value ="50"/>
 
-            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
             
-            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+
+            <Setter Property="Background" Value="#FFFDD0"/>
 
             <Setter Property="TextColor" Value="Black"/>
-
-            <Setter Property="Margin" Value="20"/>
         </Style>
 
         <Style TargetType="Label">
@@ -46,21 +46,35 @@
 
             <Setter Property="Margin" Value="5, 30, 5, 30"/>
         </Style>
+        <Style TargetType="Frame">
+            <Setter Property="BorderColor" Value ="Black"/>
+            <Setter Property="Padding" Value ="0"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <Label  x:Name="lblMenuTitle" 
                     Text="{x:Static resources:AppResources.menu_lblMenu}"/>
-            
-            <Button x:Name="bttnRecipes"
+            <Frame>
+                <Button x:Name="bttnRecipes"
                     Text="{x:Static resources:AppResources.menu_bttnRecipes}"    
                     Clicked="RecipeButton_Clicked"/>
+            </Frame>
 
-            <Button x:Name="bttnAddRecipes"
+            <Frame>
+                <Button x:Name="bttnAddRecipes"
                     Text="{x:Static resources:AppResources.menu_bttnAddRecipes}"   
                     Clicked="AddRecipeButton_Clicked"/>
-            <Button Text="{x:Static resources:AppResources.menu_bttnSettings}"  
+            </Frame>
+            <Frame>
+                <Button Text="{x:Static resources:AppResources.menu_bttnSettings}"  
                     Clicked="SettingButton_Clicked"/>
+            </Frame>
+            
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

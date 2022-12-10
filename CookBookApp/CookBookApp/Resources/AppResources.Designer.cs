@@ -61,101 +61,11 @@ namespace CookBookApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Back.
-        /// </summary>
-        public static string addRecipes_bttnBack {
-            get {
-                return ResourceManager.GetString("addRecipes_bttnBack", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Next.
-        /// </summary>
-        public static string addRecipes_bttnForward {
-            get {
-                return ResourceManager.GetString("addRecipes_bttnForward", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Upload.
         /// </summary>
         public static string addRecipes_bttnUpload {
             get {
                 return ResourceManager.GetString("addRecipes_bttnUpload", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Allergens.
-        /// </summary>
-        public static string addRecipes_lblAllergens {
-            get {
-                return ResourceManager.GetString("addRecipes_lblAllergens", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Author.
-        /// </summary>
-        public static string addRecipes_lblAuthor {
-            get {
-                return ResourceManager.GetString("addRecipes_lblAuthor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Categories.
-        /// </summary>
-        public static string addRecipes_lblCategories {
-            get {
-                return ResourceManager.GetString("addRecipes_lblCategories", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Difficulty.
-        /// </summary>
-        public static string addRecipes_lblDifficulty {
-            get {
-                return ResourceManager.GetString("addRecipes_lblDifficulty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Portions.
-        /// </summary>
-        public static string addRecipes_lblPortion {
-            get {
-                return ResourceManager.GetString("addRecipes_lblPortion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Preparation time.
-        /// </summary>
-        public static string addRecipes_lblPreparationTime {
-            get {
-                return ResourceManager.GetString("addRecipes_lblPreparationTime", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Price.
-        /// </summary>
-        public static string addRecipes_lblPrice {
-            get {
-                return ResourceManager.GetString("addRecipes_lblPrice", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Recipe Name.
-        /// </summary>
-        public static string addRecipes_lblRecipeName {
-            get {
-                return ResourceManager.GetString("addRecipes_lblRecipeName", resourceCulture);
             }
         }
         
@@ -223,6 +133,123 @@ namespace CookBookApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Upload.
+        /// </summary>
+        public static string CONS_bttnUpload {
+            get {
+                return ResourceManager.GetString("CONS_bttnUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string CONS_Forward {
+            get {
+                return ResourceManager.GetString("CONS_Forward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingredients.
+        /// </summary>
+        public static string CONS_Ingredients {
+            get {
+                return ResourceManager.GetString("CONS_Ingredients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allergens.
+        /// </summary>
+        public static string CONS_lblAllergens {
+            get {
+                return ResourceManager.GetString("CONS_lblAllergens", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Author.
+        /// </summary>
+        public static string CONS_lblAuthor {
+            get {
+                return ResourceManager.GetString("CONS_lblAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categories.
+        /// </summary>
+        public static string CONS_lblCategories {
+            get {
+                return ResourceManager.GetString("CONS_lblCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creation Date.
+        /// </summary>
+        public static string CONS_lblCreationDate {
+            get {
+                return ResourceManager.GetString("CONS_lblCreationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Difficulty.
+        /// </summary>
+        public static string CONS_lblDifficulty {
+            get {
+                return ResourceManager.GetString("CONS_lblDifficulty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portions.
+        /// </summary>
+        public static string CONS_lblPortion {
+            get {
+                return ResourceManager.GetString("CONS_lblPortion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preparation time.
+        /// </summary>
+        public static string CONS_lblPreparationTime {
+            get {
+                return ResourceManager.GetString("CONS_lblPreparationTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price.
+        /// </summary>
+        public static string CONS_lblPrice {
+            get {
+                return ResourceManager.GetString("CONS_lblPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recipe Name.
+        /// </summary>
+        public static string CONS_lblRecipeName {
+            get {
+                return ResourceManager.GetString("CONS_lblRecipeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preparation.
+        /// </summary>
+        public static string CONS_Preparation {
+            get {
+                return ResourceManager.GetString("CONS_Preparation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Successfuly uploaded.
         /// </summary>
         public static string CONS_SuccessfulUpload {
@@ -286,15 +313,6 @@ namespace CookBookApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Back.
-        /// </summary>
-        public static string recipes_bttnBack {
-            get {
-                return ResourceManager.GetString("recipes_bttnBack", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Filter.
         /// </summary>
         public static string recipes_bttnFilter {
@@ -309,15 +327,6 @@ namespace CookBookApp.Resources {
         public static string recipes_srchBrRecipes {
             get {
                 return ResourceManager.GetString("recipes_srchBrRecipes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Back.
-        /// </summary>
-        public static string setting_bttnBack {
-            get {
-                return ResourceManager.GetString("setting_bttnBack", resourceCulture);
             }
         }
         
@@ -363,6 +372,33 @@ namespace CookBookApp.Resources {
         public static string setting_ntrUserName {
             get {
                 return ResourceManager.GetString("setting_ntrUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string viewRecipes_bttnDelete {
+            get {
+                return ResourceManager.GetString("viewRecipes_bttnDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string viewRecipes_bttnEdit {
+            get {
+                return ResourceManager.GetString("viewRecipes_bttnEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General Information.
+        /// </summary>
+        public static string viewRecipes_lblGeneralInformation {
+            get {
+                return ResourceManager.GetString("viewRecipes_lblGeneralInformation", resourceCulture);
             }
         }
     }
