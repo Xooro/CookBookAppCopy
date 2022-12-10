@@ -106,9 +106,14 @@ namespace CookBookApp.Models.Services
             return await Task.FromResult(recipeImages);
         }
 
+        public Recipe getLocalizedRecipeByRecipe(Recipe recipe, int languageID)
+        {
+            Recipe joinedRecipe = getJoinedRecipeByRecipe(recipe);
+            return getLocalizedRecipeByJoinedRecipe(joinedRecipe, languageID);
+        }
 
         //átalakítja az összes lokalizációt tároló receptet a megadott nyelvet használó receptre
-        public Recipe getLocalizedRecipe(Recipe joinedRecipe, int languageID)
+        public Recipe getLocalizedRecipeByJoinedRecipe(Recipe joinedRecipe, int languageID)
         {
             Recipe recipe = joinedRecipe;
             recipe.LocalizedRecipe = recipe.Localizations.FirstOrDefault(l => l.LanguageID == languageID);

@@ -114,7 +114,7 @@ namespace CookBookApp.Model.Services
                 var recipesBuff = new List<Recipe>();
                 foreach (Recipe recipe in recipes)
                 {
-                    Recipe recipeBuff = recipeService.getLocalizedRecipe(recipe, recipe.DefaultLanguageID);
+                    Recipe recipeBuff = recipeService.getLocalizedRecipeByJoinedRecipe(recipe, recipe.DefaultLanguageID);
                     recipesBuff.Add(recipeBuff);
                 }
                 recipesResults = recipesBuff;
@@ -142,7 +142,7 @@ namespace CookBookApp.Model.Services
                 {
                     if (recipe.Languages.Any(l => l.ID == languageID))
                     {
-                        Recipe recipeBuff = recipeService.getLocalizedRecipe(recipe, languageID);
+                        Recipe recipeBuff = recipeService.getLocalizedRecipeByJoinedRecipe(recipe, languageID);
                         recipesBuff.Add(recipeBuff);
                     }
                 }

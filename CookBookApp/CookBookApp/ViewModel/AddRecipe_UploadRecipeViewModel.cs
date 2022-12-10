@@ -56,9 +56,7 @@ namespace CookBookApp.ViewModel
 
         void updateRecipe()
         {
-            Recipe recipe = recipeService.getJoinedRecipeByRecipe(NewRecipe);
-            recipe = recipeService.getLocalizedRecipe(recipe, UserLanguage.ID);
-            NewRecipe= recipe;
+            NewRecipe = recipeService.getLocalizedRecipeByRecipe(NewRecipe, UserLanguage.ID);
         }
 
         void setIsBusy(bool toTrue)
