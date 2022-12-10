@@ -11,6 +11,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Flags\flag_DE.png" />
+    <None Remove="Assets\Flags\flag_EN.png" />
+    <None Remove="Assets\Flags\flag_HU.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Flags\flag_DE.png" />
+    <EmbeddedResource Include="Assets\Flags\flag_EN.png" />
+    <EmbeddedResource Include="Assets\Flags\flag_HU.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.31" />
     <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
@@ -74,10 +86,6 @@
     <EmbeddedResource Update="View\ViewRecipePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Assets\" />
   </ItemGroup>
 
   <ItemGroup>

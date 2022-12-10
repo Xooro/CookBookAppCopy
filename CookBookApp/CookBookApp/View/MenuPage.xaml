@@ -13,7 +13,7 @@
             <Setter Property="HeightRequest" Value ="50"/>
 
             <Setter Property="HorizontalOptions" Value="Center"/>
-            
+
             <Setter Property="VerticalOptions" Value="Center"/>
 
             <Setter Property="TextColor" Value="Black"/>
@@ -23,11 +23,11 @@
 
         <Style TargetType="Label">
             <Setter Property="TextColor" Value="Black"/>
-            
+
             <Setter Property="Margin" Value="5"/>
 
             <Setter Property="WidthRequest" Value ="200"/>
-            
+
             <Setter Property="HeightRequest" Value ="50"/>
         </Style>
 
@@ -49,9 +49,13 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
+            <Image Source="{Binding UserLanguage.ImageSource}"
+                   HeightRequest="100"
+                   WidthRequest="100"/>
+            
             <Label  x:Name="lblMenuTitle" 
                     Text="{x:Static resources:AppResources.menu_lblMenu}"/>
-            
+
             <Button x:Name="bttnRecipes"
                     Text="{x:Static resources:AppResources.menu_bttnRecipes}"    
                     Clicked="RecipeButton_Clicked"/>

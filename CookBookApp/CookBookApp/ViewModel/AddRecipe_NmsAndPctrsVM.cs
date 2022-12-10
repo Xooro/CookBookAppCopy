@@ -57,18 +57,19 @@ namespace CookBookApp.ViewModel
         async void selectImage()
         {
             setIsBusy(true);
-            Stream stream = await DependencyService.Get<IPhotoPickerService>().GetImageStreamAsync();
-            if (stream != null)
+            byte[] result = await ImageHelper.selectImageAsByteArray();
+            if (result == null)
             {
-                byte[] result = new byte[stream.Length];
-                stream.Read(result, 0, result.Length);
+                //TODO: Message on page: error upload
+                return;
+            }     
 
-                RecipeImage newImage = new RecipeImage();
-                newImage.ImageBytes = result;
+            RecipeImage newImage = new RecipeImage();
+            newImage.ImageBytes = result;
 
-                NewImages.Add(newImage);
-                NewRecipe.Images.Add(newImage);
-            }
+            NewImages.Add(newImage);
+            NewRecipe.Images.Add(newImage);
+
             setIsBusy(false);
         }
 

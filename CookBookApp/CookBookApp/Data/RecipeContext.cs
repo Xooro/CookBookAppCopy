@@ -12,6 +12,8 @@ namespace CookBookApp.Data
 {
     public class RecipeContext : DbContext
     {
+        string databaseName = "CookBookDB.db3";
+
         public DbSet<Recipe> Recipe { get; set; }
         public DbSet<RecipeCategories> RecipeCategories { get; set; }
         public DbSet<RecipeCategoryNames> RecipeCategoryNames  { get; set; }
@@ -21,19 +23,21 @@ namespace CookBookApp.Data
 
         public RecipeContext()
         {
-            this.Database.EnsureCreated();
+            if (this.Database.EnsureCreated())
+                ContextHelper.fillContextWithDefaultData();
         }
 
         public RecipeContext(DbContextOptions<RecipeContext> options) : base(options)
         {
-            this.Database.EnsureCreated();
+            if (this.Database.EnsureCreated())
+                ContextHelper.fillContextWithDefaultData();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (optionsBuilder.IsConfigured)
                 return;
-            string dbPath = Path.Combine(Constants.path, "CookBookDB.db3");
+            string dbPath = Path.Combine(Constants.path, databaseName);
             optionsBuilder.UseSqlite($"Filename={dbPath}");
         }
     }
