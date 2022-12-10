@@ -10,6 +10,23 @@
         <ResourceDictionary>
             <xct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
         </ResourceDictionary>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value ="Black"/>
+            <Setter Property="FontSize" Value="Large"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="TextColor" Value ="Black"/>
+            <Setter Property="Background" Value="#FFFDD0"/>
+            <Setter Property="VerticalOptions" Value="Fill"/>
+            <Setter Property="HorizontalOptions" Value="Fill"/>
+        </Style>
+        <Style TargetType="Frame">
+            <Setter Property="BorderColor" Value="Black"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="aliceblue"/>
+        </Style>
     </ContentPage.Resources>
 
     <ContentPage.Content>
@@ -18,43 +35,46 @@
                 <RowDefinition Height="4*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions Width="*"/>
 
             <StackLayout Orientation="Vertical"
                          HorizontalOptions="CenterAndExpand"
                          VerticalOptions="CenterAndExpand"
                          Grid.Column="0"
                          Grid.Row="0"
-                         Grid.ColumnSpan="2"
+                         Grid.ColumnSpan="4"
                          Grid.RowSpan="2">
                 <ActivityIndicator IsRunning="{Binding IsBusy}" 
                                    IsVisible="{Binding IsBusy}"/>
-                <Label Text="{x:Static resources:AppResources.CONS_Uploading}" IsVisible="{Binding IsBusy}"/>
+                <Label Text="{x:Static resources:AppResources.CONS_Uploading}" IsVisible="{Binding IsBusy}"
+                       HorizontalOptions="Center"/>
             </StackLayout>
             
             <Label Text="{x:Static resources:AppResources.CONS_SuccessfulUpload}"
                    Grid.Row="0"
                    Grid.Column="0"
-                   Grid.ColumnSpan="1"
+                   Grid.ColumnSpan="4"
+                   HorizontalOptions="CenterAndExpand"
                    IsVisible="{Binding IsUploadSuccessful}"/>
-
-            <Button Text="{x:Static resources:AppResources.CONS_Back}"
-                    Grid.Row="1"
-                    Grid.Column="0"
+            <Frame
+                Grid.Row="5"
+                 Grid.Column="0">
+                <Button Text="{x:Static resources:AppResources.CONS_Back}"
                     x:Name="btnBack"
                     Clicked="btnBack_Clicked"
                     IsVisible="{Binding IsVisible, Converter={StaticResource InvertedBoolConverter}}"/>
+            </Frame>
 
-            <Button Text="{x:Static resources:AppResources.CONS_ViewRecipe}"
-                    Grid.Row="1"
-                    Grid.Column="1"
+            <Frame
+                Grid.Row="5"
+                Grid.Column="3">
+                <Button Text="{x:Static resources:AppResources.CONS_ViewRecipe}"
                     x:Name="btnViewRecipe"
                     Clicked="btnViewRecipe_Clicked"
                     CommandParameter="{Binding NewRecipe}"
                     IsVisible="{Binding IsUploadSuccessful}"/>
+            </Frame>
+            
         </Grid>
     </ContentPage.Content>
 </ContentPage>

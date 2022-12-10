@@ -8,49 +8,62 @@
     <ContentPage.Resources>
         <Style TargetType="Label">
             <Setter Property="TextColor" Value ="Black"/>
+            <Setter Property="FontSize" Value="Large"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
         </Style>
         <Style TargetType="Button">
             <Setter Property="TextColor" Value ="Black"/>
-            <Setter Property="Background" Value="transparent"/>
+            <Setter Property="Background" Value="#FFFDD0"/>
+            <Setter Property="VerticalOptions" Value="Fill"/>
+            <Setter Property="HorizontalOptions" Value="Fill"/>
         </Style>
-
+        <Style TargetType="Frame">
+            <Setter Property="BorderColor" Value="Black"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="aliceblue"/>
+        </Style>
+        <Style TargetType="Entry">
+            <Setter Property="Background" Value="aliceblue"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="PlaceholderColor" Value="Gray"/>
+        </Style>
+        <Style TargetType="Picker">
+            <Setter Property="Background" Value="aliceblue"/>
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+            <Grid.RowDefinitions Height="auto">
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="6*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            
+            <Grid.ColumnDefinitions Width="*"/>
             <StackLayout
                          Grid.Row="0"
                          Grid.Column="0"
-                         Grid.ColumnSpan="2"
-                         Padding="20">
-                <Label Text="{x:Static resources:AppResources.addRecipes_lblAuthor}" />
+                         Grid.ColumnSpan="4">
+                <Label Text="{x:Static resources:AppResources.CONS_lblAuthor}" />
                 <Entry Text="{Binding NewRecipe.Author, Mode=TwoWay}"/>
             </StackLayout>
             <StackLayout 
                          Grid.Row="1"
                          Grid.Column="0"
-                         Grid.ColumnSpan="2"
-                         Padding="20">
-                <Label Text="{x:Static resources:AppResources.addRecipes_lblRecipeName}" />
+                         Grid.ColumnSpan="4">
+                <Label Text="{x:Static resources:AppResources.CONS_lblRecipeName}" />
                 <Entry Placeholder="{x:Static resources:AppResources.addRecipes_ntrRecipeName}"
                        Text="{Binding NewRecipe.LocalizedRecipe.RecipeName, Mode=TwoWay}"/>
             </StackLayout>
             <StackLayout
                     Grid.Row="2"
                     Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Padding="20">
-                <Label Text="{x:Static resources:AppResources.addRecipes_lblDifficulty}"/>
+                    Grid.ColumnSpan="4">
+                <Label Text="{x:Static resources:AppResources.CONS_lblDifficulty}"/>
                 <Picker 
                     x:Name="pckrDifficulty"
                     SelectedItem="{Binding NewRecipe.Difficulty}">
@@ -90,20 +103,24 @@
                 Grid.Column="0"
                 Text="Kép feltöltése!"
                 Command="{Binding SelectImageCommand}"/>
+            <Frame
+                Grid.Row="5"
+                Grid.Column="0">
+                <Button
+                    Text="{x:Static resources:AppResources.CONS_Back}"
+                    Clicked="bttnBackPage_Clicked"/>
+            </Frame>
 
-            <Button
+            <Frame
                 Grid.Row="5"
-                Grid.Column="0"
-                Text="{x:Static resources:AppResources.addRecipes_bttnBack}"
-                Clicked="bttnBackPage_Clicked"
-                Background="transparent"/>
-            <Button
-                Grid.Row="5"
-                Grid.Column="1"
-                Text="{x:Static resources:AppResources.addRecipes_bttnForward}"
-                Clicked="bttnForwardPage_Clicked"
-                CommandParameter="{Binding NewRecipe}"
-                Background="transparent"/>
+                Grid.Column="3">
+                <Button
+
+                    Text="{x:Static resources:AppResources.CONS_Forward}"
+                    Clicked="bttnForwardPage_Clicked"
+                    CommandParameter="{Binding NewRecipe}"/>
+            </Frame>
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

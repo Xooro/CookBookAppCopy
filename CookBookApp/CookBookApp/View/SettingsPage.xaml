@@ -8,18 +8,27 @@
     <ContentPage.Resources>
         <Style TargetType="Label">
             <Setter Property="TextColor" Value ="Black"/>
+            <Setter Property="FontSize" Value="Large"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
         </Style>
         <Style TargetType="Button">
             <Setter Property="TextColor" Value ="Black"/>
-            <Setter Property="Background" Value="transparent"/>
+            <Setter Property="Background" Value="#FFFDD0"/>
+            <Setter Property="VerticalOptions" Value="Fill"/>
+            <Setter Property="HorizontalOptions" Value="Fill"/>
         </Style>
-
+        <Style TargetType="Frame">
+            <Setter Property="BorderColor" Value="Black"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="aliceblue"/>
+        </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="6*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
@@ -27,35 +36,33 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
+
             <Grid Grid.Row="0"
                   Grid.Column="0"
-                  Grid.ColumnSpan="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                  Grid.ColumnSpan="4">
+                <Grid.RowDefinitions Height="*"/>
+                <Grid.ColumnDefinitions Width="*"/>
                 <Label x:Name="setting_lblUserName"
                        Text="{x:Static resources:AppResources.setting_lblUserName}"
                        Grid.Row="0"
-                       Grid.Column="0"/>
+                       Grid.Column="0"
+                       Grid.ColumnSpan="4"/>
                 <Entry x:Name="setting_ntrUserName"
                        Text="{Binding UserName}" 
                        Grid.Column="0"
-                       Grid.Row="1"/>
-                <Button x:Name="bttnUserNameUpdate" Text="{x:Static resources:AppResources.setting_bttnUserName}"
-                        Command="{Binding SetUserNameCommand}"
-                        Grid.Row="1"
-                        Grid.Column="1"/>
+                       Grid.Row="1"
+                       Grid.ColumnSpan="3"/>
+                <Frame
+                    Grid.Row="1"
+                    Grid.Column="3">
+                    <Button x:Name="bttnUserNameUpdate" Text="{x:Static resources:AppResources.setting_bttnUserName}"
+                        Command="{Binding SetUserNameCommand}"/>
+                </Frame>
             </Grid>
-            
+
             <Grid Grid.Row="1"
                   Grid.Column="0"
-                  Grid.ColumnSpan="2">
+                  Grid.ColumnSpan="4">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -72,20 +79,24 @@
                         SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
                         ItemDisplayBinding="{Binding LanguageName}"
                         Grid.Row="1"
-                        Grid.Column="0"/>
-                <Button x:Name="bttnLanguageUpdate" 
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"/>
+                <Frame
+                    Grid.Row="1"
+                    Grid.Column="3">
+                    <Button x:Name="bttnLanguageUpdate" 
                         Text="{x:Static resources:AppResources.setting_bttnLanguage}"
                         Command="{Binding SetLanguageCommand}"
-                        Clicked="bttnLanguageUpdate_Clicked"
-                        Grid.Row="1"
-                        Grid.Column="1"/>
-            </Grid>
+                        Clicked="bttnLanguageUpdate_Clicked"/>
+                </Frame>
 
-            <Button Text="{x:Static resources:AppResources.setting_bttnBack}"
-                    Clicked="bttnBackPage_Clicked"
-                    Grid.Row="4"
-                         Grid.Column="0"
-                         Grid.ColumnSpan="1"/>
+            </Grid>
+            <Frame
+                Grid.Row="4"
+                Grid.Column="0">
+                <Button Text="{x:Static resources:AppResources.CONS_Back}"
+                    Clicked="bttnBackPage_Clicked" />
+            </Frame>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
