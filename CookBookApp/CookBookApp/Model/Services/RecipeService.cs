@@ -1,8 +1,10 @@
 ﻿using CookBookApp.Data;
+using CookBookApp.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace CookBookApp.Models.Services
@@ -10,37 +12,29 @@ namespace CookBookApp.Models.Services
     public class RecipeService
     {
         RecipeContext _context;
-        LanguageService languageService;
         public RecipeService()
         {
             _context = new RecipeContext();
-            languageService = new LanguageService();
         }
 
         public RecipeService(RecipeContext context)
         {
             _context = context;
-            languageService = new LanguageService(context);
         }
 
         //visszaad egy alapértelmezett üres receptet a paraméterként megadott szerzővel és nyelvvel
-        public Recipe getDefaultEmptyRecipe(string author, string language)
+        public Recipe getDefaultEmptyRecipe(string author, Language language)
         {
             Recipe newRecipe = new Recipe();
-            int languageID = 1;
-            Task.Run(async () =>
-            {
-                languageID = (await languageService.getLanguageByNameAsync(language)).ID;
-            }).Wait();
             
             newRecipe = new Recipe
             {
                 Author = author,
                 CreationDate = DateTime.Now,
-                DefaultLanguageID = languageID,
+                DefaultLanguageID = language.ID,
                 LocalizedRecipe = new RecipeLocalization
                 {
-                    LanguageID = languageID
+                    LanguageID = language.ID
                 },
                 Categories = new List<RecipeCategories>(),
                 Images = new List<RecipeImage>()
@@ -113,13 +107,46 @@ namespace CookBookApp.Models.Services
         }
 
 
-        //vissza adja a receptet, amely tárol minden lokalizációt, de saját lokalizációval nem rendelkezik
-        public async Task<Recipe> getJoinedRecipeByRecipeAsync(Recipe recipeToBeJoined)
+        //átalakítja az összes lokalizációt tároló receptet a megadott nyelvet használó receptre
+        public Recipe getLocalizedRecipe(Recipe joinedRecipe, int languageID)
         {
-            List<Recipe> recipes = await getJoinedRecipesAsync();
-            Recipe joinedRecipe = recipes.FirstOrDefault(r => r.ID == recipeToBeJoined.ID);
+            Recipe recipe = joinedRecipe;
+            recipe.LocalizedRecipe = recipe.Localizations.FirstOrDefault(l => l.LanguageID == languageID);
+            recipe.Categories = getLocalizedRecipeGategories(joinedRecipe, languageID);
+            recipe.Localizations = null;
 
-            return await Task.FromResult(joinedRecipe);
+            return recipe;
+        }
+
+
+        //Visszaadja a lokalizált recept kategóriákat
+        private List<RecipeCategories> getLocalizedRecipeGategories(Recipe joinedRecipe, int languageID)
+        {
+            List<RecipeCategoryNames> recipeCategoryNames = new List<RecipeCategoryNames>();
+            List<RecipeCategories> recipeCategories = joinedRecipe.Categories;
+            recipeCategoryNames = _context.RecipeCategoryNames.ToList();
+
+            foreach (RecipeCategories category in recipeCategories)
+            {
+                category.CategoryName = recipeCategoryNames.FirstOrDefault(rcn =>
+                    rcn.CategoryNameID == category.CategoryNameID &&
+                    rcn.LanguageID == languageID).CategoryName;
+            }
+            return recipeCategories;
+        }
+
+
+        //vissza adja a receptet, amely tárol minden lokalizációt, de saját lokalizációval nem rendelkezik
+        public Recipe getJoinedRecipeByRecipe(Recipe recipeToBeJoined)
+        {
+            Recipe joinedRecipe = new Recipe(); 
+            Task.Run(async () =>
+            {
+                List<Recipe> recipes = await getJoinedRecipesAsync();
+                joinedRecipe = recipes.FirstOrDefault(r => r.ID == recipeToBeJoined.ID);
+            }).Wait();
+
+            return joinedRecipe;
         }
 
 
@@ -166,7 +193,7 @@ namespace CookBookApp.Models.Services
             bool isDeleted = false;
             try
             {
-                Recipe recipe = await getJoinedRecipeByRecipeAsync(recipeToDelete);
+                Recipe recipe = getJoinedRecipeByRecipe(recipeToDelete);
 
                 _context.RecipeImage.RemoveRange(recipe.Images);
                 _context.RecipeCategories.RemoveRange(recipe.Categories);

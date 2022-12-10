@@ -114,7 +114,7 @@ namespace CookBookApp.Model.Services
                 var recipesBuff = new List<Recipe>();
                 foreach (Recipe recipe in recipes)
                 {
-                    Recipe recipeBuff = getLocalizedRecipe(recipe, recipe.DefaultLanguageID);
+                    Recipe recipeBuff = recipeService.getLocalizedRecipe(recipe, recipe.DefaultLanguageID);
                     recipesBuff.Add(recipeBuff);
                 }
                 recipesResults = recipesBuff;
@@ -142,7 +142,7 @@ namespace CookBookApp.Model.Services
                 {
                     if (recipe.Languages.Any(l => l.ID == languageID))
                     {
-                        Recipe recipeBuff = getLocalizedRecipe(recipe, languageID);
+                        Recipe recipeBuff = recipeService.getLocalizedRecipe(recipe, languageID);
                         recipesBuff.Add(recipeBuff);
                     }
                 }
@@ -186,34 +186,6 @@ namespace CookBookApp.Model.Services
             return await Task.FromResult(recipesResults);
         }
 
-
-        //átalakítja az összes lokalizációt tároló receptet a megadott nyelvet használó receptre
-        private Recipe getLocalizedRecipe(Recipe joinedRecipe, int languageID)
-        {
-            Recipe recipe = joinedRecipe;
-            recipe.LocalizedRecipe = recipe.Localizations.FirstOrDefault(l => l.LanguageID == languageID);
-            recipe.Categories = getLocalizedRecipeGategories(joinedRecipe, languageID);
-            recipe.Localizations = null;
-
-            return recipe;
-        }
-
-        //Visszaadja a lokalizált recept kategóriákat
-        private List<RecipeCategories> getLocalizedRecipeGategories(Recipe joinedRecipe, int languageID)
-        {
-            List<RecipeCategoryNames> recipeCategoryNames = new List<RecipeCategoryNames>();
-            List<RecipeCategories> recipeCategories = joinedRecipe.Categories;
-            recipeCategoryNames = _context.RecipeCategoryNames.ToList();
-
-            foreach (RecipeCategories category in recipeCategories)
-            {
-                category.CategoryName = recipeCategoryNames.FirstOrDefault(rcn =>
-                    rcn.CategoryNameID == category.CategoryNameID &&
-                    rcn.LanguageID == languageID).CategoryName;
-            }
-            return recipeCategories;
-        }
-
         //a paraméterként megadott recepteket átvizsgálja a categóriák szerint
         private async Task<List<Recipe>> getLocalizedRecipesByCategories(List<Recipe> localizedRecipes, int[] categoryNameIDs)
         {
@@ -233,6 +205,7 @@ namespace CookBookApp.Model.Services
                     ).ToList();
             return await Task.FromResult(localizedRecipes);
         }
+
 
         public async Task<bool> deleteMultipleJoinedRecipeAsync(List<Recipe> recipesToDelete)
         {

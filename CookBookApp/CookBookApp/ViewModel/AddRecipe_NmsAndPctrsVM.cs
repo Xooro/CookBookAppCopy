@@ -22,8 +22,8 @@ namespace CookBookApp.ViewModel
     public class AddRecipe_NmsAndPctrsVM : BaseViewModel
     {
         public bool IsBusy { get; set; }
-        public string UserLanguage { get; set; }
         public string UserName { get; set; }
+        public Language UserLanguage { get; set; }
         public Recipe NewRecipe { get; set; }
         public ObservableCollection<RecipeImage> NewImages { get; set; }
         public RelayCommand SelectImageCommand { get; set; }
@@ -51,7 +51,7 @@ namespace CookBookApp.ViewModel
         void initializeUserSettings()
         {
             UserName = userSettingsManager.getUserName();
-            UserLanguage = userSettingsManager.getLanguage().LanguageName;
+            UserLanguage = userSettingsManager.getLanguage();
         }
 
         async void selectImage()

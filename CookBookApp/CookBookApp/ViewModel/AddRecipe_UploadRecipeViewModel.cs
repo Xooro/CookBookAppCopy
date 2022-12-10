@@ -15,8 +15,8 @@ namespace CookBookApp.ViewModel
         public bool IsBusy { get; set; }
         public bool IsUploadSuccessful { get; set; }
         public bool IsUploadFailed { get; set; }
-        public string UserLanguage { get; set; }
         public string UserName { get; set; }
+        public Language UserLanguage { get; set; }
         public Recipe NewRecipe { get; set; }
 
         UserSettingsManager userSettingsManager;
@@ -27,6 +27,9 @@ namespace CookBookApp.ViewModel
         {
             userSettingsManager = new UserSettingsManager();
             recipeService = new RecipeService();
+
+            UserName = userSettingsManager.getUserName();
+            UserLanguage = userSettingsManager.getLanguage();
 
             isBusyCounter = 0;
 
@@ -45,8 +48,17 @@ namespace CookBookApp.ViewModel
                     IsUploadSuccessful = true;
                 else
                     IsUploadFailed = true;
+
+                updateRecipe();
                 setIsBusy(false);
             });
+        }
+
+        void updateRecipe()
+        {
+            Recipe recipe = recipeService.getJoinedRecipeByRecipe(NewRecipe);
+            recipe = recipeService.getLocalizedRecipe(recipe, UserLanguage.ID);
+            NewRecipe= recipe;
         }
 
         void setIsBusy(bool toTrue)

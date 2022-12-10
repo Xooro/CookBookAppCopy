@@ -37,11 +37,17 @@ namespace CookBookApp.Helpers
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> setLanguage(Language newLanguage)
+        public async Task<bool> setUserLanguage(Language newLanguage)
         {
             userProperties.LanguageID = newLanguage.ID;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(newLanguage.LanguageName);
+            setAppLanguage();
             return await Task.FromResult(true);
+        }
+
+        public void setAppLanguage()
+        {
+            string languageName = getLanguage().LanguageName;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(languageName);
         }
     }
 }

@@ -89,7 +89,8 @@
                                 <Image Source="{Binding ImageSource}"
                                        HeightRequest="300"
                                        WidthRequest="300"/>
-                                <Button Text="X (van image button)"
+                                <Label Text="Hello"/>
+                                <Button Text="X"
                                         Command="{Binding BindingContext.RemoveImageCommand, Source={x:Reference lstVwImagesToAdd}}"
                                         CommandParameter="{Binding }"/>
                             </StackLayout>

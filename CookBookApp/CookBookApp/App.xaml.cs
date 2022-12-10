@@ -22,13 +22,8 @@ namespace CookBookApp
 
         public void InitializeSettings()
         {
-            //ContextHelper.fillSQLiteWithTestData();
             UserSettingsManager userPropertiesService = new UserSettingsManager();
-            setLanguage(userPropertiesService.getLanguage().LanguageName);
-        }
-        public void setLanguage(string languageName)
-        {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(languageName);
+            userPropertiesService.setAppLanguage();
         }
 
         protected override void OnStart()

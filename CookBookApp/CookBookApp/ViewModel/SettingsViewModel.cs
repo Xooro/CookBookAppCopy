@@ -7,12 +7,14 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace CookBookApp.ViewModel
 {
     public class SettingsViewModel : BaseViewModel
     {
         public string UserName { get; set; }
+        public Language UserLanguage { get; set; }
         public RelayCommand SetUserNameCommand { get; set; }
         public RelayCommand SetLanguageCommand { get; set; }
         public ObservableCollection<Language> Languages { get; set; }
@@ -26,29 +28,23 @@ namespace CookBookApp.ViewModel
             languageService = new LanguageService();
             userSettingsManager = new UserSettingsManager();
 
-            loadLanguages();
             initializeUserSettings();
+            loadLanguages();
 
             SetUserNameCommand = new RelayCommand(setUserName);
             SetLanguageCommand = new RelayCommand(setLanguage);
         }
 
-        void loadLanguages()
-        {
-            Task.Run(async () =>
-            {
-                Languages = new ObservableCollection<Language>(await languageService.getLanguagesAsync());
-            }).Wait();
-        }
-
         void initializeUserSettings()
         {
             UserName = userSettingsManager.getUserName();
-            Task.Run(async () =>
-            {
-                Console.WriteLine(userSettingsManager.getLanguage());
-                SelectedLanguage = userSettingsManager.getLanguage();
-            });
+            UserLanguage = userSettingsManager.getLanguage();
+        }
+
+        async void loadLanguages()
+        {
+            Languages = new ObservableCollection<Language>(await languageService.getLanguagesAsync());
+            SelectedLanguage = Languages.FirstOrDefault(l => l.ID == UserLanguage.ID);
         }
 
         async void setUserName()
@@ -58,7 +54,7 @@ namespace CookBookApp.ViewModel
 
         async void setLanguage()
         {
-            await userSettingsManager.setLanguage(SelectedLanguage);
+            await userSettingsManager.setUserLanguage(SelectedLanguage);
         }
     }
 }
