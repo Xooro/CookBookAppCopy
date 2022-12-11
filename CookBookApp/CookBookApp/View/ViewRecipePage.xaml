@@ -93,14 +93,15 @@
                     </Grid.ColumnDefinitions>
                     <Frame
                             Grid.Row="0"
-                                Grid.Column="0">
-                        <ListView ItemsSource="{Binding Recipe.Images}"
+                            Grid.Column="0">
+                        <ListView ItemsSource="{Binding Recipe.Images, Mode=TwoWay}"
                                   HeightRequest="0">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Image Source="{Binding ImageSource}"
-                                           WidthRequest="100"
-                                           HeightRequest="100"/>
+                                    <ViewCell>
+                                        <Image Source="{Binding ImageSource, Mode=TwoWay}"
+                                           WidthRequest="200"/>
+                                    </ViewCell>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>

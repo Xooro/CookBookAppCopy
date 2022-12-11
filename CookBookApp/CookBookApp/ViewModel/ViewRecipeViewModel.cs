@@ -14,7 +14,6 @@ namespace CookBookApp.ViewModel
     public class ViewRecipeViewModel : BaseViewModel
     {
         public Recipe Recipe { get; set; }
-        public Image Image { get; set; }
         public Language SelectedLanguage { get; set; }
         public RelayCommand ChangeLocalizationCommand { get; set; }
 

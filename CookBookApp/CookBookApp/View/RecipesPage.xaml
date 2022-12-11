@@ -90,6 +90,16 @@
                                                Grid.Column="1"
                                                Grid.Row="2"
                                                HorizontalOptions="Start"/>
+                                        <Frame
+                                            Grid.Column="2"
+                                            Grid.Row="1"
+                                            BackgroundColor="#FFFDD0">
+                                            <Button Text="View Recipe"
+                                                   Clicked="bttnViewRecipe_Clicked"
+                                                   CommandParameter="{Binding .}"
+                                                Padding="10"/>
+                                        </Frame>
+
                                         <ListView ItemsSource="{Binding Languages}"
                                                   Grid.Row="0"
                                                   Grid.Column="2"
@@ -97,12 +107,14 @@
                                                   HeightRequest="0">
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
-                                                    <StackLayout Orientation="Vertical">
-                                                        <Image Source="{Binding ImageSource}"
+                                                    <ViewCell>
+                                                        <StackLayout Orientation="Vertical">
+                                                            <Image Source="{Binding ImageSource}"
                                                            HeightRequest="15"
                                                            WidthRequest="15"
                                                            Aspect="AspectFit"/>
-                                                    </StackLayout>
+                                                        </StackLayout>
+                                                    </ViewCell>
                                                 </DataTemplate>
                                             </ListView.ItemTemplate>
                                         </ListView>
