@@ -48,6 +48,9 @@
     <Compile Update="View\AddRecipe_AllergensAndCategoriesPage.xaml.cs">
       <DependentUpon>AddRecipe_AllergensAndCategoriesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="View\EditRecipePage.xaml.cs">
+      <DependentUpon>EditRecipePage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="View\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
@@ -65,6 +68,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="ViewModel\EditRecipeViewModel.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="View\AddRecipe_IngredientsAndPreparation.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -75,6 +81,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\AddRecipe_UploadPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\EditRecipePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\Layout\DefaultLayout.xaml">

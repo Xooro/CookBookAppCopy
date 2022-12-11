@@ -19,5 +19,13 @@ namespace CookBookApp.View
             InitializeComponent();
             BindingContext = new ViewRecipeViewModel(recipe);
         }
+        private void bttnEditRecipe_Clicked(object sender, EventArgs e)
+        {
+
+            var button = (Button)sender;
+            Recipe newRecipe = (Recipe)button.CommandParameter;
+
+            Navigation.PushAsync(new EditRecipePage(newRecipe));
+        }
     }
 }
