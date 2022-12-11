@@ -1,4 +1,5 @@
-﻿using CookBookApp.ViewModels.Base;
+﻿using CookBookApp.Helpers;
+using CookBookApp.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -35,6 +36,16 @@ namespace CookBookApp.Models
         //tárolja a recept képeit
         [NotMapped]
         public List<RecipeImage> Images { get; set; }
+
+        [NotMapped]
+        public string LocalizedDifficulty
+        {
+            get
+            {
+                string[] difficultes = DifficultyHelper.getDifficulties();
+                return difficultes[Difficulty];
+            }
+        }
 
         public object Clone()
         {
