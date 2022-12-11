@@ -16,7 +16,6 @@ namespace CookBookApp.ViewModel
         public Recipe Recipe { get; set; }
         public Image Image { get; set; }
         public Language SelectedLanguage { get; set; }
-
         public RelayCommand ChangeLocalizationCommand { get; set; }
 
         RecipeService recipeService;
@@ -32,7 +31,9 @@ namespace CookBookApp.ViewModel
         }
         void changeLocalization()
         {
-            Recipe = recipeService.getLocalizedRecipeByRecipe(Recipe, SelectedLanguage.ID);
+            Recipe recipe = recipeService.getLocalizedRecipeByRecipe(Recipe, SelectedLanguage.ID);
+            Recipe = null;
+            Recipe = recipe;
         }
     }
 }
