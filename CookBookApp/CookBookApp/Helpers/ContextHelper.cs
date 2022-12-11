@@ -152,7 +152,7 @@ namespace CookBookApp.Helpers
                     Author = "Name",
                     PreparationTime = DateTime.Now,
                     Difficulty = 2,
-                    Price = 3,
+                    Price = 0,
                     Portion = 4,
                     CreationDate = DateTime.Now
                     }

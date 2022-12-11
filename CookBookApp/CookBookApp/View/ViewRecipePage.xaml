@@ -135,7 +135,7 @@
                                    Grid.Column="1">
                                 <Label Text="{x:Static resources:AppResources.CONS_lblPrice}"
                                        FontAttributes="Bold"/>
-                                <Label Text="{Binding Recipe.Price}"/>
+                                <Label Text="{Binding Recipe.LocalizedPrice}"/>
                             </StackLayout>
                             <StackLayout
                                    Grid.Row="1"
@@ -150,7 +150,7 @@
                                    Grid.Column="0">
                                 <Label Text="{x:Static resources:AppResources.CONS_lblDifficulty}"
                                        FontAttributes="Bold"/>
-                                <Label Text="{Binding Recipe.Difficulty}"/>
+                                <Label Text="{Binding Recipe.LocalizedDifficulty}"/>
                             </StackLayout>
                             <StackLayout 
                                    Grid.Row="2"

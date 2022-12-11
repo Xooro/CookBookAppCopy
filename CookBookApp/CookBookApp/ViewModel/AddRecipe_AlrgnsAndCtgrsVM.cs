@@ -19,6 +19,7 @@ namespace CookBookApp.ViewModel
     public class AddRecipe_AlrgnsAndCtgrsVM : BaseViewModel
     {
         public ObservableCollection<RecipeCategoryNames> RecipeCategoryNames { get; set; }
+        public string[] Prices { get; set; }
         public bool IsBusy { get; set; }
         public string UserName { get; set; }
         public Language UserLanguage { get; set; }
@@ -34,6 +35,8 @@ namespace CookBookApp.ViewModel
         {
             recipeCategoriesService = new RecipeCategoriesService();
             userSettingsManager = new UserSettingsManager();
+
+            Prices = LocalizedConstants.getPrices();
 
             isBusyCounter = 0;
 

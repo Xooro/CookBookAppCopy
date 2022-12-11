@@ -42,7 +42,7 @@ namespace CookBookApp.ViewModel
 
             initializeUserSettings();
             NewRecipe = recipeService.getDefaultEmptyRecipe(UserName, UserLanguage);
-            Difficulties = DifficultyHelper.getDifficulties();
+            Difficulties = LocalizedConstants.getDifficulties();
             NewImages = new ObservableCollection<RecipeImage>();
 
             isBusyCounter = 0;

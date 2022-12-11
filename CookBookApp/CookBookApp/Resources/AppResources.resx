@@ -192,6 +192,15 @@
   <data name="CONS_Preparation" xml:space="preserve">
     <value>Preparation</value>
   </data>
+  <data name="CONS_Price_Average" xml:space="preserve">
+    <value>Average</value>
+  </data>
+  <data name="CONS_Price_Cheap" xml:space="preserve">
+    <value>Cheap</value>
+  </data>
+  <data name="CONS_Price_Expensive" xml:space="preserve">
+    <value>Expensive</value>
+  </data>
   <data name="CONS_RetryAddRecipe" xml:space="preserve">
     <value>Retry from the start</value>
   </data>

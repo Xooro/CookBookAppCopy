@@ -286,6 +286,33 @@ namespace CookBookApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Average.
+        /// </summary>
+        public static string CONS_Price_Average {
+            get {
+                return ResourceManager.GetString("CONS_Price_Average", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cheap.
+        /// </summary>
+        public static string CONS_Price_Cheap {
+            get {
+                return ResourceManager.GetString("CONS_Price_Cheap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expensive.
+        /// </summary>
+        public static string CONS_Price_Expensive {
+            get {
+                return ResourceManager.GetString("CONS_Price_Expensive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Retry from the start.
         /// </summary>
         public static string CONS_RetryAddRecipe {

@@ -189,6 +189,15 @@
   <data name="CONS_Preparation" xml:space="preserve">
     <value>Elkészítés</value>
   </data>
+  <data name="CONS_Price_Average" xml:space="preserve">
+    <value>Átlagos</value>
+  </data>
+  <data name="CONS_Price_Cheap" xml:space="preserve">
+    <value>Olcsó</value>
+  </data>
+  <data name="CONS_Price_Expensive" xml:space="preserve">
+    <value>Drága</value>
+  </data>
   <data name="CONS_RetryAddRecipe" xml:space="preserve">
     <value>Újrapróbálkozás az elejéről</value>
   </data>

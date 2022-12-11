@@ -60,8 +60,10 @@
                          Grid.Column="0"
                          Grid.ColumnSpan="4">
                 <Label Text="{x:Static resources:AppResources.CONS_lblPrice}" />
-                <Entry Placeholder="{x:Static resources:AppResources.addRecipes_ntrPrice}"
-                       Text="{Binding NewRecipe.Price, Mode=OneWayToSource}"/>
+                <Picker 
+                    x:Name="pckrPrice"
+                    ItemsSource="{Binding Prices}"
+                    SelectedIndex="{Binding NewRecipe.Price, Mode=TwoWay}"/>
             </StackLayout>
             <StackLayout
                          Grid.Row="2"

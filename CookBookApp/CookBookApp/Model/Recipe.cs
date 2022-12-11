@@ -42,8 +42,17 @@ namespace CookBookApp.Models
         {
             get
             {
-                string[] difficultes = DifficultyHelper.getDifficulties();
+                string[] difficultes = LocalizedConstants.getDifficulties();
                 return difficultes[Difficulty];
+            }
+        }
+
+        public string LocalizedPrice
+        {
+            get
+            {
+                string[] prices = LocalizedConstants.getPrices();
+                return prices[Price];
             }
         }
 
