@@ -28,6 +28,7 @@ namespace CookBookApp.XTest.Model.Services
 
             //Act
             Recipe actualRecipe = recipeService.getDefaultEmptyRecipe("TESTER", new Language { ID = 1 });
+            expectedRecipe.CreationDate = actualRecipe.CreationDate;
 
             //Assert
             Assert.Equal(expectedRecipe, actualRecipe);
