@@ -1,6 +1,4 @@
-﻿using Android.OS;
-using Android.Service.Autofill;
-using CookBookApp.Data;
+﻿using CookBookApp.Data;
 using CookBookApp.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
