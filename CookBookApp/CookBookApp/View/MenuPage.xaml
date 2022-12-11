@@ -58,10 +58,15 @@
         <StackLayout>
             <Image Source="{Binding UserLanguage.ImageSource}"
                    HeightRequest="100"
-                   WidthRequest="100"/>
+                   WidthRequest="100"
+                   Margin="10"/>
             
             <Label  x:Name="lblMenuTitle" 
-                    Text="{x:Static resources:AppResources.menu_lblMenu}"/>
+                    Text="{x:Static resources:AppResources.menu_lblMenu}"
+                    FontSize="Header"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"/>
             <Frame>
                 <Button x:Name="bttnRecipes"
                     Text="{x:Static resources:AppResources.menu_bttnRecipes}"    

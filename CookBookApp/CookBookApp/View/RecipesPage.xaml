@@ -65,35 +65,47 @@
                                        HorizontalOptions="FillAndExpand"
                                        VerticalOptions="FillAndExpand">
                                     <Grid>
-                                        <Grid.RowDefinitions Height="auto"/>
-                                        <Grid.ColumnDefinitions Width="*"/>
+                                        <Grid.RowDefinitions Height="*"/>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3*"/>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
                                         <Image Source='{Binding Images[0].ImageSource}'
-                                                   Aspect="AspectFit"
-                                                   HeightRequest="60"
-                                                   WidthRequest="60"
-                                                   Grid.Column="0"
-                                                   Grid.Row="0"
-                                               Grid.ColumnSpan="2"/>
+                                               Aspect="AspectFit"
+                                               Grid.Column="0"
+                                               Grid.Row="0"
+                                               Grid.RowSpan="3"
+                                               Grid.ColumnSpan="1"/>
                                         <Label Text="{Binding LocalizedRecipe.RecipeName}"
-                                                   Grid.Column="0"
-                                                   Grid.Row="1"
-                                                Padding="10"/>
+                                               Grid.Column="1"
+                                               Grid.Row="0"
+                                               HorizontalOptions="Start"/>
 
                                         <Label Text="{Binding LocalizedDifficulty}"
                                                Grid.Column="1"
-                                               Grid.Row="0"/>
+                                               Grid.Row="1"
+                                               HorizontalOptions="Start"/>
                                         <Label Text="{Binding LocalizedPrice}"
-                                               Grid.Column="2"
-                                               Grid.Row="0"/>
-                                        <Frame
-                                            Grid.Column="1"
-                                            Grid.Row="1"
-                                            BackgroundColor="#FFFDD0">
-                                            <Button Text="View Recipe"
-                                                   Clicked="bttnViewRecipe_Clicked"
-                                                   CommandParameter="{Binding .}"
-                                                Padding="10"/>
-                                        </Frame>
+                                               Grid.Column="1"
+                                               Grid.Row="2"
+                                               HorizontalOptions="Start"/>
+                                        <ListView ItemsSource="{Binding Languages}"
+                                                  Grid.Row="0"
+                                                  Grid.Column="2"
+                                                  Grid.ColumnSpan="3"
+                                                  HeightRequest="0">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout Orientation="Vertical">
+                                                        <Image Source="{Binding ImageSource}"
+                                                           HeightRequest="15"
+                                                           WidthRequest="15"
+                                                           Aspect="AspectFit"/>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
                                     </Grid>
                                 </Frame>
                             </ViewCell>
