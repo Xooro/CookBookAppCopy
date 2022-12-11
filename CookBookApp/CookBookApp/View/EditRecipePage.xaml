@@ -55,7 +55,9 @@
                 Margin="5"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill">
-                <Button Text="{x:Static resources:AppResources.viewRecipes_bttnDelete}"/>
+                <Button Text="{x:Static resources:AppResources.viewRecipes_bttnDelete}"
+                        Clicked="bttnDeleteRecipe_Clicked"/>
+                <!--Command="{Binding DeleteRecipeCommand}"-->
             </Frame>
             <Frame
                 Grid.Row="2"
@@ -65,7 +67,7 @@
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill">
 
-                <Button Text="{x:Static resources:AppResources.viewRecipes_bttnEdit}"/>
+                <Button Text="{x:Static resources:AppResources.EditRecipe_bttnSave}"/>
             </Frame>
             <ScrollView
                 Grid.Row="1"
@@ -214,7 +216,8 @@
                     HorizontalOptions="Fill"
                     VerticalOptions="Fill">
                 <Button x:Name="bttnBack"
-                    Text="{x:Static resources:AppResources.CONS_Back}"/>
+                    Text="{x:Static resources:AppResources.EditRecipe_bttnCancel}"
+                        Clicked="bttnBackPage_Clicked"/>
             </Frame>
 
         </Grid>

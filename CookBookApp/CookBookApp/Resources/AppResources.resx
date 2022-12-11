@@ -213,6 +213,12 @@
   <data name="CONS_ViewRecipe" xml:space="preserve">
     <value>View recipe</value>
   </data>
+  <data name="EditRecipe_bttnCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="EditRecipe_bttnSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="menu_bttnAddRecipes" xml:space="preserve">
     <value>Add Recipe</value>
   </data>

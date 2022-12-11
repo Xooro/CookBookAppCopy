@@ -349,6 +349,24 @@ namespace CookBookApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string EditRecipe_bttnCancel {
+            get {
+                return ResourceManager.GetString("EditRecipe_bttnCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string EditRecipe_bttnSave {
+            get {
+                return ResourceManager.GetString("EditRecipe_bttnSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Recipe.
         /// </summary>
         public static string menu_bttnAddRecipes {
