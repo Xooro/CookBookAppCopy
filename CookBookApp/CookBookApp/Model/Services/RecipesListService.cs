@@ -214,7 +214,7 @@ namespace CookBookApp.Model.Services
             {
                 foreach(Recipe recipe in recipesToDelete)
                 {
-                    var isDeleted = await recipeService.deleteJoinedRecipeAsync(recipe);
+                    var isDeleted = await recipeService.deleteRecipeAsync(recipe);
                     if (!isDeleted) isDeletesSucceeded = false;
                 }
             }
