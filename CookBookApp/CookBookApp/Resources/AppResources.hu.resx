@@ -210,6 +210,12 @@
   <data name="CONS_ViewRecipe" xml:space="preserve">
     <value>Recept megtekintése</value>
   </data>
+  <data name="EditRecipe_bttnCancel" xml:space="preserve">
+    <value>Mégsem</value>
+  </data>
+  <data name="EditRecipe_bttnSave" xml:space="preserve">
+    <value>Mentés</value>
+  </data>
   <data name="menu_bttnAddRecipes" xml:space="preserve">
     <value>Recept hozzáadása</value>
   </data>

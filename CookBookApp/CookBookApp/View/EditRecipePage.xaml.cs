@@ -1,5 +1,7 @@
-﻿using CookBookApp.Models;
+﻿using Android.App;
+using CookBookApp.Models;
 using CookBookApp.ViewModel;
+using CookBookApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +21,14 @@ namespace CookBookApp.View
             InitializeComponent();
             BindingContext = new EditRecipeViewModel(recipe);
         }
+        private void bttnBackPage_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync();
+        }
 
+        private void bttnDeleteRecipe_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new RecipesPage());
+        }
     }
 }

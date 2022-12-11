@@ -16,7 +16,10 @@ namespace CookBookApp.ViewModel
     public class EditRecipeViewModel : BaseViewModel
     {
         RecipeCategoriesService recipeCategoriesService;
+        RecipeService recipeService;
         public UserSettingsManager UserSettingsManager;
+
+
         public string[] Difficulties { get; set; }
         public string[] Prices { get; set; }
         public bool IsBusy { get; set; }
@@ -29,12 +32,15 @@ namespace CookBookApp.ViewModel
         public ObservableCollection<RecipeCategoryNames> RecipeCategoryNames { get; set; }
         public ObservableCollection<Language> Languages { get; set; }
 
+        public RelayCommand DeleteRecipeCommand { get; set; }
+
 
         public EditRecipeViewModel(Recipe recipe)
         {
 
             isBusyCounter = 0;
             recipeCategoriesService = new RecipeCategoriesService();
+            recipeService = new RecipeService();
             UserSettingsManager = new UserSettingsManager();
 
             OriginalRecipe = recipe;
@@ -46,6 +52,8 @@ namespace CookBookApp.ViewModel
 
 
             loadRecipeCategories();
+
+            DeleteRecipeCommand = new RelayCommand(deleteRecipe);
         }
         void loadRecipeCategories()
         {
@@ -72,6 +80,11 @@ namespace CookBookApp.ViewModel
                 IsBusy = true;
             else
                 IsBusy = false;
+        }
+
+        async void deleteRecipe()
+        {
+            await recipeService.deleteJoinedRecipeAsync(OriginalRecipe);
         }
     }
 }
