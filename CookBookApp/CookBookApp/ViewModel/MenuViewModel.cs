@@ -15,7 +15,7 @@ namespace CookBookApp.ViewModel
         UserSettingsManager userSettingsManager;
         
         public MenuViewModel()
-        { 
+        {
             userSettingsManager = new UserSettingsManager();
             initializeUserSettings();
         }
