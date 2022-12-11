@@ -67,8 +67,8 @@
                                     <Grid>
                                         <Grid.RowDefinitions Height="auto"/>
                                         <Grid.ColumnDefinitions Width="*"/>
-                                        <Image Source='{Binding Recipe.Images[0].ImageSource}'
-                                                   Aspect="AspectFill"
+                                        <Image Source='{Binding Images[0].ImageSource}'
+                                                   Aspect="AspectFit"
                                                    HeightRequest="60"
                                                    WidthRequest="60"
                                                    Grid.Column="0"
