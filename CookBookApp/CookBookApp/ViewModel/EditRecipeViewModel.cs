@@ -52,8 +52,11 @@ namespace CookBookApp.ViewModel
             setIsBusy(true);
             Task.Run(async () =>
             {
-                RecipeCategoryNames = new ObservableCollection<RecipeCategoryNames>(
-                    await recipeCategoriesService.getLocalizedRecipeCategoriesAsync(UserLanguage));
+                var recipeCategoryNames = await recipeCategoriesService.getLocalizedRecipeCategoriesAsync(UserLanguage);
+                var recipeCategoryIDs = OriginalRecipe.Categories.Select(rc => rc.CategoryNameID).ToArray();
+                recipeCategoryNames.Select(rcn => { if (recipeCategoryIDs.Contains(rcn.CategoryNameID)) rcn.IsChecked = true; return rcn; }).ToList();
+
+                RecipeCategoryNames = new ObservableCollection<RecipeCategoryNames>(recipeCategoryNames);
                 setIsBusy(false);
             });
 
