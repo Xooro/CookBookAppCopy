@@ -141,6 +141,18 @@
   <data name="CONS_Back" xml:space="preserve">
     <value>Vissza</value>
   </data>
+  <data name="CONS_Difficulty_Advanced" xml:space="preserve">
+    <value>Haladó</value>
+  </data>
+  <data name="CONS_Difficulty_Beginner" xml:space="preserve">
+    <value>Kezdő</value>
+  </data>
+  <data name="CONS_Difficulty_Intermediate" xml:space="preserve">
+    <value>Középhaladó</value>
+  </data>
+  <data name="CONS_FailedUpload" xml:space="preserve">
+    <value>Feltöltés sikertelen</value>
+  </data>
   <data name="CONS_Forward" xml:space="preserve">
     <value>Következő</value>
   </data>
@@ -176,6 +188,9 @@
   </data>
   <data name="CONS_Preparation" xml:space="preserve">
     <value>Elkészítés</value>
+  </data>
+  <data name="CONS_RetryAddRecipe" xml:space="preserve">
+    <value>Újrapróbálkozás az elejéről</value>
   </data>
   <data name="CONS_SuccessfulUpload" xml:space="preserve">
     <value>Sikeresen feltöltve</value>

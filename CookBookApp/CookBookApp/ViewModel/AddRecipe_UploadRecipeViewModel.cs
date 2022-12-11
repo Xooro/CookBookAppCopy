@@ -1,6 +1,7 @@
 ﻿using CookBookApp.Helpers;
 using CookBookApp.Models;
 using CookBookApp.Models.Services;
+using CookBookApp.Resources;
 using CookBookApp.ViewModels.Base;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace CookBookApp.ViewModel
         public bool IsBusy { get; set; }
         public bool IsUploadSuccessful { get; set; }
         public bool IsUploadFailed { get; set; }
+        public string UploadMessage { get; set; }
         public string UserName { get; set; }
         public Language UserLanguage { get; set; }
         public Recipe NewRecipe { get; set; }
@@ -45,10 +47,16 @@ namespace CookBookApp.ViewModel
                 Thread.Sleep(2000);
                 bool uploadSuccess = await recipeService.uploadJoinedRecipeWithoutID(NewRecipe);
                 if (uploadSuccess)
+                {
                     IsUploadSuccessful = true;
+                    UploadMessage = AppResources.CONS_SuccessfulUpload;
+                } 
                 else
+                {
                     IsUploadFailed = true;
-
+                    UploadMessage = AppResources.CONS_FailedUpload;
+                }
+                    
                 updateRecipe();
                 setIsBusy(false);
             });

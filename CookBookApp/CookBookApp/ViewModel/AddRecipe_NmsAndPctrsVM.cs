@@ -4,6 +4,7 @@ using CookBookApp.Model.Interfaces;
 using CookBookApp.Model.Services;
 using CookBookApp.Models;
 using CookBookApp.Models.Services;
+using CookBookApp.Resources;
 using CookBookApp.View;
 using CookBookApp.ViewModels.Base;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -21,6 +22,7 @@ namespace CookBookApp.ViewModel
 {
     public class AddRecipe_NmsAndPctrsVM : BaseViewModel
     {
+        public string[] Difficulties { get; set; }
         public bool IsBusy { get; set; }
         public string UserName { get; set; }
         public Language UserLanguage { get; set; }
@@ -40,6 +42,7 @@ namespace CookBookApp.ViewModel
 
             initializeUserSettings();
             NewRecipe = recipeService.getDefaultEmptyRecipe(UserName, UserLanguage);
+            Difficulties = DifficultyHelper.getDifficulties();
             NewImages = new ObservableCollection<RecipeImage>();
 
             isBusyCounter = 0;

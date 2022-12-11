@@ -66,22 +66,16 @@
                 <Label Text="{x:Static resources:AppResources.CONS_lblDifficulty}"/>
                 <Picker 
                     x:Name="pckrDifficulty"
-                    SelectedItem="{Binding NewRecipe.Difficulty}">
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>Beginner</x:String>
-                            <x:String>Intermediate</x:String>
-                            <x:String>Professional</x:String>
-                            <x:String>SAMURAI++</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </Picker>
+                    ItemsSource="{Binding Difficulties}"
+                    SelectedIndex="{Binding NewRecipe.Difficulty, Mode=TwoWay}"/>
             </StackLayout>
 
             <ListView x:Name="lstVwImagesToAdd"
                       ItemsSource="{Binding NewImages, Mode=TwoWay}"
+                      SelectionMode="None"
                       Grid.Row="3"
-                      Grid.Column="0">
+                      Grid.Column="0"
+                      HorizontalOptions="CenterAndExpand">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

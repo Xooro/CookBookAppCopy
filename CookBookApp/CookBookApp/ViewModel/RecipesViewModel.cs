@@ -18,7 +18,6 @@ namespace CookBookApp.ViewModels
         public ObservableCollection<Recipe> Recipes { get; set; }
         public ObservableCollection<Language> Languages { get; set; }
         public ObservableCollection<RecipeCategoryNames> RecipeCategoryNames { get; set; }
-        public Recipe SelectedRecipe { get; set; }
 
         public string Message { get; set; }
         public string SearchQuery { get; set; }

@@ -50,7 +50,7 @@
                        HorizontalOptions="Center"/>
             </StackLayout>
             
-            <Label Text="{x:Static resources:AppResources.CONS_SuccessfulUpload}"
+            <Label Text="{Binding UploadMessage}"
                    Grid.Row="0"
                    Grid.Column="0"
                    Grid.ColumnSpan="4"
@@ -58,23 +58,32 @@
                    IsVisible="{Binding IsUploadSuccessful}"/>
             <Frame
                 Grid.Row="5"
-                 Grid.Column="0">
+                 Grid.Column="0"
+                IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}">
                 <Button Text="{x:Static resources:AppResources.CONS_Back}"
                     x:Name="btnBack"
-                    Clicked="btnBack_Clicked"
-                    IsVisible="{Binding IsVisible, Converter={StaticResource InvertedBoolConverter}}"/>
+                    Clicked="btnBack_Clicked"/>
             </Frame>
 
             <Frame
                 Grid.Row="5"
-                Grid.Column="3">
+                Grid.Column="3"
+                IsVisible="{Binding IsUploadSuccessful}">
                 <Button Text="{x:Static resources:AppResources.CONS_ViewRecipe}"
                     x:Name="btnViewRecipe"
                     Clicked="btnViewRecipe_Clicked"
-                    CommandParameter="{Binding NewRecipe}"
-                    IsVisible="{Binding IsUploadSuccessful}"/>
+                    CommandParameter="{Binding NewRecipe}"/>
             </Frame>
-            
+
+            <Frame
+                Grid.Row="5"
+                Grid.Column="3"
+                IsVisible="{Binding IsUploadFailed}">
+                <Button Text="{x:Static resources:AppResources.CONS_RetryAddRecipe}"
+                    x:Name="btnRestartAddRecipe"
+                    Clicked="btnRestartAddRecipe_Clicked"/>
+            </Frame>
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

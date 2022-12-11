@@ -33,5 +33,10 @@ namespace CookBookApp.View
         {
             Navigation.PushAsync(new MenuPage());
         }
+
+        private void btnRestartAddRecipe_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AddRecipe_NamesAndPictures());
+        }
     }
 }

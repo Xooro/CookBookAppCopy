@@ -142,6 +142,42 @@ namespace CookBookApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advanced.
+        /// </summary>
+        public static string CONS_Difficulty_Advanced {
+            get {
+                return ResourceManager.GetString("CONS_Difficulty_Advanced", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beginner.
+        /// </summary>
+        public static string CONS_Difficulty_Beginner {
+            get {
+                return ResourceManager.GetString("CONS_Difficulty_Beginner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Intermediate.
+        /// </summary>
+        public static string CONS_Difficulty_Intermediate {
+            get {
+                return ResourceManager.GetString("CONS_Difficulty_Intermediate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uploading failed.
+        /// </summary>
+        public static string CONS_FailedUpload {
+            get {
+                return ResourceManager.GetString("CONS_FailedUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
         public static string CONS_Forward {
@@ -246,6 +282,15 @@ namespace CookBookApp.Resources {
         public static string CONS_Preparation {
             get {
                 return ResourceManager.GetString("CONS_Preparation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Retry from the start.
+        /// </summary>
+        public static string CONS_RetryAddRecipe {
+            get {
+                return ResourceManager.GetString("CONS_RetryAddRecipe", resourceCulture);
             }
         }
         
