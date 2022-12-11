@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CookBookApp.View.ViewRecipePage"
              xmlns:resources="clr-namespace:CookBookApp.Resources"
+             xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
              Background="lightblue"
              Padding="20">
     <ContentPage.Resources>
@@ -39,7 +40,15 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
+            <Picker ItemsSource="{Binding Recipe.Languages}"
+                    ItemDisplayBinding="{Binding LanguageName}"
+                    SelectedItem="{Binding SelectedLanguage}">
+                <Picker.Behaviors>
+                    <toolkit:EventToCommandBehavior
+                        EventName="SelectedIndexChanged"
+                        Command="{Binding ChangeLocalizationCommand}"/>
+                </Picker.Behaviors>
+            </Picker>
             <Label Text="{Binding Recipe.LocalizedRecipe.RecipeName}"
                    Grid.Row="0"
                    Grid.Column="0"

@@ -15,24 +15,23 @@ namespace CookBookApp.ViewModel
 {
     public class EditRecipeViewModel : BaseViewModel
     {
-        RecipeCategoriesService recipeCategoriesService;
-        RecipeService recipeService;
-        public UserSettingsManager UserSettingsManager;
-
-
         public string[] Difficulties { get; set; }
         public string[] Prices { get; set; }
         public bool IsBusy { get; set; }
         public Recipe Recipe { get; set; }
         public Language UserLanguage { get; set; }
+        public ObservableCollection<RecipeCategoryNames> RecipeCategoryNames { get; set; }
+        public ObservableCollection<Language> Languages { get; set; }
+        public RelayCommand DeleteRecipeCommand { get; set; }
+        public RelayCommand UpdateRecipeCommand { get; set; }
+
 
         int isBusyCounter;
 
-        public ObservableCollection<RecipeCategoryNames> RecipeCategoryNames { get; set; }
-        public ObservableCollection<Language> Languages { get; set; }
 
-        public RelayCommand DeleteRecipeCommand { get; set; }
-        public RelayCommand UpdateRecipeCommand { get; set; }
+        RecipeCategoriesService recipeCategoriesService;
+        RecipeService recipeService;
+        public UserSettingsManager UserSettingsManager;
 
 
         public EditRecipeViewModel(Recipe recipe)
@@ -69,6 +68,16 @@ namespace CookBookApp.ViewModel
             });
 
         }
+        async void deleteRecipe()
+        {
+            await recipeService.deleteRecipeAsync(Recipe);
+        }
+
+        async void updateRecipe()
+        {
+            await recipeService.updateRecipe(Recipe);
+        }
+
         void setIsBusy(bool toTrue)
         {
             if (toTrue)
@@ -80,16 +89,6 @@ namespace CookBookApp.ViewModel
                 IsBusy = true;
             else
                 IsBusy = false;
-        }
-
-        async void deleteRecipe()
-        {
-            await recipeService.deleteRecipeAsync(Recipe);
-        }
-
-        async void updateRecipe()
-        {
-            await recipeService.updateRecipe(Recipe);
         }
     }
 }
