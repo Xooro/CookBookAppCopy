@@ -1,6 +1,9 @@
-﻿using CookBookApp.Data;
+﻿using Android.OS;
+using Android.Service.Autofill;
+using CookBookApp.Data;
 using CookBookApp.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -233,6 +236,26 @@ namespace CookBookApp.Models.Services
             }
 
             return await Task.FromResult(isDeleted);
+        }
+
+        //Lefrissíti az adatbázist
+        public async Task<bool> updateRecipe(Recipe newRecipe)
+        {
+            bool isUpdated = false;
+            try
+            {
+                //var recipeToUpdate = _context.Recipe.FirstOrDefault(r=>r.ID == newRecipe.ID);
+                //recipeToUpdate.Author = newRecipe.Author;
+                _context.Recipe.Update(newRecipe);
+                await _context.SaveChangesAsync();
+                isUpdated = true;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
+            return await Task.FromResult(isUpdated);
         }
     }
 }

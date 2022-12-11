@@ -40,7 +40,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Text="{Binding EditedRecipe.LocalizedRecipe.RecipeName}"
+            <Label Text="{Binding Recipe.LocalizedRecipe.RecipeName}"
                    Grid.Row="0"
                    Grid.Column="0"
                    Grid.ColumnSpan="4"
@@ -67,7 +67,8 @@
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill">
 
-                <Button Text="{x:Static resources:AppResources.EditRecipe_bttnSave}"/>
+                <Button Text="{x:Static resources:AppResources.EditRecipe_bttnSave}"
+                        Command="{Binding UpdateRecipeCommand}"/>
             </Frame>
             <ScrollView
                 Grid.Row="1"
@@ -85,7 +86,7 @@
                         HeightRequest="0">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Image Source="{Binding EditedRecipe.Images.ImageSource}"/>
+                                    <Image Source="{Binding Recipe.Images.ImageSource}"/>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
@@ -134,7 +135,7 @@
                                 Margin="0,0,0,10">
                                 <Label Text="{x:Static resources:AppResources.CONS_lblAuthor}"
                                        FontAttributes="Bold"/>
-                                <Entry Text="{Binding EditedRecipe.Author}"/>
+                                <Entry Text="{Binding Recipe.Author}"/>
                             </StackLayout>
                             <StackLayout
                                    Grid.Row="1"
@@ -143,7 +144,7 @@
                                        FontAttributes="Bold"/>
                                 <Picker
                                     ItemsSource="{Binding Prices}"
-                                    SelectedItem="{Binding EditedRecipe.LocalizedPrice}"/>
+                                    SelectedIndex="{Binding Recipe.Price}"/>
                             </StackLayout>
                             <StackLayout
                                    Grid.Row="1"
@@ -151,7 +152,7 @@
                                 <Label Text="{x:Static resources:AppResources.CONS_lblPortion}"
                                        FontAttributes="Bold"/>
 
-                                <Entry Text="{Binding EditedRecipe.Portion}"/>
+                                <Entry Text="{Binding Recipe.Portion}"/>
                             </StackLayout>
                             <StackLayout
                                    Grid.Row="2"
@@ -160,21 +161,21 @@
                                        FontAttributes="Bold"/>
                                 <Picker 
                                     ItemsSource="{Binding Difficulties}"
-                                    SelectedItem="{Binding EditedRecipe.LocalizedDifficulty}"/>
+                                    SelectedIndex="{Binding Recipe.Difficulty}"/>
                             </StackLayout>
                             <StackLayout 
                                    Grid.Row="2"
                                    Grid.Column="1" >
                                 <Label Text="{x:Static resources:AppResources.CONS_lblPreparationTime}"
                                        FontAttributes="Bold"/>
-                                <Entry Text="{Binding EditedRecipe.PreparationTime}"/>
+                                <Entry Text="{Binding Recipe.PreparationTime}"/>
                             </StackLayout>
                             <StackLayout
                                    Grid.Row="2"
                                    Grid.Column="2">
                                 <Label Text="{x:Static resources:AppResources.CONS_lblCreationDate}"
                                        FontAttributes="Bold"/>
-                                <Entry Text="{Binding EditedRecipe.CreationDate}"/>
+                                <Entry Text="{Binding Recipe.CreationDate}"/>
                             </StackLayout>
 
                         </Grid>
@@ -191,7 +192,7 @@
                                    FontAttributes="Bold"
                                    Grid.Column="0"
                                    Grid.Row="0"/>
-                            <Editor Text="{Binding EditedRecipe.LocalizedRecipe.Ingredients}"
+                            <Editor Text="{Binding Recipe.LocalizedRecipe.Ingredients}"
                                     Grid.Column="0"
                                     Grid.Row="1"/>
                             <Label Text="{x:Static resources:AppResources.CONS_Preparation}"
@@ -199,7 +200,7 @@
                                    FontAttributes="Bold"
                                    Grid.Column="1"
                                    Grid.Row="0"/>
-                            <Editor Text="{Binding EditedRecipe.LocalizedRecipe.Preparation}"
+                            <Editor Text="{Binding Recipe.LocalizedRecipe.Preparation}"
                                     Grid.Column="1"
                                     Grid.Row="1"/>
                         </Grid>

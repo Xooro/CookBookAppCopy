@@ -23,8 +23,7 @@ namespace CookBookApp.ViewModel
         public string[] Difficulties { get; set; }
         public string[] Prices { get; set; }
         public bool IsBusy { get; set; }
-        public Recipe OriginalRecipe { get; set; }
-        public Recipe EditedRecipe { get; set; }
+        public Recipe Recipe { get; set; }
         public Language UserLanguage { get; set; }
 
         int isBusyCounter;
@@ -33,6 +32,7 @@ namespace CookBookApp.ViewModel
         public ObservableCollection<Language> Languages { get; set; }
 
         public RelayCommand DeleteRecipeCommand { get; set; }
+        public RelayCommand UpdateRecipeCommand { get; set; }
 
 
         public EditRecipeViewModel(Recipe recipe)
@@ -43,8 +43,7 @@ namespace CookBookApp.ViewModel
             recipeService = new RecipeService();
             UserSettingsManager = new UserSettingsManager();
 
-            OriginalRecipe = recipe;
-            EditedRecipe= recipe;
+            Recipe = recipe;
 
             UserLanguage = UserSettingsManager.getLanguage();
             Difficulties = LocalizedConstants.getDifficulties();
@@ -54,6 +53,7 @@ namespace CookBookApp.ViewModel
             loadRecipeCategories();
 
             DeleteRecipeCommand = new RelayCommand(deleteRecipe);
+            UpdateRecipeCommand = new RelayCommand(updateRecipe);
         }
         void loadRecipeCategories()
         {
@@ -61,7 +61,7 @@ namespace CookBookApp.ViewModel
             Task.Run(async () =>
             {
                 var recipeCategoryNames = await recipeCategoriesService.getLocalizedRecipeCategoriesAsync(UserLanguage);
-                var recipeCategoryIDs = OriginalRecipe.Categories.Select(rc => rc.CategoryNameID).ToArray();
+                var recipeCategoryIDs = Recipe.Categories.Select(rc => rc.CategoryNameID).ToArray();
                 recipeCategoryNames.Select(rcn => { if (recipeCategoryIDs.Contains(rcn.CategoryNameID)) rcn.IsChecked = true; return rcn; }).ToList();
 
                 RecipeCategoryNames = new ObservableCollection<RecipeCategoryNames>(recipeCategoryNames);
@@ -84,7 +84,12 @@ namespace CookBookApp.ViewModel
 
         async void deleteRecipe()
         {
-            await recipeService.deleteJoinedRecipeAsync(OriginalRecipe);
+            await recipeService.deleteRecipeAsync(Recipe);
+        }
+
+        async void updateRecipe()
+        {
+            await recipeService.updateRecipe(Recipe);
         }
     }
 }
