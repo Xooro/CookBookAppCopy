@@ -13,12 +13,12 @@ using Xamarin.Forms.Xaml;
 namespace CookBookApp.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddRecipe_UploadPage : ContentPage
+    public partial class _AddOrEditRecipePage : ContentPage
     {
-        public AddRecipe_UploadPage(Recipe newRecipe)
+        public _AddOrEditRecipePage(Recipe recipe)
         {
             InitializeComponent();
-            BindingContext = new AddRecipe_UploadRecipeViewModel(newRecipe);
+            BindingContext = new _AddOrEditRecipeViewModel(recipe);
         }
 
         private void btnViewRecipe_Clicked(object sender, EventArgs e)

@@ -22,24 +22,18 @@ namespace CookBookApp.ViewModel
         public Language UserLanguage { get; set; }
         public ObservableCollection<RecipeCategoryNames> RecipeCategoryNames { get; set; }
         public ObservableCollection<Language> Languages { get; set; }
-        public RelayCommand DeleteRecipeCommand { get; set; }
-        public RelayCommand UpdateRecipeCommand { get; set; }
-
+        public RelayCommand CategoryChangedCommand { get; set; }
 
         int isBusyCounter;
 
-
         RecipeCategoriesService recipeCategoriesService;
-        RecipeService recipeService;
         public UserSettingsManager UserSettingsManager;
-
 
         public EditRecipeViewModel(Recipe recipe)
         {
 
             isBusyCounter = 0;
             recipeCategoriesService = new RecipeCategoriesService();
-            recipeService = new RecipeService();
             UserSettingsManager = new UserSettingsManager();
 
             Recipe = recipe;
@@ -48,11 +42,9 @@ namespace CookBookApp.ViewModel
             Difficulties = LocalizedConstants.getDifficulties();
             Prices = LocalizedConstants.getPrices();
 
-
             loadRecipeCategories();
 
-            DeleteRecipeCommand = new RelayCommand(deleteRecipe);
-            UpdateRecipeCommand = new RelayCommand(updateRecipe);
+            CategoryChangedCommand = new RelayCommand(changeCategories);
         }
         void loadRecipeCategories()
         {
@@ -68,14 +60,17 @@ namespace CookBookApp.ViewModel
             });
 
         }
-        async void deleteRecipe()
-        {
-            await recipeService.deleteRecipeAsync(Recipe);
-        }
 
-        async void updateRecipe()
+        void changeCategories()
         {
-            await recipeService.updateRecipe(Recipe);
+            var categoryNames = RecipeCategoryNames.Where(rcn => rcn.IsChecked).ToList();
+            Recipe.Categories = categoryNames.Select(cn => {
+                return new RecipeCategories
+                {
+                    CategoryNameID = cn.CategoryNameID,
+                    RecipeID = Recipe.ID
+                };
+            }).ToList();
         }
 
         void setIsBusy(bool toTrue)

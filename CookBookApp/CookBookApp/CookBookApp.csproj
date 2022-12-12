@@ -48,6 +48,9 @@
     <Compile Update="View\AddRecipe_AllergensAndCategoriesPage.xaml.cs">
       <DependentUpon>AddRecipe_AllergensAndCategoriesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="View\_AddOrEditRecipePage.xaml.cs">
+      <DependentUpon>_AddOrEditRecipePage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="View\EditRecipePage.xaml.cs">
       <DependentUpon>EditRecipePage.xaml</DependentUpon>
     </Compile>
@@ -83,7 +86,7 @@
     <EmbeddedResource Update="View\AddRecipe_AllergensAndCategoriesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\AddRecipe_UploadPage.xaml">
+    <EmbeddedResource Update="View\_AddOrEditRecipePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\EditRecipePage.xaml">

@@ -1,10 +1,6 @@
 ﻿using CookBookApp.Models;
 using CookBookApp.ViewModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -18,6 +14,14 @@ namespace CookBookApp.View
         {
             InitializeComponent();
             BindingContext = new AddLocalizationViewModel(recipe);
+        }
+
+        private void btnBackPage_Clicked(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            Recipe recipe = (Recipe)button.CommandParameter;
+
+            Navigation.PushAsync(new ViewRecipePage(recipe));
         }
     }
 }

@@ -169,6 +169,15 @@ namespace CookBookApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed update.
+        /// </summary>
+        public static string CONS_FailedUpdate {
+            get {
+                return ResourceManager.GetString("CONS_FailedUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uploading failed.
         /// </summary>
         public static string CONS_FailedUpload {
@@ -318,6 +327,15 @@ namespace CookBookApp.Resources {
         public static string CONS_RetryAddRecipe {
             get {
                 return ResourceManager.GetString("CONS_RetryAddRecipe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successful update.
+        /// </summary>
+        public static string CONS_SuccessfulUpdate {
+            get {
+                return ResourceManager.GetString("CONS_SuccessfulUpdate", resourceCulture);
             }
         }
         

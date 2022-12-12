@@ -1,13 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
              x:Class="CookBookApp.View.AddLocalizationPage">
     <ContentPage.Content>
         <StackLayout>
 
             <Picker ItemsSource="{Binding Languages}"
                     SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
-                    ItemDisplayBinding="{Binding LanguageName}"/>
+                    ItemDisplayBinding="{Binding LanguageName}">
+                <Picker.Behaviors>
+                    <toolkit:EventToCommandBehavior
+                        EventName="SelectedIndexChanged"
+                        Command="{Binding ChangeLocLangCommand}"/>
+                </Picker.Behaviors>
+            </Picker>
+            
             <Label Text="Allergens"/>
             <Entry Placeholder="Recipe Name..."
                    Text="{Binding RecipeLocalization.RecipeName}"/>
@@ -15,11 +23,19 @@
             <Entry Placeholder="Allergens..."
                    Text="{Binding RecipeLocalization.Allergens}"/>
             <Label Text="Ingredients"/>
-            <Editor Placeholder="Allergens..."
+            <Editor Placeholder="Ingredients..."
                    Text="{Binding RecipeLocalization.Ingredients}"/>
             <Label Text="Preparation"/>
-            <Editor Placeholder="Allergens..."
+            <Editor Placeholder="Peraparation..."
                    Text="{Binding RecipeLocalization.Preparation}"/>
+
+            <Button x:Name="btnUploadLocalization"
+                    Text="Upload"
+                    Command="{Binding UploadLocalizationCommand}"/>
+            <Button x:Name="btnBackPage"
+                    Text="Back"
+                    Clicked="btnBackPage_Clicked"
+                    CommandParameter="{Binding Recipe}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:resources="clr-namespace:CookBookApp.Resources"
-             x:Class="CookBookApp.View.AddRecipe_UploadPage"
+             x:Class="CookBookApp.View._AddOrEditRecipePage"
              Background="lightblue">
 
     <ContentPage.Resources>
@@ -72,7 +72,7 @@
                 <Button Text="{x:Static resources:AppResources.CONS_ViewRecipe}"
                     x:Name="btnViewRecipe"
                     Clicked="btnViewRecipe_Clicked"
-                    CommandParameter="{Binding NewRecipe}"/>
+                    CommandParameter="{Binding Recipe}"/>
             </Frame>
 
             <Frame

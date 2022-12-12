@@ -153,6 +153,9 @@
   <data name="CONS_Difficulty_Intermediate" xml:space="preserve">
     <value>Intermediate</value>
   </data>
+  <data name="CONS_FailedUpdate" xml:space="preserve">
+    <value>Failed update</value>
+  </data>
   <data name="CONS_FailedUpload" xml:space="preserve">
     <value>Uploading failed</value>
   </data>
@@ -203,6 +206,9 @@
   </data>
   <data name="CONS_RetryAddRecipe" xml:space="preserve">
     <value>Retry from the start</value>
+  </data>
+  <data name="CONS_SuccessfulUpdate" xml:space="preserve">
+    <value>Successful update</value>
   </data>
   <data name="CONS_SuccessfulUpload" xml:space="preserve">
     <value>Successfuly uploaded</value>

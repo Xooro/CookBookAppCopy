@@ -44,13 +44,16 @@
             <Picker x:Name="pckrLocalizationLanguage"
                     ItemsSource="{Binding Recipe.Languages, Mode=OneTime}"
                     ItemDisplayBinding="{Binding LanguageName}"
-                    SelectedItem="{Binding SelectedLanguage}">
+                    SelectedItem="{Binding SelectedLanguage}"
+                    Grid.Row="0"
+                    Grid.Column="3">
                 <Picker.Behaviors>
                     <toolkit:EventToCommandBehavior
                         EventName="SelectedIndexChanged"
                         Command="{Binding ChangeLocalizationCommand}"/>
                 </Picker.Behaviors>
             </Picker>
+            
             <Button x:Name="bttnAddLocalization" 
                     Text="AddLocalization"
                     Clicked="bttnLocalizaton_Clicked"
@@ -70,7 +73,10 @@
                 Margin="5"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill">
-                <Button Text="{x:Static resources:AppResources.viewRecipes_bttnDelete}"/>
+                <Button x:Name="btnDeleteRecipe"
+                        Text="{x:Static resources:AppResources.viewRecipes_bttnDelete}"
+                        Command="{Binding DeleteRecipeCommand}"
+                        Clicked="btnBack_Clicked"/>
             </Frame>
             
             <Frame
@@ -228,8 +234,9 @@
                     Margin="5"
                     HorizontalOptions="Fill"
                     VerticalOptions="Fill">
-                <Button x:Name="bttnBack"
-                    Text="{x:Static resources:AppResources.CONS_Back}"/>
+                <Button x:Name="btnBack"
+                        Text="{x:Static resources:AppResources.CONS_Back}"
+                        Clicked="btnBack_Clicked"/>
             </Frame>
 
         </Grid>

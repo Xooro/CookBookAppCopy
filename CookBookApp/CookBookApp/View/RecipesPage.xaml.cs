@@ -23,7 +23,7 @@ namespace CookBookApp.Views
 
         private void bttnBackPage_Clicked(object sender, EventArgs e)
         {
-            Navigation.PopAsync();
+            Navigation.PushAsync(new MenuPage());
         }
         private void bttnViewRecipe_Clicked(object sender, EventArgs e)
         {

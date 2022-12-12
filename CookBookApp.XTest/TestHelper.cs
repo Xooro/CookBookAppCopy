@@ -12,7 +12,18 @@ namespace CookBookApp.XTest
 {
     public class TestHelper
     {
-        public static RecipeContext getFilledRecipeContext()
+        public static RecipeContext getEmptyMemoryRecipeContext()
+        {
+            var conn = new SqliteConnection("DataSource=:memory:");
+            conn.Open(); // open connection to use
+            var options = new DbContextOptionsBuilder<RecipeContext>()
+               .UseSqlite(conn)
+               .Options;
+            RecipeContext testContext = new RecipeContext(options);
+
+            return testContext;
+        }
+        public static RecipeContext getFilledMemoryRecipeContext()
         {
             var conn = new SqliteConnection("DataSource=:memory:");
             conn.Open(); // open connection to use

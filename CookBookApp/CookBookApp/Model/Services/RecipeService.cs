@@ -46,7 +46,7 @@ namespace CookBookApp.Models.Services
 
 
         //egy összekapcsolt, id nélküli receptet feltölt, majd feltölti az adatait az új id-vel
-        public async Task<bool> uploadJoinedRecipeWithoutID(Recipe joinedRecipe)
+        public async Task<bool> uploadJoinedRecipeWithoutIDAsync(Recipe joinedRecipe)
         {
             bool isUploaded = false;
             try
@@ -209,13 +209,59 @@ namespace CookBookApp.Models.Services
         }
 
         //Lefrissíti az adatbázist
-        public async Task<bool> updateRecipe(Recipe newRecipe)
+        public async Task<bool> updateLocalizedRecipeAsync(Recipe localizedRecipeToUpdate)
         {
             bool isUpdated = false;
             try
             {
-                _context.Recipe.Update(newRecipe);
+                await updateRecipeCategoriesInContextAsync(localizedRecipeToUpdate.Categories);
+                await updateRecipeImagesInContextAsync(localizedRecipeToUpdate.Images);
+                _context.RecipeLocalization.Update(localizedRecipeToUpdate.LocalizedRecipe);
+                _context.Recipe.Update(localizedRecipeToUpdate);
+
                 await _context.SaveChangesAsync();
+                isUpdated = true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return await Task.FromResult(isUpdated);
+        }
+
+        async Task<bool> updateRecipeCategoriesInContextAsync(List<RecipeCategories> categories)
+        {
+            bool isUpdated = false;
+            try
+            {
+                int recipeID = categories.First().RecipeID;
+                var categoriesInContext = _context.RecipeCategories.ToList().Where(rc => rc.RecipeID == recipeID).ToList();
+                
+                _context.RemoveRange(categoriesInContext);
+                _context.AddRange(categories);  
+
+                isUpdated = true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return await Task.FromResult(isUpdated);
+        }
+
+        async Task<bool> updateRecipeImagesInContextAsync(List<RecipeImage> images)
+        {
+            bool isUpdated = false;
+            try
+            {
+                int recipeID = images.First().RecipeID;
+                var imagesInContext = _context.RecipeImage.ToList().Where(ri => ri.RecipeID == recipeID);
+
+                _context.RemoveRange(imagesInContext);
+                _context.AddRange(images);
+
                 isUpdated = true;
             }
             catch (Exception ex)

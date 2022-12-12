@@ -150,6 +150,9 @@
   <data name="CONS_Difficulty_Intermediate" xml:space="preserve">
     <value>Középhaladó</value>
   </data>
+  <data name="CONS_FailedUpdate" xml:space="preserve">
+    <value>Sikertelen frissítés</value>
+  </data>
   <data name="CONS_FailedUpload" xml:space="preserve">
     <value>Feltöltés sikertelen</value>
   </data>
@@ -200,6 +203,9 @@
   </data>
   <data name="CONS_RetryAddRecipe" xml:space="preserve">
     <value>Újrapróbálkozás az elejéről</value>
+  </data>
+  <data name="CONS_SuccessfulUpdate" xml:space="preserve">
+    <value>Sikeres frissítés</value>
   </data>
   <data name="CONS_SuccessfulUpload" xml:space="preserve">
     <value>Sikeresen feltöltve</value>

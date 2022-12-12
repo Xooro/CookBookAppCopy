@@ -29,7 +29,7 @@ namespace CookBookApp.View
             var button = (Button)sender;
             Recipe newRecipe = (Recipe)button.CommandParameter;
 
-            Navigation.PushAsync(new AddRecipe_UploadPage(newRecipe));
+            Navigation.PushAsync(new _AddOrEditRecipePage(newRecipe));
         }
     }
 }

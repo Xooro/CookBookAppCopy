@@ -3,15 +3,12 @@ using CookBookApp.Models;
 using CookBookApp.Models.Services;
 using CookBookApp.Resources;
 using CookBookApp.ViewModels.Base;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace CookBookApp.ViewModel
 {
-    public class AddRecipe_UploadRecipeViewModel : BaseViewModel
+    public class _AddOrEditRecipeViewModel : BaseViewModel
     {
         public bool IsBusy { get; set; }
         public bool IsUploadSuccessful { get; set; }
@@ -19,13 +16,14 @@ namespace CookBookApp.ViewModel
         public string UploadMessage { get; set; }
         public string UserName { get; set; }
         public Language UserLanguage { get; set; }
-        public Recipe NewRecipe { get; set; }
+        public Recipe Recipe { get; set; }
+        bool isNew;
 
         UserSettingsManager userSettingsManager;
         RecipeService recipeService;
 
         int isBusyCounter;
-        public AddRecipe_UploadRecipeViewModel(Recipe newRecipe)
+        public _AddOrEditRecipeViewModel(Recipe recipe)
         {
             userSettingsManager = new UserSettingsManager();
             recipeService = new RecipeService();
@@ -35,8 +33,13 @@ namespace CookBookApp.ViewModel
 
             isBusyCounter = 0;
 
-            NewRecipe = newRecipe;
-            uploadRecipe();
+            Recipe = recipe;
+            isNew = recipe.ID == 0;
+
+            if (isNew)
+                uploadRecipe();
+            else
+                updateRecipe();
         }
 
         void uploadRecipe()
@@ -45,7 +48,7 @@ namespace CookBookApp.ViewModel
             Task.Run(async () =>
             {
                 Thread.Sleep(2000);
-                bool uploadSuccess = await recipeService.uploadJoinedRecipeWithoutID(NewRecipe);
+                bool uploadSuccess = await recipeService.uploadJoinedRecipeWithoutIDAsync(Recipe);
                 if (uploadSuccess)
                 {
                     IsUploadSuccessful = true;
@@ -57,14 +60,37 @@ namespace CookBookApp.ViewModel
                     UploadMessage = AppResources.CONS_FailedUpload;
                 }
                     
-                updateRecipe();
+                refreshRecipe();
                 setIsBusy(false);
             });
         }
 
         void updateRecipe()
         {
-            NewRecipe = recipeService.getLocalizedRecipeByRecipe(NewRecipe, UserLanguage.ID);
+            setIsBusy(true);
+            Task.Run(async () =>
+            {
+                Thread.Sleep(2000);
+                bool uploadSuccess = await recipeService.updateLocalizedRecipeAsync(Recipe);
+                if (uploadSuccess)
+                {
+                    IsUploadSuccessful = true;
+                    UploadMessage = AppResources.CONS_SuccessfulUpdate;
+                }
+                else
+                {
+                    IsUploadFailed = true;
+                    UploadMessage = AppResources.CONS_FailedUpdate;
+                }
+
+                refreshRecipe();
+                setIsBusy(false);
+            });
+        }
+
+        void refreshRecipe()
+        {
+            Recipe = recipeService.getLocalizedRecipeByRecipe(Recipe, UserLanguage.ID);
         }
 
         void setIsBusy(bool toTrue)

@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
              x:Class="CookBookApp.View.EditRecipePage"
              xmlns:resources="clr-namespace:CookBookApp.Resources"
              Background="lightblue"
@@ -50,25 +51,16 @@
                    TextDecorations="Underline"/>
             <Frame
                 Grid.Row="2"
-                Grid.Column="2"
-                Padding="0"
-                Margin="5"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill">
-                <Button Text="{x:Static resources:AppResources.viewRecipes_bttnDelete}"
-                        Clicked="bttnDeleteRecipe_Clicked"/>
-                <!--Command="{Binding DeleteRecipeCommand}"-->
-            </Frame>
-            <Frame
-                Grid.Row="2"
                 Grid.Column="3"
                 Padding="0"
                 Margin="5"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill">
 
-                <Button Text="{x:Static resources:AppResources.EditRecipe_bttnSave}"
-                        Command="{Binding UpdateRecipeCommand}"/>
+                <Button x:Name="btnEditRecipe"
+                        Text="{x:Static resources:AppResources.EditRecipe_bttnSave}"
+                        Clicked="btnEditRecipe_Clicked"
+                        CommandParameter="{Binding Recipe}"/>
             </Frame>
             <ScrollView
                 Grid.Row="1"
@@ -91,6 +83,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </Frame>
+                    
                     <Frame
                            Grid.Row="1"
                             Grid.Column="0">
@@ -98,7 +91,7 @@
                             <Label Text="{x:Static resources:AppResources.CONS_lblCategories}"
                                    FontSize="Large"
                                    FontAttributes="Bold"/>
-                            <CollectionView 
+                            <CollectionView x:Name="clctnVwCategoryNames"
                                 ItemsSource="{Binding RecipeCategoryNames, Mode=TwoWay}"
                                 ItemsLayout="VerticalGrid, 3"
                                 ItemSizingStrategy="MeasureFirstItem"
@@ -108,7 +101,13 @@
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <StackLayout Orientation="Horizontal">
-                                            <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
+                                            <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}">
+                                                <CheckBox.Behaviors>
+                                                    <toolkit:EventToCommandBehavior
+                                                        EventName="CheckedChanged"
+                                                        Command="{Binding BindingContext.CategoryChangedCommand, Source={x:Reference clctnVwCategoryNames}}"/>
+                                                </CheckBox.Behaviors>
+                                            </CheckBox>
                                             <Label Text="{Binding CategoryName}"
                                                    VerticalOptions="Center"/>
                                         </StackLayout>
@@ -117,6 +116,7 @@
                             </CollectionView>
                         </StackLayout>
                     </Frame>
+                    
                     <Frame
                            Grid.Row="2"
                            Grid.Column="0">
@@ -180,6 +180,7 @@
 
                         </Grid>
                     </Frame>
+                   
                     <Frame
                         Grid.Row="3">
                         <Grid>

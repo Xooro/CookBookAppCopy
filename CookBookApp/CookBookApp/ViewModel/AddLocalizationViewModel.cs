@@ -4,6 +4,7 @@ using CookBookApp.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,28 +12,71 @@ namespace CookBookApp.ViewModel
 {
     public class AddLocalizationViewModel : BaseViewModel
     {
-        public Language SelectedLanguage { get; set; }
-        public RecipeLocalization Localization { get; set; }
+        Language selectedLanguage;
+        public Language SelectedLanguage {
+            get 
+            { 
+                return selectedLanguage;
+            } 
+            set {
+                if (value == null)
+                    selectedLanguage = new Language();
+                else
+                    selectedLanguage = value;
+            }}
+        public RecipeLocalization RecipeLocalization { get; set; }
         public ObservableCollection<Language> Languages { get; set; }
+        public Recipe Recipe { get; set; }
+        public RelayCommand ChangeLocLangCommand { get; set; }
+        public RelayCommand UploadLocalizationCommand { get; set; }
 
-        
+        RecipeService recipeService;
         LanguageService languageService;
 
         public AddLocalizationViewModel(Recipe recipe)
         {
+            recipeService = new RecipeService();
             languageService = new LanguageService();
-            Localization = new RecipeLocalization { RecipeID = recipe.ID};
+
+            Recipe = recipe;
+            RecipeLocalization = new RecipeLocalization { RecipeID = Recipe.ID};
 
             loadLanguages();
+
+            ChangeLocLangCommand = new RelayCommand(changeLocalizationLanguage);
+            UploadLocalizationCommand = new RelayCommand(uploadLocalization);
         }
 
         void loadLanguages()
         {
-            Task.Run(async () => { 
-                Languages = new ObservableCollection<Language>(await languageService.getLanguagesAsync());
+            Task.Run(async () => {
+                var languages = await languageService.getLanguagesAsync();
+                var languageIDs = Recipe.Languages.Select(rl => rl.ID).ToArray();
+                languages = languages.Where(l => !languageIDs.Contains(l.ID)).ToList();
+                
+                Languages = new ObservableCollection<Language>(languages);
+                SelectedLanguage = Languages.First();
             });
-            
+        }
 
+        void changeLocalizationLanguage()
+        {
+            RecipeLocalization.LanguageID = SelectedLanguage.ID;
+        }
+
+        async void uploadLocalization()
+        {
+            bool isUploaded = recipeService.addRecipeLocalization(RecipeLocalization);
+            if (isUploaded)
+                await App.Current.MainPage.DisplayAlert("Message", "Successful upload", "OK");
+            else
+                await App.Current.MainPage.DisplayAlert("Message", "Failed upload", "OK");
+            refreshPage();
+        }
+        void refreshPage()
+        {
+            Recipe = recipeService.getLocalizedRecipeByRecipe(Recipe, Recipe.LocalizedRecipe.LanguageID);
+            loadLanguages();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CookBookApp.Models;
 using CookBookApp.ViewModel;
+using CookBookApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,11 @@ namespace CookBookApp.View
             Recipe recipe = (Recipe)button.CommandParameter;
 
             Navigation.PushAsync(new AddLocalizationPage(recipe));
+        }
+
+        private void btnBack_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new RecipesPage());
         }
     }
 }

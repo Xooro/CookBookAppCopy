@@ -20,9 +20,12 @@ namespace CookBookApp.View
             Navigation.PopAsync();
         }
 
-        private void bttnDeleteRecipe_Clicked(object sender, EventArgs e)
+        private void btnEditRecipe_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new RecipesPage());
+            var button = (Button)sender;
+            Recipe recipe = (Recipe)button.CommandParameter;
+
+            Navigation.PushAsync(new _AddOrEditRecipePage(recipe));
         }
     }
 }
