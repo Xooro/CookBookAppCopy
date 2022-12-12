@@ -11,21 +11,16 @@
             <xct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
         </ResourceDictionary>
         <Style TargetType="Label">
-            <Setter Property="TextColor" Value ="Black"/>
             <Setter Property="FontSize" Value="Large"/>
             <Setter Property="FontAttributes" Value="Bold"/>
         </Style>
         <Style TargetType="Button">
-            <Setter Property="TextColor" Value ="Black"/>
-            <Setter Property="Background" Value="#FFFDD0"/>
             <Setter Property="VerticalOptions" Value="Fill"/>
             <Setter Property="HorizontalOptions" Value="Fill"/>
         </Style>
         <Style TargetType="Frame">
-            <Setter Property="BorderColor" Value="Black"/>
             <Setter Property="Padding" Value="0"/>
             <Setter Property="Margin" Value="5"/>
-            <Setter Property="Background" Value="aliceblue"/>
         </Style>
     </ContentPage.Resources>
 

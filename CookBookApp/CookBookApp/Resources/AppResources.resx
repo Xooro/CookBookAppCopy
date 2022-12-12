@@ -237,6 +237,9 @@
   <data name="menu_lblMenu" xml:space="preserve">
     <value>Main page</value>
   </data>
+  <data name="recipePage_bttnRefreshRecipe" xml:space="preserve">
+    <value>Refresh Recipes</value>
+  </data>
   <data name="recipes_bttnFilter" xml:space="preserve">
     <value>Filter</value>
   </data>

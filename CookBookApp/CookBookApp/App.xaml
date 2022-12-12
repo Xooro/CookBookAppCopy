@@ -19,5 +19,26 @@
         <Style TargetType="ScrollView">
             <Setter Property="VerticalScrollBarVisibility" Value="Never"/>
         </Style>
+        <Style TargetType="CheckBox">
+            <Setter Property="Color" Value="#FFFDD0"/>
+        </Style>
+        <Style TargetType="Entry">
+            <Setter Property="Background" Value="aliceblue"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="PlaceholderColor" Value="Gray"/>
+        </Style>
+        <Style TargetType="Picker">
+            <Setter Property="Background" Value="aliceblue"/>
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+        <Style TargetType="Editor">
+            <Setter Property="Background" Value="Aliceblue"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="PlaceholderColor" Value="Gray"/>
+        </Style>
+        <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+            <Setter Property="BackgroundColor" Value="LightBlue"/>
+            <Setter Property="Padding" Value="20"/>
+        </Style>
     </Application.Resources>
 </Application>

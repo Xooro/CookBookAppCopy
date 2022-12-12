@@ -3,31 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CookBookApp.Views.RecipesPage"
              xmlns:resources="clr-namespace:CookBookApp.Resources"
-             BackgroundColor="lightblue"
-             x:Name="recipePage"
-             Padding="10">
+             x:Name="recipePage">
 
     <ContentPage.Resources>
         <Style TargetType="Label">
-            <Setter Property="TextColor" Value ="Black"/>
             <Setter Property="VerticalOptions" Value="Center"/>
             <Setter Property="HorizontalOptions" Value="Center"/>
         </Style>
-        <Style TargetType="Button">
-            <Setter Property="TextColor" Value ="Black"/>
-            <Setter Property="Background" Value="#FFFDD0"/>
-        </Style>
-        <Style TargetType="ScrollView">
-            <Setter Property="VerticalScrollBarVisibility" Value="Never"/>
-        </Style>
         <Style TargetType="Frame">
-            <Setter Property="BorderColor" Value="Black"/>
             <Setter Property="Padding" Value="0"/>
             <Setter Property="VerticalOptions" Value="Center"/>
             <Setter Property="HorizontalOptions" Value="Center"/>
-        </Style>
-        <Style TargetType="CheckBox">
-            <Setter Property="Color" Value="#FFFDD0"/>
         </Style>
     </ContentPage.Resources>
 
@@ -65,11 +51,11 @@
                                        HorizontalOptions="FillAndExpand"
                                        VerticalOptions="FillAndExpand">
                                     <Grid>
-                                        <Grid.RowDefinitions Height="*"/>
+                                        <Grid.RowDefinitions Height="auto"/>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="3*"/>
                                             <ColumnDefinition Width="2*"/>
-                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
                                         </Grid.ColumnDefinitions>
                                         <Image Source='{Binding Images[0].ImageSource}'
                                                Aspect="AspectFit"
@@ -90,30 +76,30 @@
                                                Grid.Column="1"
                                                Grid.Row="2"
                                                HorizontalOptions="Start"/>
-                                        <Frame
-                                            Grid.Column="2"
-                                            Grid.Row="1"
-                                            BackgroundColor="#FFFDD0">
-                                            <Button Text="View Recipe"
+                                        <Button
                                                    Clicked="bttnViewRecipe_Clicked"
                                                    CommandParameter="{Binding .}"
-                                                Padding="10"/>
-                                        </Frame>
-
-                                        <ListView ItemsSource="{Binding Languages}"
+                                                    Grid.Row="0"
+                                                    Grid.Column="0"
+                                                    Grid.ColumnSpan="4"
+                                                    Grid.RowSpan="3"
+                                                    Background="transparent"/>
+                                            <ListView ItemsSource="{Binding Languages}"
                                                   Grid.Row="0"
                                                   Grid.Column="2"
-                                                  Grid.ColumnSpan="3"
-                                                  HeightRequest="0">
+                                                  Grid.RowSpan="3"
+                                                      Grid.ColumnSpan="2"
+                                                  HeightRequest="15"
+                                                  WidthRequest="15"
+                                                      Margin="0">
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
                                                     <ViewCell>
-                                                        <StackLayout Orientation="Vertical">
-                                                            <Image Source="{Binding ImageSource}"
+                                                        <Image Source="{Binding ImageSource}"
                                                            HeightRequest="15"
                                                            WidthRequest="15"
-                                                           Aspect="AspectFit"/>
-                                                        </StackLayout>
+                                                           Aspect="AspectFit"
+                                                               Margin="3"/>
                                                     </ViewCell>
                                                 </DataTemplate>
                                             </ListView.ItemTemplate>
@@ -200,7 +186,7 @@
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill">
                 <Button x:Name="bttnRefreshRecipes"
-                        Text="Refresh recipes"
+                        Text="{x:Static resources:AppResources.recipePage_bttnRefreshRecipe}"
                         HorizontalOptions="Fill"
                         VerticalOptions="Fill"
                         TextColor="Black"

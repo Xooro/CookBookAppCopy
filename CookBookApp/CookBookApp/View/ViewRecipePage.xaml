@@ -3,28 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CookBookApp.View.ViewRecipePage"
              xmlns:resources="clr-namespace:CookBookApp.Resources"
-             xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
-             Background="lightblue"
-             Padding="20">
+             xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit">
     <ContentPage.Resources>
         <Style TargetType="Label">
-            <Setter Property="TextColor" Value ="Black"/>
             <Setter Property="VerticalOptions" Value="Start"/>
             <Setter Property="HorizontalOptions" Value="Start"/>
         </Style>
         <Style TargetType="Button">
-            <Setter Property="TextColor" Value ="Black"/>
-            <Setter Property="Background" Value="#FFFDD0"/>
             <Setter Property="VerticalOptions" Value="Fill"/>
             <Setter Property="HorizontalOptions" Value="Fill"/>
         </Style>
         <Style TargetType="Frame">
-            <Setter Property="BorderColor" Value="Black"/>
             <Setter Property="Padding" Value="10"/>
-            <Setter Property="Background" Value="aliceblue"/>
-        </Style>
-        <Style TargetType="ScrollView">
-            <Setter Property="VerticalScrollBarVisibility" Value="Never"/>
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -53,18 +43,24 @@
                         Command="{Binding ChangeLocalizationCommand}"/>
                 </Picker.Behaviors>
             </Picker>
-            
-            <Button x:Name="bttnAddLocalization" 
+            <Frame
+                Grid.Row="0"
+                Grid.Column="2"
+                Padding="0">
+                <Button x:Name="bttnAddLocalization" 
                     Text="AddLocalization"
                     Clicked="bttnLocalizaton_Clicked"
                     CommandParameter="{Binding Recipe}"/>
+            </Frame>
+            
             <Label Text="{Binding Recipe.LocalizedRecipe.RecipeName}"
                    Grid.Row="0"
                    Grid.Column="0"
-                   Grid.ColumnSpan="4"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Center"
-                   FontSize="Header"
+                   Grid.ColumnSpan="2"
+                   VerticalOptions="Start"
+                   HorizontalOptions="Start"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
                    TextDecorations="Underline"/>
             <Frame
                 Grid.Row="2"
@@ -237,6 +233,16 @@
                 <Button x:Name="btnBack"
                         Text="{x:Static resources:AppResources.CONS_Back}"
                         Clicked="btnBack_Clicked"/>
+            </Frame>
+            <Frame
+                Grid.Row="2"
+                Grid.Column="1"
+                Padding="0"
+                Margin="5">
+                <Button x:Name="bttnRemoveLocalization" 
+                    Text="Remove Localization"
+                        Margin="0"
+                        Padding="0"/>
             </Frame>
 
         </Grid>

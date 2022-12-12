@@ -2,40 +2,82 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
-             x:Class="CookBookApp.View.AddLocalizationPage">
+             x:Class="CookBookApp.View.AddLocalizationPage"
+             xmlns:resources="clr-namespace:CookBookApp.Resources">
     <ContentPage.Content>
-        <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions Width="*"/>
 
             <Picker ItemsSource="{Binding Languages}"
                     SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
-                    ItemDisplayBinding="{Binding LanguageName}">
+                    ItemDisplayBinding="{Binding LanguageName}"
+                    Grid.Row="0"
+                    Grid.ColumnSpan="4"
+                    Margin="0,10,0,10">
                 <Picker.Behaviors>
                     <toolkit:EventToCommandBehavior
                         EventName="SelectedIndexChanged"
                         Command="{Binding ChangeLocLangCommand}"/>
                 </Picker.Behaviors>
             </Picker>
-            
-            <Label Text="Allergens"/>
-            <Entry Placeholder="Recipe Name..."
+            <StackLayout
+                Grid.Row="1"
+                Grid.ColumnSpan="4">
+                <Label Text="{x:Static resources:AppResources.CONS_lblRecipeName}"/>
+                <Entry Placeholder="{x:Static resources:AppResources.CONS_lblRecipeName}"
                    Text="{Binding RecipeLocalization.RecipeName}"/>
-            <Label Text="Allergens"/>
-            <Entry Placeholder="Allergens..."
+            </StackLayout>
+            <StackLayout
+                Grid.Row="2"
+                Grid.ColumnSpan="4">
+                <Label Text="{x:Static resources:AppResources.CONS_lblAllergens}"/>
+                <Entry Placeholder="{x:Static resources:AppResources.CONS_lblAllergens}"
                    Text="{Binding RecipeLocalization.Allergens}"/>
-            <Label Text="Ingredients"/>
-            <Editor Placeholder="Ingredients..."
-                   Text="{Binding RecipeLocalization.Ingredients}"/>
-            <Label Text="Preparation"/>
-            <Editor Placeholder="Peraparation..."
-                   Text="{Binding RecipeLocalization.Preparation}"/>
+            </StackLayout>
 
-            <Button x:Name="btnUploadLocalization"
-                    Text="Upload"
-                    Command="{Binding UploadLocalizationCommand}"/>
-            <Button x:Name="btnBackPage"
-                    Text="Back"
+            <Label Text="{x:Static resources:AppResources.CONS_Ingredients}"
+                Grid.Row="3"
+                Grid.ColumnSpan="4"/>
+            <Editor Placeholder="{x:Static resources:AppResources.CONS_Ingredients}"
+                   Text="{Binding RecipeLocalization.Ingredients}"
+                        Grid.Row="4"
+                Grid.ColumnSpan="4"/>
+            <Label Text="{x:Static resources:AppResources.CONS_Preparation}"
+                       Grid.Row="5"/>
+            <Editor Placeholder="{x:Static resources:AppResources.CONS_Preparation}"
+                   Text="{Binding RecipeLocalization.Preparation}"
+                        Grid.Row="6"
+                    Grid.ColumnSpan="4"/>
+            <Frame
+                Grid.Row="7"
+                Grid.Column="0"
+                Padding="0"
+                Margin="5">
+                <Button x:Name="btnBackPage"
+                    Text="{x:Static resources:AppResources.CONS_Back}"
                     Clicked="btnBackPage_Clicked"
                     CommandParameter="{Binding Recipe}"/>
-        </StackLayout>
+            </Frame>
+            <Frame
+                Grid.Row="7"
+                Grid.Column="3"
+                Padding="0"
+                Margin="5">
+                <Button x:Name="btnUploadLocalization"
+                    Text="{x:Static resources:AppResources.addRecipes_bttnUpload}"
+                    Command="{Binding UploadLocalizationCommand}"/>
+            </Frame>
+            
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -234,6 +234,9 @@
   <data name="menu_lblMenu" xml:space="preserve">
     <value>Főoldal</value>
   </data>
+  <data name="recipePage_bttnRefreshRecipe" xml:space="preserve">
+    <value>Receptek frissítése</value>
+  </data>
   <data name="recipes_bttnFilter" xml:space="preserve">
     <value>Szűrés</value>
   </data>

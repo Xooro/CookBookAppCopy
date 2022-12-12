@@ -421,6 +421,15 @@ namespace CookBookApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh Recipes.
+        /// </summary>
+        public static string recipePage_bttnRefreshRecipe {
+            get {
+                return ResourceManager.GetString("recipePage_bttnRefreshRecipe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter.
         /// </summary>
         public static string recipes_bttnFilter {
