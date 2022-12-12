@@ -51,7 +51,10 @@
                         Command="{Binding ChangeLocalizationCommand}"/>
                 </Picker.Behaviors>
             </Picker>
-            
+            <Button x:Name="bttnAddLocalization" 
+                    Text="AddLocalization"
+                    Clicked="bttnLocalizaton_Clicked"
+                    CommandParameter="{Binding Recipe}"/>
             <Label Text="{Binding Recipe.LocalizedRecipe.RecipeName}"
                    Grid.Row="0"
                    Grid.Column="0"
@@ -183,6 +186,14 @@
                                 <Label Text="{x:Static resources:AppResources.CONS_lblCreationDate}"
                                        FontAttributes="Bold"/>
                                 <Label Text="{Binding Recipe.CreationDate}"/>
+                            </StackLayout>
+                            <StackLayout
+                                   Grid.Row="3"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="3">
+                                <Label Text="{x:Static resources:AppResources.CONS_lblAllergens}"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding Recipe.LocalizedRecipe.Allergens}"/>
                             </StackLayout>
 
                         </Grid>

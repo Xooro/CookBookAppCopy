@@ -3,6 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CookBookApp.App">
     <Application.Resources>
-
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value ="Black"/>
+            <Setter Property="VerticalOptions" Value="Start"/>
+            <Setter Property="HorizontalOptions" Value="Start"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="TextColor" Value ="Black"/>
+            <Setter Property="Background" Value="#FFFDD0"/>
+        </Style>
+        <Style TargetType="Frame">
+            <Setter Property="BorderColor" Value="Black"/>
+            <Setter Property="Background" Value="aliceblue"/>
+        </Style>
+        <Style TargetType="ScrollView">
+            <Setter Property="VerticalScrollBarVisibility" Value="Never"/>
+        </Style>
     </Application.Resources>
 </Application>

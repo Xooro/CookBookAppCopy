@@ -23,9 +23,17 @@ namespace CookBookApp.View
         {
 
             var button = (Button)sender;
-            Recipe newRecipe = (Recipe)button.CommandParameter;
+            Recipe recipe = (Recipe)button.CommandParameter;
 
-            Navigation.PushAsync(new EditRecipePage(newRecipe));
+            Navigation.PushAsync(new EditRecipePage(recipe));
+        }
+
+        private void bttnLocalizaton_Clicked(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            Recipe recipe = (Recipe)button.CommandParameter;
+
+            Navigation.PushAsync(new AddLocalizationPage(recipe));
         }
     }
 }

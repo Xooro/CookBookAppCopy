@@ -192,6 +192,41 @@ namespace CookBookApp.Models.Services
             return await Task.FromResult(recipesResults);
         }
 
+        public bool addRecipeLocalization(RecipeLocalization localization)
+        {
+            bool isLocalizationAdded = false;
+            try
+            {
+                _context.RecipeLocalization.Add(localization);
+                _context.SaveChanges();
+                isLocalizationAdded = true;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return isLocalizationAdded;
+        }
+
+        //Lefrissíti az adatbázist
+        public async Task<bool> updateRecipe(Recipe newRecipe)
+        {
+            bool isUpdated = false;
+            try
+            {
+                _context.Recipe.Update(newRecipe);
+                await _context.SaveChangesAsync();
+                isUpdated = true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return await Task.FromResult(isUpdated);
+        }
+
+
         //törli az adatbázisból a recept lokalizációját
         public async Task<bool> deleteRecipeLocalizationAsync(Recipe recipe, Language language)
         {
@@ -236,24 +271,6 @@ namespace CookBookApp.Models.Services
             return await Task.FromResult(isDeleted);
         }
 
-        //Lefrissíti az adatbázist
-        public async Task<bool> updateRecipe(Recipe newRecipe)
-        {
-            bool isUpdated = false;
-            try
-            {
-                //var recipeToUpdate = _context.Recipe.FirstOrDefault(r=>r.ID == newRecipe.ID);
-                //recipeToUpdate.Author = newRecipe.Author;
-                _context.Recipe.Update(newRecipe);
-                await _context.SaveChangesAsync();
-                isUpdated = true;
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
-
-            return await Task.FromResult(isUpdated);
-        }
+        
     }
 }

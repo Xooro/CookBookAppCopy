@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CookBookApp.View.AddLocalizationPage">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Picker ItemsSource="{Binding Languages}"
+                    SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
+                    ItemDisplayBinding="{Binding LanguageName}"/>
+            <Label Text="Allergens"/>
+            <Entry Placeholder="Recipe Name..."
+                   Text="{Binding RecipeLocalization.RecipeName}"/>
+            <Label Text="Allergens"/>
+            <Entry Placeholder="Allergens..."
+                   Text="{Binding RecipeLocalization.Allergens}"/>
+            <Label Text="Ingredients"/>
+            <Editor Placeholder="Allergens..."
+                   Text="{Binding RecipeLocalization.Ingredients}"/>
+            <Label Text="Preparation"/>
+            <Editor Placeholder="Allergens..."
+                   Text="{Binding RecipeLocalization.Preparation}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
