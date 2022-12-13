@@ -101,9 +101,12 @@
                     <Frame
                         Grid.Row="1"
                         Grid.Column="0"
-                        VerticalOptions="Center">
+                        VerticalOptions="Center"
+                        Padding="0">
                         <Button Text="Kép feltöltése!"
-                                    Command="{Binding SelectImageCommand}"/>
+                                    Command="{Binding SelectImageCommand}"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"/>
                     </Frame>
                     <Frame
                            Grid.Row="2"
