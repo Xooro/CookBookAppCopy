@@ -47,7 +47,7 @@ namespace CookBookApp.ViewModel
             setIsBusy(true);
             Task.Run(async () =>
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
                 bool uploadSuccess = await recipeService.uploadJoinedRecipeWithoutIDAsync(Recipe);
                 if (uploadSuccess)
                 {
@@ -70,7 +70,7 @@ namespace CookBookApp.ViewModel
             setIsBusy(true);
             Task.Run(async () =>
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
                 bool uploadSuccess = await recipeService.updateLocalizedRecipeAsync(Recipe);
                 if (uploadSuccess)
                 {

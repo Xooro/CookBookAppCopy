@@ -3,12 +3,14 @@ using CookBookApp.Models.Services;
 using CookBookApp.Resources;
 using CookBookApp.ViewModels.Base;
 using System.Linq;
+using System;
 
 namespace CookBookApp.ViewModel
 {
     public class ViewRecipeViewModel : BaseViewModel
     {
         public Recipe Recipe { get; set; }
+        public bool IsRecipeLocalizationDeletable { get; set; }
         public Language SelectedLanguage { get; set; }
         public RelayCommand ChangeLocalizationCommand { get; set; }
         public RelayCommand DeleteRecippeLocalizationCommand { get; set; }
@@ -26,8 +28,8 @@ namespace CookBookApp.ViewModel
             ChangeLocalizationCommand = new RelayCommand(changeLocalization);
             DeleteRecippeLocalizationCommand = new RelayCommand(deleteRecipeLocalization);
             DeleteRecipeCommand = new RelayCommand(deleteRecipe);
-            if (Recipe.Languages.Count == 1)
-                DeleteRecippeLocalizationCommand.CanExecute(false);
+            if (Recipe.Languages.Count != 1)
+                IsRecipeLocalizationDeletable = true;
         }
         void changeLocalization()
         {

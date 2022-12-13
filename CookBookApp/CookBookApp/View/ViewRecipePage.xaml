@@ -189,30 +189,36 @@
                                        FontAttributes="Bold"/>
                                 <Label Text="{Binding Recipe.CreationDate}"/>
                             </StackLayout>
-                            <StackLayout
-                                   Grid.Row="3"
-                                   Grid.Column="0"
-                                   Grid.ColumnSpan="3">
-                                <Label Text="{x:Static resources:AppResources.CONS_lblAllergens}"
-                                       FontAttributes="Bold"/>
-                                <Label Text="{Binding Recipe.LocalizedRecipe.Allergens}"/>
-                            </StackLayout>
-
                         </Grid>
                     </Frame>
                     
                     <Frame
                         Grid.Row="3">
                         <Grid>
-                            <Grid.RowDefinitions Height="*"/>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="5*"/>
+                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions Width="*"/>
-                            <StackLayout Grid.Column="0">
+
+                            <StackLayout
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="1">
+                                <Label Text="{x:Static resources:AppResources.CONS_lblAllergens}"
+                                       FontSize="Large"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding Recipe.LocalizedRecipe.Allergens}"/>
+                            </StackLayout>
+                            <StackLayout Grid.Column="0"
+                                         Grid.Row="1">
                                 <Label Text="{x:Static resources:AppResources.CONS_Ingredients}"
                                        FontSize="Large"
                                        FontAttributes="Bold"/>
                                 <Label Text="{Binding Recipe.LocalizedRecipe.Ingredients}"/>
                             </StackLayout>
-                            <StackLayout Grid.Column="1">
+                            <StackLayout Grid.Column="1"
+                                         Grid.Row="1">
                                 <Label Text="{x:Static resources:AppResources.CONS_Preparation}"
                                        FontSize="Large"
                                        FontAttributes="Bold"/>
@@ -245,7 +251,8 @@
                         Command="{Binding DeleteRecippeLocalizationCommand}"
                         Clicked="btnBack_Clicked"
                         Margin="0"
-                        Padding="0"/>
+                        Padding="0"
+                        IsEnabled="{Binding IsRecipeLocalizationDeletable}"/>
             </Frame>
 
         </Grid>

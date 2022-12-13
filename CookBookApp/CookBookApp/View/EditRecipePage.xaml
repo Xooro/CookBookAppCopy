@@ -195,22 +195,33 @@
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions Width="*"/>
-                            <Label Text="{x:Static resources:AppResources.CONS_Ingredients}"
+
+                            <Label Text="{x:Static resources:AppResources.CONS_lblAllergens}"
                                    FontSize="Large"
                                    FontAttributes="Bold"
                                    Grid.Column="0"
                                    Grid.Row="0"/>
+                            <Entry Text="{Binding Recipe.LocalizedRecipe.Allergens}"
+                                   Grid.Column="0"
+                                   Grid.Row="1"
+                                   Grid.ColumnSpan="2"/>
+
+                            <Label Text="{x:Static resources:AppResources.CONS_Ingredients}"
+                                   FontSize="Large"
+                                   FontAttributes="Bold"
+                                   Grid.Column="0"
+                                   Grid.Row="2"/>
                             <Editor Text="{Binding Recipe.LocalizedRecipe.Ingredients}"
                                     Grid.Column="0"
-                                    Grid.Row="1"/>
+                                    Grid.Row="3"/>
                             <Label Text="{x:Static resources:AppResources.CONS_Preparation}"
                                    FontSize="Large"
                                    FontAttributes="Bold"
                                    Grid.Column="1"
-                                   Grid.Row="0"/>
+                                   Grid.Row="2"/>
                             <Editor Text="{Binding Recipe.LocalizedRecipe.Preparation}"
                                     Grid.Column="1"
-                                    Grid.Row="1"/>
+                                    Grid.Row="3"/>
                         </Grid>
                     </Frame>
                 </Grid>

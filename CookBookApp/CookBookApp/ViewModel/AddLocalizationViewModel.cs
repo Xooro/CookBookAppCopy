@@ -1,11 +1,10 @@
 ﻿using CookBookApp.Models;
 using CookBookApp.Models.Services;
+using CookBookApp.Resources;
 using CookBookApp.ViewModels.Base;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CookBookApp.ViewModel
@@ -68,11 +67,12 @@ namespace CookBookApp.ViewModel
         {
             bool isUploaded = recipeService.addRecipeLocalization(RecipeLocalization);
             if (isUploaded)
-                await App.Current.MainPage.DisplayAlert("Message", "Successful upload", "OK");
+                await App.Current.MainPage.DisplayAlert(AppResources.CONS_Message, AppResources.CONS_SuccessfulUpload, "OK");
             else
-                await App.Current.MainPage.DisplayAlert("Message", "Failed upload", "OK");
+                await App.Current.MainPage.DisplayAlert(AppResources.CONS_Message, AppResources.CONS_FailedUpload, "OK");
             refreshPage();
         }
+
         void refreshPage()
         {
             Recipe = recipeService.getLocalizedRecipeByRecipe(Recipe, Recipe.LocalizedRecipe.LanguageID);
