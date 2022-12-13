@@ -24,8 +24,6 @@ namespace CookBookApp.ViewModel
     {
         public string[] Difficulties { get; set; }
         public bool IsBusy { get; set; }
-        public string UserName { get; set; }
-        public Language UserLanguage { get; set; }
         public Recipe NewRecipe { get; set; }
         public ObservableCollection<RecipeImage> NewImages { get; set; }
         public RelayCommand SelectImageCommand { get; set; }
@@ -40,8 +38,7 @@ namespace CookBookApp.ViewModel
             userSettingsManager = new UserSettingsManager();
             recipeService = new RecipeService();
 
-            initializeUserSettings();
-            NewRecipe = recipeService.getDefaultEmptyRecipe(UserName, UserLanguage);
+            NewRecipe = recipeService.getDefaultEmptyRecipe(userSettingsManager.getUserName(), userSettingsManager.getLanguage());
             Difficulties = LocalizedConstants.getDifficulties();
             NewImages = new ObservableCollection<RecipeImage>();
 
@@ -49,12 +46,6 @@ namespace CookBookApp.ViewModel
 
             SelectImageCommand = new RelayCommand(selectImage);
             RemoveImageCommand = new RelayCommand<RecipeImage>(removeImage);
-        }
-
-        void initializeUserSettings()
-        {
-            UserName = userSettingsManager.getUserName();
-            UserLanguage = userSettingsManager.getLanguage();
         }
 
         async void selectImage()

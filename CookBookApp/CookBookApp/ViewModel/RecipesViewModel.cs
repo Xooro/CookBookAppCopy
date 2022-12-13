@@ -21,8 +21,6 @@ namespace CookBookApp.ViewModels
 
         public string Message { get; set; }
         public string SearchQuery { get; set; }
-        public string UserName { get; set; }
-        public Language UserLanguage { get; set; }
         public bool IsBusy { get; set; }
 
         public RelayCommand OpenCommand { get; set; }
@@ -34,6 +32,8 @@ namespace CookBookApp.ViewModels
         LanguageService languageService;
         RecipeCategoriesService recipeCategoriesService;
         UserSettingsManager userSettingsManager;
+
+        public Language userLanguage;
 
         int isBusyCounter;
         int[] selectedLanguageIDs;
@@ -65,8 +65,7 @@ namespace CookBookApp.ViewModels
 
         void initializeUserSettings()
         {
-            UserName = userSettingsManager.getUserName();
-            UserLanguage = userSettingsManager.getLanguage();
+            userLanguage = userSettingsManager.getLanguage();
         }
 
         void loadLanguages()
@@ -76,8 +75,8 @@ namespace CookBookApp.ViewModels
             {
                 Languages = new ObservableCollection<Language>(
                     await languageService.getLanguagesAsync());
-                Languages.FirstOrDefault(l => l.ID == UserLanguage.ID).IsChecked = true;
-                selectedLanguageIDs = new int[] { UserLanguage.ID };
+                Languages.FirstOrDefault(l => l.ID == userLanguage.ID).IsChecked = true;
+                selectedLanguageIDs = new int[] { userLanguage.ID };
                 setIsBusy(false);
             });
 
@@ -89,7 +88,7 @@ namespace CookBookApp.ViewModels
             Task.Run(async () =>
             {
                 RecipeCategoryNames = new ObservableCollection<RecipeCategoryNames>(
-                    await recipeCategoriesService.getLocalizedRecipeCategoriesAsync(UserLanguage));
+                    await recipeCategoriesService.getLocalizedRecipeCategoriesAsync(userLanguage));
                 setIsBusy(false);
             });
 

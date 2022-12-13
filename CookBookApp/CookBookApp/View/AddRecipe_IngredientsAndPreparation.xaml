@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CookBookApp.View.AddRecipe_IngredientsAndPreparation"
-             xmlns:resources="clr-namespace:CookBookApp.Resources">
+             xmlns:resources="clr-namespace:CookBookApp.Resources"
+             ControlTemplate="{StaticResource cntrlTmpltDefault}">
     <ContentPage.Resources>
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="Large"/>
