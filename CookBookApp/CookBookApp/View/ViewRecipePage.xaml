@@ -151,6 +151,7 @@
                                    Grid.ColumnSpan="3"
                                    FontSize="Large"
                                    FontAttributes="Bold"/>
+                           
                             <StackLayout
                                    Grid.Row="1"
                                    Grid.Column="0"
@@ -166,6 +167,7 @@
                                        FontAttributes="Bold"/>
                                 <Label Text="{Binding Recipe.LocalizedPrice}"/>
                             </StackLayout>
+                            
                             <StackLayout
                                    Grid.Row="1"
                                    Grid.Column="2">
@@ -174,6 +176,7 @@
 
                                 <Label Text="{Binding Recipe.Portion}"/>
                             </StackLayout>
+                            
                             <StackLayout
                                    Grid.Row="2"
                                    Grid.Column="0">
@@ -181,13 +184,15 @@
                                        FontAttributes="Bold"/>
                                 <Label Text="{Binding Recipe.LocalizedDifficulty}"/>
                             </StackLayout>
+                            
                             <StackLayout 
                                    Grid.Row="2"
                                    Grid.Column="1" >
                                 <Label Text="{x:Static resources:AppResources.CONS_lblPreparationTime}"
                                        FontAttributes="Bold"/>
-                                <Label Text="{Binding Recipe.PreparationTime}"/>
+                                <Label Text="{Binding Recipe.PreparationTime, StringFormat='{}{0:HH\\:mm}'}"/>
                             </StackLayout>
+                            
                             <StackLayout
                                    Grid.Row="2"
                                    Grid.Column="2">

@@ -50,14 +50,19 @@
                     ItemsSource="{Binding Prices}"
                     SelectedIndex="{Binding NewRecipe.Price, Mode=TwoWay}"/>
             </StackLayout>
+            
             <StackLayout
                          Grid.Row="2"
                          Grid.Column="0"
                          Grid.ColumnSpan="4">
                 <Label Text="{x:Static resources:AppResources.CONS_lblPreparationTime}" />
-                <Entry Placeholder="{x:Static resources:AppResources.addRecipes_ntrPreparationTime}"
-                       Text="{Binding NewRecipe.PreparationTime}"/>
+                <!--<Entry Placeholder="{x:Static resources:AppResources.addRecipes_ntrPreparationTime}"
+                       Text="{Binding NewRecipe.PreparationTime}"/>-->
+                <TimePicker x:Name="tmPckPreparationTime"
+                            Time="{Binding PreparationTime, Mode=OneWayToSource}"
+                            Format="HH:mm"/>
             </StackLayout>
+            
             <StackLayout
                          Grid.Row="3"
                          Grid.Column="0"
@@ -66,6 +71,7 @@
                 <Entry Placeholder="{x:Static resources:AppResources.addRecipes_ntrAllergens}"
                        Text="{Binding NewRecipe.LocalizedRecipe.Allergens, Mode=OneWayToSource}"/>
             </StackLayout>
+            
             <StackLayout
                 Grid.Row="4"
                 Grid.Column="0"

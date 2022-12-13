@@ -19,6 +19,17 @@ namespace CookBookApp.ViewModel
         public string[] Prices { get; set; }
         public bool IsBusy { get; set; }
         public Recipe Recipe { get; set; }
+        public TimeSpan PreparationTime
+        {
+            get
+            {
+                return Recipe.PreparationTime.TimeOfDay;
+            }
+            set
+            {
+                Recipe.PreparationTime = new DateTime() + value;
+            }
+        }
         public Language UserLanguage { get; set; }
         public ObservableCollection<RecipeCategoryNames> RecipeCategoryNames { get; set; }
         public ObservableCollection<RecipeImage> RecipeImages { get; set; }
