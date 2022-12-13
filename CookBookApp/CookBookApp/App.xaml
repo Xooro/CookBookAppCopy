@@ -4,40 +4,40 @@
              x:Class="CookBookApp.App">
     <Application.Resources>
         <Style TargetType="Label">
-            <Setter Property="TextColor" Value ="#2D2D2B"/>
+            <Setter Property="TextColor" Value ="#0197f6"/>
             <Setter Property="VerticalOptions" Value="Start"/>
             <Setter Property="HorizontalOptions" Value="Start"/>
         </Style>
         <Style TargetType="Button">
-            <Setter Property="TextColor" Value ="#2D2D2B"/>
-            <Setter Property="Background" Value="#af9f8c"/>
+            <Setter Property="TextColor" Value ="#02182b"/>
+            <Setter Property="Background" Value="#0197f6"/>
         </Style>
         <Style TargetType="Frame">
-            <Setter Property="BorderColor" Value="Black"/>
-            <Setter Property="Background" Value="aliceblue"/>
+            <Setter Property="BorderColor" Value="#D7263D"/>
+            <Setter Property="Background" Value="#448FA3"/>
         </Style>
         <Style TargetType="ScrollView">
             <Setter Property="VerticalScrollBarVisibility" Value="Never"/>
         </Style>
         <Style TargetType="CheckBox">
-            <Setter Property="Color" Value="#FFFDD0"/>
+            <Setter Property="Color" Value="#D7263D"/>
         </Style>
         <Style TargetType="Entry">
-            <Setter Property="Background" Value="aliceblue"/>
-            <Setter Property="TextColor" Value="Black"/>
-            <Setter Property="PlaceholderColor" Value="Gray"/>
+            <Setter Property="Background" Value="#448fa3"/>
+            <Setter Property="TextColor" Value="#02182b"/>
+            <Setter Property="PlaceholderColor" Value="#D7263D"/>
         </Style>
         <Style TargetType="Picker">
-            <Setter Property="Background" Value="#C7C7BB"/>
-            <Setter Property="TextColor" Value="DarkSlateGray"/>
+            <Setter Property="Background" Value="#448fa3"/>
+            <Setter Property="TextColor" Value="#02182b"/>
         </Style>
         <Style TargetType="Editor">
-            <Setter Property="Background" Value="#C7C7BB"/>
-            <Setter Property="TextColor" Value="DarkSlateGray"/>
-            <Setter Property="PlaceholderColor" Value="DarkGray"/>
+            <Setter Property="Background" Value="#448fa3"/>
+            <Setter Property="TextColor" Value="#02182b"/>
+            <Setter Property="PlaceholderColor" Value="#D7263D"/>
         </Style>
         <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
-            <Setter Property="BackgroundColor" Value="#E3E4E0"/>
+            <Setter Property="BackgroundColor" Value="#02182b"/>
             <Setter Property="Padding" Value="20"/>
             <Setter Property="NavigationPage.HasNavigationBar" Value="False"/>
         </Style>
