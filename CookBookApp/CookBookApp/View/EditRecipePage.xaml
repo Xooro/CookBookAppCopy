@@ -136,6 +136,7 @@
                                    Grid.ColumnSpan="3"
                                    FontSize="Large"
                                    FontAttributes="Bold"/>
+                            
                             <StackLayout
                                    Grid.Row="1"
                                    Grid.Column="0"
@@ -144,6 +145,7 @@
                                        FontAttributes="Bold"/>
                                 <Entry Text="{Binding Recipe.Author}"/>
                             </StackLayout>
+                            
                             <StackLayout
                                    Grid.Row="1"
                                    Grid.Column="1">
@@ -153,6 +155,7 @@
                                     ItemsSource="{Binding Prices}"
                                     SelectedIndex="{Binding Recipe.Price}"/>
                             </StackLayout>
+                            
                             <StackLayout
                                    Grid.Row="1"
                                    Grid.Column="2">
@@ -161,6 +164,7 @@
 
                                 <Entry Text="{Binding Recipe.Portion}"/>
                             </StackLayout>
+                            
                             <StackLayout
                                    Grid.Row="2"
                                    Grid.Column="0">
@@ -170,13 +174,17 @@
                                     ItemsSource="{Binding Difficulties}"
                                     SelectedIndex="{Binding Recipe.Difficulty}"/>
                             </StackLayout>
+                            
                             <StackLayout 
                                    Grid.Row="2"
                                    Grid.Column="1" >
                                 <Label Text="{x:Static resources:AppResources.CONS_lblPreparationTime}"
                                        FontAttributes="Bold"/>
-                                <Entry Text="{Binding Recipe.PreparationTime}"/>
+                                <TimePicker x:Name="tmPckPreparationTime"
+                                            Time="{Binding PreparationTime, Mode=TwoWay}"
+                                            Format="HH:mm"/>
                             </StackLayout>
+                            
                             <StackLayout
                                    Grid.Row="2"
                                    Grid.Column="2">

@@ -24,6 +24,17 @@ namespace CookBookApp.ViewModel
         public string UserName { get; set; }
         public Language UserLanguage { get; set; }
         public Recipe NewRecipe { get; set; }
+        public TimeSpan PreparationTime
+        {
+            get
+            {
+                return NewRecipe.PreparationTime.TimeOfDay;
+            }
+            set
+            {
+                NewRecipe.PreparationTime = new DateTime() + value;
+            } 
+        }
         public RelayCommand UpdateCategoriesCommand { get; set; }
 
         int isBusyCounter;
