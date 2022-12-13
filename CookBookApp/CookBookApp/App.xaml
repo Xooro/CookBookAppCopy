@@ -4,13 +4,13 @@
              x:Class="CookBookApp.App">
     <Application.Resources>
         <Style TargetType="Label">
-            <Setter Property="TextColor" Value ="Black"/>
+            <Setter Property="TextColor" Value ="#2D2D2B"/>
             <Setter Property="VerticalOptions" Value="Start"/>
             <Setter Property="HorizontalOptions" Value="Start"/>
         </Style>
         <Style TargetType="Button">
-            <Setter Property="TextColor" Value ="Black"/>
-            <Setter Property="Background" Value="#FFFDD0"/>
+            <Setter Property="TextColor" Value ="#2D2D2B"/>
+            <Setter Property="Background" Value="#af9f8c"/>
         </Style>
         <Style TargetType="Frame">
             <Setter Property="BorderColor" Value="Black"/>
@@ -28,20 +28,21 @@
             <Setter Property="PlaceholderColor" Value="Gray"/>
         </Style>
         <Style TargetType="Picker">
-            <Setter Property="Background" Value="aliceblue"/>
-            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="Background" Value="#C7C7BB"/>
+            <Setter Property="TextColor" Value="DarkSlateGray"/>
         </Style>
         <Style TargetType="Editor">
-            <Setter Property="Background" Value="Aliceblue"/>
-            <Setter Property="TextColor" Value="Black"/>
-            <Setter Property="PlaceholderColor" Value="Gray"/>
+            <Setter Property="Background" Value="#C7C7BB"/>
+            <Setter Property="TextColor" Value="DarkSlateGray"/>
+            <Setter Property="PlaceholderColor" Value="DarkGray"/>
         </Style>
         <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
-            <Setter Property="BackgroundColor" Value="LightBlue"/>
+            <Setter Property="BackgroundColor" Value="#E3E4E0"/>
             <Setter Property="Padding" Value="20"/>
             <Setter Property="NavigationPage.HasNavigationBar" Value="False"/>
         </Style>
 
+        
         <ControlTemplate x:Key="cntrlTmpltDefault">
             <Grid VerticalOptions="FillAndExpand"
                   HorizontalOptions="FillAndExpand">

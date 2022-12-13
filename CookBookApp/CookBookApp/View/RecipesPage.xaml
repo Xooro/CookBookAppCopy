@@ -54,14 +54,14 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="2*"/>
-                                    <RowDefinition Height="15"/>
-                                    <RowDefinition Height="15"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="75"/>
-                                    <ColumnDefinition Width="50"/>
-                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Text="{Binding LocalizedRecipe.RecipeName}"
                                                Grid.Column="0"
@@ -105,7 +105,7 @@
                                         Orientation="Vertical"
                                         Grid.Row="4"
                                         Grid.Column="0"
-                                        Grid.ColumnSpan="2"
+                                        Grid.ColumnSpan="3"
                                         HorizontalOptions="Start">
                                     <Label 
                                             Text="{x:Static resources:AppResources.CONS_lblCategories}"
