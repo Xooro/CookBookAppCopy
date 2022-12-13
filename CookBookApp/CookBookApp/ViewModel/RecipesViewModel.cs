@@ -33,7 +33,6 @@ namespace CookBookApp.ViewModels
         RecipesListService recipesListService;
         LanguageService languageService;
         RecipeCategoriesService recipeCategoriesService;
-
         UserSettingsManager userSettingsManager;
 
         int isBusyCounter;

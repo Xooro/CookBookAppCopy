@@ -41,9 +41,10 @@ namespace CookBookApp.Data
                 UserName = file[0].Split('=')[1];
                 LanguageID = int.Parse(file[1].Split('=')[1]);
             }
-            catch (FileNotFoundException ex)
+            catch (Exception ex)
             {
-                Console.WriteLine(ex.Message); ;
+                createDefaultFile();
+                initializeProperties();
             }
         }
 

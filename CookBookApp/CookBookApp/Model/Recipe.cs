@@ -46,7 +46,7 @@ namespace CookBookApp.Models
                 return difficultes[Difficulty];
             }
         }
-
+        [NotMapped]
         public string LocalizedPrice
         {
             get
@@ -55,7 +55,19 @@ namespace CookBookApp.Models
                 return prices[Price];
             }
         }
+        [NotMapped]
+        public string LocalizedCategoriesString
+        {
+            get
+            {
+                string categories ="";
+                foreach (var item in Categories)
+                    categories += item.CategoryName + ", ";
+                categories = categories.Remove(categories.Length - 2);
+                return categories;
+            }
 
+        }
         public object Clone()
         {
             return MemberwiseClone();

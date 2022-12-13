@@ -39,77 +39,111 @@
                         Grid.Column="0"
                         Grid.RowSpan="3"
                         Grid.ColumnSpan="3">
-                <ListView x:Name ="lstVwRecipes"
+                <CollectionView x:Name ="lstVwRecipes"
                           ItemsSource="{Binding Recipes, Mode=TwoWay}"
-                          SelectionMode="None">
-                    <ListView.ItemTemplate>
+                          SelectionMode="None"
+                                ItemsLayout="VerticalGrid,2">
+                    <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <Frame BackgroundColor="AliceBlue"
-                                       CornerRadius="10"
-                                       Margin="10"
-                                       HorizontalOptions="FillAndExpand"
-                                       VerticalOptions="FillAndExpand">
-                                    <Grid>
-                                        <Grid.RowDefinitions Height="auto"/>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="3*"/>
-                                            <ColumnDefinition Width="2*"/>
-                                            <ColumnDefinition Width="auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Image Source='{Binding Images[0].ImageSource}'
-                                               Aspect="AspectFit"
+                            <Frame BackgroundColor="AliceBlue"
+                                       CornerRadius="10">
+                                <Grid
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="2*"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding LocalizedRecipe.RecipeName}"
                                                Grid.Column="0"
                                                Grid.Row="0"
-                                               Grid.RowSpan="3"
-                                               Grid.ColumnSpan="1"/>
-                                        <Label Text="{Binding LocalizedRecipe.RecipeName}"
-                                               Grid.Column="1"
-                                               Grid.Row="0"
-                                               HorizontalOptions="Start"/>
-
-                                        <Label Text="{Binding LocalizedDifficulty}"
-                                               Grid.Column="1"
+                                               Grid.ColumnSpan="2"
+                                               HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           FontAttributes="Bold"
+                                           TextDecorations="Underline"
+                                           FontSize="Subtitle"/>
+                                    <Image Source='{Binding Images[0].ImageSource}'
+                                               Aspect="AspectFill"
+                                               Grid.Column="0"
                                                Grid.Row="1"
-                                               HorizontalOptions="Start"/>
+                                               Grid.RowSpan="1"
+                                               Grid.ColumnSpan="1"
+                                               HeightRequest="100"
+                                               WidthRequest="100"
+                                           Margin="0"/>
+
+                                    <StackLayout Orientation="Horizontal"
+                                                 Grid.Column="0"
+                                                 Grid.Row="2">
+                                        <Label Text="{x:Static resources:AppResources.CONS_lblDifficulty}"
+                                               FontAttributes="Bold"/>
+                                        <Label Text="{Binding LocalizedDifficulty}"
+                                               HorizontalOptions="Start"
+                                                Margin="0"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal"
+                                                 Grid.Column="0"
+                                                 Grid.Row="3">
+                                        <Label Text="{x:Static resources:AppResources.CONS_lblPrice}"
+                                               FontAttributes="Bold"/>
                                         <Label Text="{Binding LocalizedPrice}"
-                                               Grid.Column="1"
-                                               Grid.Row="2"
                                                HorizontalOptions="Start"/>
-                                        <Button
+                                    </StackLayout>
+                                    <StackLayout
+                                        Margin="1"
+                                        Orientation="Vertical"
+                                        Grid.Row="4"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        HorizontalOptions="Start">
+                                        <Label 
+                                            Text="{x:Static resources:AppResources.CONS_lblCategories}"
+                                            FontAttributes="Bold"
+                                            HorizontalOptions="Start"/>
+                                        <Label Text="{Binding LocalizedCategoriesString}"/>
+                                    </StackLayout>
+                                    <Button
                                                    Clicked="bttnViewRecipe_Clicked"
                                                    CommandParameter="{Binding .}"
                                                     Grid.Row="0"
                                                     Grid.Column="0"
-                                                    Grid.ColumnSpan="4"
-                                                    Grid.RowSpan="3"
+                                                    Grid.ColumnSpan="2"
+                                                    Grid.RowSpan="5"
                                                     Background="transparent"/>
-                                            <ListView ItemsSource="{Binding Languages}"
-                                                  Grid.Row="0"
-                                                  Grid.Column="2"
-                                                  Grid.RowSpan="3"
+                                    <StackLayout BindableLayout.ItemsSource="{Binding Languages}"
+                                                  Grid.Row="1"
+                                                  Grid.Column="1"
+                                                  Grid.RowSpan="1"
                                                       Grid.ColumnSpan="2"
-                                                  HeightRequest="15"
-                                                  WidthRequest="15"
+                                                  HeightRequest="0"
+                                                  WidthRequest="0"
                                                       Margin="0">
-                                            <ListView.ItemTemplate>
-                                                <DataTemplate>
-                                                    <ViewCell>
-                                                        <Image Source="{Binding ImageSource}"
-                                                           HeightRequest="15"
-                                                           WidthRequest="15"
+                                        <BindableLayout.ItemTemplate
+                                            Margin="0"
+                                            Padding="0">
+                                            <DataTemplate>
+                                                <Image Source="{Binding ImageSource}"
                                                            Aspect="AspectFit"
-                                                               Margin="3"/>
-                                                    </ViewCell>
-                                                </DataTemplate>
-                                            </ListView.ItemTemplate>
-                                        </ListView>
-                                    </Grid>
-                                </Frame>
-                            </ViewCell>
+                                                               Margin="0"
+                                                       HeightRequest="15"
+                                                       WidthRequest="15"/>
+                                            </DataTemplate>
+
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </ScrollView>
 
             <SearchBar x:Name="srchBrRecipes"
