@@ -21,8 +21,12 @@ namespace CookBookApp.ViewModel
         public Recipe Recipe { get; set; }
         public Language UserLanguage { get; set; }
         public ObservableCollection<RecipeCategoryNames> RecipeCategoryNames { get; set; }
+        public ObservableCollection<RecipeImage> RecipeImages { get; set; }
         public ObservableCollection<Language> Languages { get; set; }
+        public RelayCommand SelectImageCommand { get; set; }
+        public RelayCommand<RecipeImage> RemoveImageCommand { get; set; }
         public RelayCommand CategoryChangedCommand { get; set; }
+        
 
         int isBusyCounter;
 
@@ -43,7 +47,10 @@ namespace CookBookApp.ViewModel
             Prices = LocalizedConstants.getPrices();
 
             loadRecipeCategories();
+            loadRecipeImages();
 
+            SelectImageCommand = new RelayCommand(selectImage);
+            RemoveImageCommand = new RelayCommand<RecipeImage>(removeImage);
             CategoryChangedCommand = new RelayCommand(changeCategories);
         }
         void loadRecipeCategories()
@@ -59,6 +66,37 @@ namespace CookBookApp.ViewModel
                 setIsBusy(false);
             });
 
+        }
+
+        void loadRecipeImages()
+        {
+            RecipeImages = new ObservableCollection<RecipeImage>(Recipe.Images);
+        }
+
+        async void selectImage()
+        {
+            setIsBusy(true);
+            byte[] result = await ImageHelper.selectImageAsByteArray();
+            if (result == null)
+            {
+                //TODO: Message on page: error upload
+                return;
+            }
+
+            RecipeImage newImage = new RecipeImage();
+            newImage.RecipeID = Recipe.ID;
+            newImage.ImageBytes = result;
+
+            RecipeImages.Add(newImage);
+            Recipe.Images.Add(newImage);
+
+            setIsBusy(false);
+        }
+
+        void removeImage(RecipeImage imageToRemove)
+        {
+            RecipeImages.Remove(imageToRemove);
+            Recipe.Images.Remove(imageToRemove);
         }
 
         void changeCategories()
