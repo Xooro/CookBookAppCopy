@@ -272,8 +272,26 @@ namespace CookBookApp.Models.Services
             return await Task.FromResult(isUpdated);
         }
 
+        //törli az adatbázisból a lokalizációt
+        public async Task<bool> deleteRecipeLocalizationAsync(RecipeLocalization localizationToDelete)
+        {
+            bool isDeleted = false;
+            try
+            {
+                _context.RecipeLocalization.Remove(localizationToDelete);
+                await _context.SaveChangesAsync();
 
-        //törli az adatbázisból a recept lokalizációját
+                isDeleted = true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return await Task.FromResult(isDeleted);
+        }
+
+        //törli az adatbázisból a recept nyelv szerinti lokalizációját
         public async Task<bool> deleteRecipeLocalizationAsync(Recipe recipe, Language language)
         {
             bool isDeleted = false;
@@ -281,10 +299,7 @@ namespace CookBookApp.Models.Services
             {
                 Recipe joinedRecipe = getJoinedRecipeByRecipe(recipe);
                 RecipeLocalization localizationToDelete = joinedRecipe.Localizations.FirstOrDefault(l => l.LanguageID == language.ID);
-                _context.RecipeLocalization.Remove(localizationToDelete);
-                await _context.SaveChangesAsync();
-                
-                isDeleted = true;
+                isDeleted = await deleteRecipeLocalizationAsync(localizationToDelete);
             }
             catch (Exception ex)
             {

@@ -47,10 +47,10 @@
                 Grid.Row="0"
                 Grid.Column="2"
                 Padding="0">
-                <Button x:Name="bttnAddLocalization" 
-                    Text="AddLocalization"
-                    Clicked="bttnLocalizaton_Clicked"
-                    CommandParameter="{Binding Recipe}"/>
+                <Button x:Name="bttnAddLocalization"
+                        Text="{x:Static resources:AppResources.viewRecipe_bttnAddLocalization}"
+                        Clicked="bttnLocalizaton_Clicked"
+                        CommandParameter="{Binding Recipe}"/>
             </Frame>
             
             <Label Text="{Binding Recipe.LocalizedRecipe.RecipeName}"
@@ -200,6 +200,7 @@
 
                         </Grid>
                     </Frame>
+                    
                     <Frame
                         Grid.Row="3">
                         <Grid>
@@ -240,7 +241,9 @@
                 Padding="0"
                 Margin="5">
                 <Button x:Name="bttnRemoveLocalization" 
-                    Text="Remove Localization"
+                        Text="{x:Static resources:AppResources.viewRecipe_bttnRemoveLocalization}"
+                        Command="{Binding DeleteRecippeLocalizationCommand}"
+                        Clicked="btnBack_Clicked"
                         Margin="0"
                         Padding="0"/>
             </Frame>

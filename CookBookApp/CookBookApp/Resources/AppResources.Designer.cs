@@ -169,6 +169,15 @@ namespace CookBookApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete failed.
+        /// </summary>
+        public static string CONS_FailedDelete {
+            get {
+                return ResourceManager.GetString("CONS.FailedDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed update.
         /// </summary>
         public static string CONS_FailedUpdate {
@@ -286,6 +295,15 @@ namespace CookBookApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Message.
+        /// </summary>
+        public static string CONS_Message {
+            get {
+                return ResourceManager.GetString("CONS.Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Preparation.
         /// </summary>
         public static string CONS_Preparation {
@@ -327,6 +345,24 @@ namespace CookBookApp.Resources {
         public static string CONS_RetryAddRecipe {
             get {
                 return ResourceManager.GetString("CONS_RetryAddRecipe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfully deleted.
+        /// </summary>
+        public static string CONS_SuccessfulDelete {
+            get {
+                return ResourceManager.GetString("CONS.SuccessfulDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Localizaton successfully deleted.
+        /// </summary>
+        public static string CONS_SuccessfulLocalizationDelete {
+            get {
+                return ResourceManager.GetString("CONS.SuccessfulLocalizationDelete", resourceCulture);
             }
         }
         
@@ -489,6 +525,24 @@ namespace CookBookApp.Resources {
         public static string setting_ntrUserName {
             get {
                 return ResourceManager.GetString("setting_ntrUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add localization.
+        /// </summary>
+        public static string viewRecipe_bttnAddLocalization {
+            get {
+                return ResourceManager.GetString("viewRecipe_bttnAddLocalization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove localization.
+        /// </summary>
+        public static string viewRecipe_bttnRemoveLocalization {
+            get {
+                return ResourceManager.GetString("viewRecipe_bttnRemoveLocalization", resourceCulture);
             }
         }
         

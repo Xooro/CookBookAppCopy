@@ -138,6 +138,18 @@
   <data name="addRecipes_ntrRecipeName" xml:space="preserve">
     <value>Lassagne</value>
   </data>
+  <data name="CONS.FailedDelete" xml:space="preserve">
+    <value>Sikertelen törlés</value>
+  </data>
+  <data name="CONS.Message" xml:space="preserve">
+    <value>Üzenet</value>
+  </data>
+  <data name="CONS.SuccessfulDelete" xml:space="preserve">
+    <value>Sikeresen törölve</value>
+  </data>
+  <data name="CONS.SuccessfulLocalizationDelete" xml:space="preserve">
+    <value>Lokalizáció sikeresen törölve</value>
+  </data>
   <data name="CONS_Back" xml:space="preserve">
     <value>Vissza</value>
   </data>
@@ -266,5 +278,11 @@
   </data>
   <data name="viewRecipes_lblGeneralInformation" xml:space="preserve">
     <value>Általános Információk</value>
+  </data>
+  <data name="viewRecipe_bttnAddLocalization" xml:space="preserve">
+    <value>Új lokalizáció</value>
+  </data>
+  <data name="viewRecipe_bttnRemoveLocalization" xml:space="preserve">
+    <value>Lokalizáció törlése</value>
   </data>
 </root>

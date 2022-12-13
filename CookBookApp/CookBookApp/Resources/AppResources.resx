@@ -138,6 +138,18 @@
   <data name="addRecipes_ntrRecipeName" xml:space="preserve">
     <value>Lasagne</value>
   </data>
+  <data name="CONS.FailedDelete" xml:space="preserve">
+    <value>Delete failed</value>
+  </data>
+  <data name="CONS.Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="CONS.SuccessfulDelete" xml:space="preserve">
+    <value>Successfully deleted</value>
+  </data>
+  <data name="CONS.SuccessfulLocalizationDelete" xml:space="preserve">
+    <value>Localizaton successfully deleted</value>
+  </data>
   <data name="CONS_Back" xml:space="preserve">
     <value>Back</value>
   </data>
@@ -269,5 +281,11 @@
   </data>
   <data name="viewRecipes_lblGeneralInformation" xml:space="preserve">
     <value>General Information</value>
+  </data>
+  <data name="viewRecipe_bttnAddLocalization" xml:space="preserve">
+    <value>Add localization</value>
+  </data>
+  <data name="viewRecipe_bttnRemoveLocalization" xml:space="preserve">
+    <value>Remove localization</value>
   </data>
 </root>
