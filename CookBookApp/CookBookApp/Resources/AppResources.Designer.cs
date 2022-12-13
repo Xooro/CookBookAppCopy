@@ -358,7 +358,7 @@ namespace CookBookApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Successfully deleted.
+        ///   Looks up a localized string similar to Successful delete.
         /// </summary>
         public static string CONS_SuccessfulDelete {
             get {
@@ -367,11 +367,11 @@ namespace CookBookApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Localizaton successfully deleted.
+        ///   Looks up a localized string similar to Localization deleted.
         /// </summary>
         public static string CONS_SuccessfulLocalizationDelete {
             get {
-                return ResourceManager.GetString("CONS.SuccessfulLocalizationDelete", resourceCulture);
+                return ResourceManager.GetString("CONS_SuccessfulLocalizationDelete", resourceCulture);
             }
         }
         
