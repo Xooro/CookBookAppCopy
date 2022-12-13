@@ -57,42 +57,55 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="4">
                 <Grid>
-                    <Grid.RowDefinitions Height="auto"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="190"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <Frame Grid.Row="0"
                            Grid.Column="0">
-                        <StackLayout Orientation="Vertical">
-                            <ListView x:Name="lstVwRecipeImages"
+                        <CollectionView x:Name="lstVwRecipeImages"
                                   ItemsSource="{Binding RecipeImages, Mode=TwoWay}"
                                   SelectionMode="None"
                                   HorizontalOptions="CenterAndExpand"
                                   HeightRequest="0">
-                                <ListView.ItemTemplate>
+                                <CollectionView.ItemsLayout>
+                                    <LinearItemsLayout Orientation="Horizontal"
+                                                   ItemSpacing="10"/>
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
                                     <DataTemplate>
-                                        <ViewCell>
-                                            <StackLayout Orientation="Vertical">
-                                                <Button Text="X"
+                                        <StackLayout Orientation="Vertical">
+                                            <Button Text="X"
                                                     Command="{Binding BindingContext.RemoveImageCommand, Source={x:Reference lstVwRecipeImages}}"
                                                     CommandParameter="{Binding }"
                                                     WidthRequest="40"
-                                                    HorizontalOptions="End"/>
-                                                <Image Source="{Binding ImageSource}"
-                                                   WidthRequest="400"/>
-                                            </StackLayout>
-                                        </ViewCell>
+                                                    HorizontalOptions="End"
+                                                    BorderColor="Black"
+                                                    BorderRadius="10"/>
+                                            <Image Source="{Binding ImageSource}"
+                                                   HeightRequest="150"
+                                                   Aspect="AspectFit"/>
+                                        </StackLayout>
                                     </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                            <Button Text="Kép feltöltése!"
-                                    Command="{Binding SelectImageCommand}"/>
-                        </StackLayout>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
                     </Frame>
-
                     <Frame
-                           Grid.Row="1"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        VerticalOptions="Center">
+                        <Button Text="Kép feltöltése!"
+                                    Command="{Binding SelectImageCommand}"/>
+                    </Frame>
+                    <Frame
+                           Grid.Row="2"
                             Grid.Column="0">
                         <StackLayout>
                             <Label Text="{x:Static resources:AppResources.CONS_lblCategories}"
@@ -125,7 +138,7 @@
                     </Frame>
 
                     <Frame
-                           Grid.Row="2"
+                           Grid.Row="3"
                            Grid.Column="0">
                         <Grid>
                             <Grid.RowDefinitions Height="*"/>
@@ -197,7 +210,7 @@
                     </Frame>
 
                     <Frame
-                        Grid.Row="3">
+                        Grid.Row="4">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>

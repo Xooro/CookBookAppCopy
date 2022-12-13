@@ -20,7 +20,7 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
@@ -97,25 +97,34 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="4">
                 <Grid>
-                    <Grid.RowDefinitions Height="auto"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Frame
                             Grid.Row="0"
                             Grid.Column="0">
-                        <ListView ItemsSource="{Binding Recipe.Images, Mode=TwoWay}"
-                                  HeightRequest="0"
+                        <CollectionView ItemsSource="{Binding Recipe.Images, Mode=TwoWay}"
+                                        HeightRequest="100"
                                   SelectionMode="None">
-                            <ListView.ItemTemplate>
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Horizontal"
+                                                   ItemSpacing="10"/>
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <ViewCell>
-                                        <Image Source="{Binding ImageSource, Mode=TwoWay}"
-                                           WidthRequest="200"/>
-                                    </ViewCell>
+                                    <Image Source="{Binding ImageSource, Mode=TwoWay}"
+                                           HeightRequest="150"
+                                           Aspect="AspectFit"/>
                                 </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
                     </Frame>
                     <Frame
                            Grid.Row="1"

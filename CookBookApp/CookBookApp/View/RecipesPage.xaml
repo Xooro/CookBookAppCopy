@@ -35,7 +35,7 @@
 
             <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
 
-            <CollectionView x:Name ="lstVwRecipes"
+            <CollectionView x:Name ="cllctnVwRecipes"
                           ItemsSource="{Binding Recipes, Mode=TwoWay}"
                           SelectionMode="None"
                                 ItemsLayout="VerticalGrid,2"
