@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:resources="clr-namespace:CookBookApp.Resources"
+             ControlTemplate="{StaticResource cntrlTmpltDefault}"
              x:Class="CookBookApp.Views.MenuPage">
-
 
     <ContentPage.Resources>
         <Style TargetType="Button">
@@ -20,13 +20,9 @@
             <Setter Property="Margin" Value="10"/>
         </Style>
     </ContentPage.Resources>
+    
     <ContentPage.Content>
         <StackLayout>
-            <Image Source="{Binding UserLanguage.ImageSource}"
-                   HeightRequest="100"
-                   WidthRequest="100"
-                   Margin="10"/>
-            
             <Label  x:Name="lblMenuTitle" 
                     Text="{x:Static resources:AppResources.menu_lblMenu}"
                     FontSize="Header"

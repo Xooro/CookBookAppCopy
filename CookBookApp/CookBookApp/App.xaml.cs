@@ -1,5 +1,6 @@
 ﻿using CookBookApp.Data;
 using CookBookApp.Helpers;
+using CookBookApp.ViewModel;
 using CookBookApp.Views;
 using System;
 using System.Globalization;
@@ -16,14 +17,8 @@ namespace CookBookApp
         public App()
         {
             InitializeComponent();
-            InitializeSettings();
+            BindingContext = new AppViewModel();
             MainPage = new NavigationPage(new MenuPage());
-        }
-
-        public void InitializeSettings()
-        {
-            UserSettingsManager userPropertiesService = new UserSettingsManager();
-            userPropertiesService.setAppLanguage();
         }
 
         protected override void OnStart()

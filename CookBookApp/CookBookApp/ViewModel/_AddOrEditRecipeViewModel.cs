@@ -14,22 +14,15 @@ namespace CookBookApp.ViewModel
         public bool IsUploadSuccessful { get; set; }
         public bool IsUploadFailed { get; set; }
         public string UploadMessage { get; set; }
-        public string UserName { get; set; }
-        public Language UserLanguage { get; set; }
         public Recipe Recipe { get; set; }
         bool isNew;
 
-        UserSettingsManager userSettingsManager;
         RecipeService recipeService;
 
         int isBusyCounter;
         public _AddOrEditRecipeViewModel(Recipe recipe)
         {
-            userSettingsManager = new UserSettingsManager();
             recipeService = new RecipeService();
-
-            UserName = userSettingsManager.getUserName();
-            UserLanguage = userSettingsManager.getLanguage();
 
             isBusyCounter = 0;
 

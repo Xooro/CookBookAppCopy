@@ -4,7 +4,8 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:resources="clr-namespace:CookBookApp.Resources"
              x:Class="CookBookApp.View._AddOrEditRecipePage"
-             Background="lightblue">
+             Background="lightblue"
+             ControlTemplate="{StaticResource cntrlTmpltDefault}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
