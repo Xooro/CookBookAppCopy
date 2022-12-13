@@ -10,6 +10,7 @@ namespace CookBookApp.ViewModel
     public class ViewRecipeViewModel : BaseViewModel
     {
         public Recipe Recipe { get; set; }
+        public bool IsDefaultLocalization { get; set; }
         public bool IsRecipeLocalizationDeletable { get; set; }
         public Language SelectedLanguage { get; set; }
         public RelayCommand ChangeLocalizationCommand { get; set; }
@@ -28,14 +29,29 @@ namespace CookBookApp.ViewModel
             ChangeLocalizationCommand = new RelayCommand(changeLocalization);
             DeleteRecippeLocalizationCommand = new RelayCommand(deleteRecipeLocalization);
             DeleteRecipeCommand = new RelayCommand(deleteRecipe);
-            if (Recipe.Languages.Count != 1)
-                IsRecipeLocalizationDeletable = true;
+
+            checkLocalizationIsDefaultOrDeletable();
         }
+
+        void checkLocalizationIsDefaultOrDeletable()
+        {
+            if (SelectedLanguage.ID == Recipe.DefaultLanguageID)
+                IsDefaultLocalization = true;
+            else
+                IsDefaultLocalization = false;
+
+            if (!IsDefaultLocalization && Recipe.Languages.Count != 1)
+                IsRecipeLocalizationDeletable = true;
+            else
+                IsRecipeLocalizationDeletable = false;
+        }
+
         void changeLocalization()
         {
             Recipe recipe = recipeService.getLocalizedRecipeByRecipe(Recipe, SelectedLanguage.ID);
             Recipe = null;
             Recipe = recipe;
+            checkLocalizationIsDefaultOrDeletable();
         }
 
         async void deleteRecipeLocalization()

@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
+
             <Picker x:Name="pckrLocalizationLanguage"
                     ItemsSource="{Binding Recipe.Languages, Mode=OneTime}"
                     ItemDisplayBinding="{Binding LanguageName}"
@@ -52,7 +52,7 @@
                         Clicked="bttnLocalizaton_Clicked"
                         CommandParameter="{Binding Recipe}"/>
             </Frame>
-            
+
             <Label Text="{Binding Recipe.LocalizedRecipe.RecipeName}"
                    Grid.Row="0"
                    Grid.Column="0"
@@ -62,6 +62,11 @@
                    FontSize="Medium"
                    FontAttributes="Bold"
                    TextDecorations="Underline"/>
+            <Label Text="{x:Static resources:AppResources.CONS_Default}"
+                   IsVisible="{Binding IsDefaultLocalization}"
+                   Grid.Row="0"
+                   Grid.Column="1"/>
+
             <Frame
                 Grid.Row="2"
                 Grid.Column="2"
@@ -74,7 +79,7 @@
                         Command="{Binding DeleteRecipeCommand}"
                         Clicked="btnBack_Clicked"/>
             </Frame>
-            
+
             <Frame
                 Grid.Row="2"
                 Grid.Column="3"
@@ -100,7 +105,8 @@
                             Grid.Row="0"
                             Grid.Column="0">
                         <ListView ItemsSource="{Binding Recipe.Images, Mode=TwoWay}"
-                                  HeightRequest="0">
+                                  HeightRequest="0"
+                                  SelectionMode="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -191,7 +197,7 @@
                             </StackLayout>
                         </Grid>
                     </Frame>
-                    
+
                     <Frame
                         Grid.Row="3">
                         <Grid>
@@ -227,20 +233,8 @@
                         </Grid>
                     </Frame>
                 </Grid>
-
             </ScrollView>
-            <Frame
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="1"
-                    Padding="0"
-                    Margin="5"
-                    HorizontalOptions="Fill"
-                    VerticalOptions="Fill">
-                <Button x:Name="btnBack"
-                        Text="{x:Static resources:AppResources.CONS_Back}"
-                        Clicked="btnBack_Clicked"/>
-            </Frame>
+
             <Frame
                 Grid.Row="2"
                 Grid.Column="1"
@@ -255,6 +249,17 @@
                         IsEnabled="{Binding IsRecipeLocalizationDeletable}"/>
             </Frame>
 
+            <Frame  Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="1"
+                    Padding="0"
+                    Margin="5"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill">
+                <Button x:Name="btnBack"
+                        Text="{x:Static resources:AppResources.CONS_Back}"
+                        Clicked="btnBack_Clicked"/>
+            </Frame>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

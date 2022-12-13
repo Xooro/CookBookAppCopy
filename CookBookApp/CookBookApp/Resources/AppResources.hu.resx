@@ -153,6 +153,9 @@
   <data name="CONS_Back" xml:space="preserve">
     <value>Vissza</value>
   </data>
+  <data name="CONS_Default" xml:space="preserve">
+    <value>Alapértelmezett</value>
+  </data>
   <data name="CONS_Difficulty_Advanced" xml:space="preserve">
     <value>Haladó</value>
   </data>

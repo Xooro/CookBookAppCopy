@@ -142,6 +142,15 @@ namespace CookBookApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        public static string CONS_Default {
+            get {
+                return ResourceManager.GetString("CONS_Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Advanced.
         /// </summary>
         public static string CONS_Difficulty_Advanced {

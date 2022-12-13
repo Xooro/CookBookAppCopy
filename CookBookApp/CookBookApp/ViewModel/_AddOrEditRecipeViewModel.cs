@@ -90,7 +90,7 @@ namespace CookBookApp.ViewModel
 
         void refreshRecipe()
         {
-            Recipe = recipeService.getLocalizedRecipeByRecipe(Recipe, UserLanguage.ID);
+            Recipe = recipeService.getLocalizedRecipeByRecipe(Recipe, Recipe.LocalizedRecipe.LanguageID);
         }
 
         void setIsBusy(bool toTrue)
