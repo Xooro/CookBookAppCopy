@@ -30,30 +30,29 @@ namespace CookBookApp.ViewModel
                 Recipe.PreparationTime = new DateTime() + value;
             }
         }
-        public Language UserLanguage { get; set; }
         public ObservableCollection<RecipeCategoryNames> RecipeCategoryNames { get; set; }
         public ObservableCollection<RecipeImage> RecipeImages { get; set; }
         public ObservableCollection<Language> Languages { get; set; }
         public RelayCommand SelectImageCommand { get; set; }
         public RelayCommand<RecipeImage> RemoveImageCommand { get; set; }
         public RelayCommand CategoryChangedCommand { get; set; }
-        
 
+        Language userLanguage;
         int isBusyCounter;
 
         RecipeCategoriesService recipeCategoriesService;
-        public UserSettingsManager UserSettingsManager;
+        public UserSettingsManager userSettingsManager;
 
         public EditRecipeViewModel(Recipe recipe)
         {
 
             isBusyCounter = 0;
             recipeCategoriesService = new RecipeCategoriesService();
-            UserSettingsManager = new UserSettingsManager();
+            userSettingsManager = new UserSettingsManager();
 
             Recipe = recipe;
 
-            UserLanguage = UserSettingsManager.getLanguage();
+            userLanguage = userSettingsManager.getLanguage();
             Difficulties = LocalizedConstants.getDifficulties();
             Prices = LocalizedConstants.getPrices();
 
@@ -69,7 +68,7 @@ namespace CookBookApp.ViewModel
             setIsBusy(true);
             Task.Run(async () =>
             {
-                var recipeCategoryNames = await recipeCategoriesService.getLocalizedRecipeCategoriesAsync(UserLanguage);
+                var recipeCategoryNames = await recipeCategoriesService.getLocalizedRecipeCategoriesAsync(userLanguage);
                 var recipeCategoryIDs = Recipe.Categories.Select(rc => rc.CategoryNameID).ToArray();
                 recipeCategoryNames.Select(rcn => { if (recipeCategoryIDs.Contains(rcn.CategoryNameID)) rcn.IsChecked = true; return rcn; }).ToList();
 

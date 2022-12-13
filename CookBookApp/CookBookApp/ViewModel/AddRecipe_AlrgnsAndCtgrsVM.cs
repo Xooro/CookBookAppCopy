@@ -21,8 +21,6 @@ namespace CookBookApp.ViewModel
         public ObservableCollection<RecipeCategoryNames> RecipeCategoryNames { get; set; }
         public string[] Prices { get; set; }
         public bool IsBusy { get; set; }
-        public string UserName { get; set; }
-        public Language UserLanguage { get; set; }
         public Recipe NewRecipe { get; set; }
         public TimeSpan PreparationTime
         {
@@ -51,18 +49,11 @@ namespace CookBookApp.ViewModel
 
             isBusyCounter = 0;
 
-            initializeUserSettings();
             loadRecipeCategories();
 
             NewRecipe = newRecipe;
 
             UpdateCategoriesCommand = new RelayCommand(updateCategories);
-        }
-
-        void initializeUserSettings()
-        {
-            UserName = userSettingsManager.getUserName();
-            UserLanguage = userSettingsManager.getLanguage();
         }
         void loadRecipeCategories()
         {
@@ -70,7 +61,7 @@ namespace CookBookApp.ViewModel
             Task.Run(async () =>
             {
                 RecipeCategoryNames = new ObservableCollection<RecipeCategoryNames>(
-                    await recipeCategoriesService.getLocalizedRecipeCategoriesAsync(UserLanguage));
+                    await recipeCategoriesService.getLocalizedRecipeCategoriesAsync(userSettingsManager.getLanguage()));
                 setIsBusy(false);
             });
         }

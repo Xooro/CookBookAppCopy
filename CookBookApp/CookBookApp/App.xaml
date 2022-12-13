@@ -47,10 +47,10 @@
                   HorizontalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="6*" />
+                    <RowDefinition Height="12*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="4*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
@@ -59,7 +59,9 @@
                        Grid.Column="1"
                        Grid.Row="0"
                        FontAttributes="None"
-                       FontSize="Small"/>
+                       FontSize="Small"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Center"/>
                 <StackLayout Grid.Column="2"
                              Grid.Row="0"
                              Orientation="Horizontal"
@@ -69,9 +71,10 @@
                        WidthRequest="40"/>
                     <Label Text="{TemplateBinding Path = Parent.BindingContext.UserLanguage.LanguageName}"
                            FontAttributes="None"
-                           FontSize="Small"/>
+                           FontSize="Small"
+                           HorizontalOptions="Center"/>
                 </StackLayout>
-                
+
                 <ContentPresenter VerticalOptions="FillAndExpand"
                                   HorizontalOptions="FillAndExpand"
                                   Grid.Column="0"
