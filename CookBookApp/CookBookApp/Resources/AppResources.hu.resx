@@ -147,9 +147,6 @@
   <data name="CONS.SuccessfulDelete" xml:space="preserve">
     <value>Sikeresen törölve</value>
   </data>
-  <data name="CONS.SuccessfulLocalizationDelete" xml:space="preserve">
-    <value>Lokalizáció sikeresen törölve</value>
-  </data>
   <data name="CONS_Back" xml:space="preserve">
     <value>Vissza</value>
   </data>
@@ -218,6 +215,9 @@
   </data>
   <data name="CONS_RetryAddRecipe" xml:space="preserve">
     <value>Újrapróbálkozás az elejéről</value>
+  </data>
+  <data name="CONS_SuccessfulLocalizationDelete" xml:space="preserve">
+    <value>Lokalizáció törölve</value>
   </data>
   <data name="CONS_SuccessfulUpdate" xml:space="preserve">
     <value>Sikeres frissítés</value>

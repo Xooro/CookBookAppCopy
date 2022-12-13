@@ -147,9 +147,6 @@
   <data name="CONS.SuccessfulDelete" xml:space="preserve">
     <value>Successfully deleted</value>
   </data>
-  <data name="CONS.SuccessfulLocalizationDelete" xml:space="preserve">
-    <value>Localizaton successfully deleted</value>
-  </data>
   <data name="CONS_Back" xml:space="preserve">
     <value>Back</value>
   </data>
@@ -222,6 +219,9 @@
   <data name="CONS_RetryAddRecipe" xml:space="preserve">
     <value>Retry from the start</value>
   </data>
+  <data name="CONS_SuccessfulLocalizationDelete" xml:space="preserve">
+    <value>Localization deleted</value>
+  </data>
   <data name="CONS_SuccessfulUpdate" xml:space="preserve">
     <value>Successful update</value>
   </data>
@@ -275,6 +275,9 @@
   </data>
   <data name="setting_ntrUserName" xml:space="preserve">
     <value>John Doe</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="viewRecipes_bttnDelete" xml:space="preserve">
     <value>Delete</value>
