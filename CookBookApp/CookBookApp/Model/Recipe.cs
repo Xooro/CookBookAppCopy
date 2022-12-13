@@ -63,7 +63,8 @@ namespace CookBookApp.Models
                 string categories ="";
                 foreach (var item in Categories)
                     categories += item.CategoryName + ", ";
-                categories = categories.Remove(categories.Length - 2);
+                if(categories.Length > 0)
+                    categories = categories.Remove(categories.Length - 2);
                 return categories;
             }
 
