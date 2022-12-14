@@ -39,15 +39,14 @@
             <CollectionView x:Name ="cllctnVwRecipes"
                           ItemsSource="{Binding Recipes, Mode=TwoWay}"
                           SelectionMode="None"
-                                ItemsLayout="VerticalGrid,2"
                                 Grid.Row="1"
                         Grid.Column="0"
                         Grid.RowSpan="3"
-                        Grid.ColumnSpan="3">
+                        Grid.ColumnSpan="3"
+                            ItemsLayout="VerticalGrid, 2">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame BackgroundColor="AliceBlue"
-                                       CornerRadius="10">
+                        <Frame CornerRadius="10">
                             <Grid
                                     HorizontalOptions="Center"
                                     VerticalOptions="Center">
@@ -59,9 +58,9 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="3*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="75"/>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="15"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Text="{Binding LocalizedRecipe.RecipeName}"
                                                Grid.Column="0"
@@ -119,9 +118,9 @@
                                                    CommandParameter="{Binding .}"
                                                     Grid.Row="0"
                                                     Grid.Column="0"
-                                                    Grid.ColumnSpan="2"
+                                                    Grid.ColumnSpan="5"
                                                     Grid.RowSpan="5"
-                                                    Background="transparent"/>
+                                    Background="Transparent"/>
                                 <StackLayout BindableLayout.ItemsSource="{Binding Languages}"
                                                   Grid.Row="1"
                                                   Grid.Column="2"
@@ -207,7 +206,6 @@
                         Text="{x:Static resources:AppResources.CONS_Back}"
                         HorizontalOptions="Fill"
                         VerticalOptions="Fill"
-                        TextColor="Black"
                         Clicked="bttnBackPage_Clicked"
                         Margin="0"/>
             </Frame>
@@ -223,7 +221,6 @@
                         Text="{x:Static resources:AppResources.recipePage_bttnRefreshRecipe}"
                         HorizontalOptions="Fill"
                         VerticalOptions="Fill"
-                        TextColor="Black"
                         Margin="0"
                         Command="{Binding RefreshListCommand}"/>
             </Frame>
