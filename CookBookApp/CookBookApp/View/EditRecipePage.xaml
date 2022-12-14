@@ -9,6 +9,7 @@
         <Style TargetType="Label">
             <Setter Property="VerticalOptions" Value="Start"/>
             <Setter Property="HorizontalOptions" Value="Start"/>
+            <Setter Property="TextColor" Value="#02182b"/>
         </Style>
         <Style TargetType="Button">
             <Setter Property="VerticalOptions" Value="Fill"/>
@@ -39,7 +40,8 @@
                    VerticalOptions="Center"
                    HorizontalOptions="Center"
                    FontSize="Header"
-                   TextDecorations="Underline"/>
+                   TextDecorations="Underline"
+                   TextColor="#0197f6"/>
             <Frame
                 Grid.Row="2"
                 Grid.Column="3"
