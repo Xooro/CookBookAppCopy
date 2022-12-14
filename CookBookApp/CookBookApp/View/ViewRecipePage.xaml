@@ -9,6 +9,7 @@
         <Style TargetType="Label">
             <Setter Property="VerticalOptions" Value="Start"/>
             <Setter Property="HorizontalOptions" Value="Start"/>
+            <Setter Property="TextColor" Value="#02182b"/>
         </Style>
         <Style TargetType="Button">
             <Setter Property="VerticalOptions" Value="Fill"/>
@@ -62,7 +63,8 @@
                    HorizontalOptions="Start"
                    FontSize="Medium"
                    FontAttributes="Bold"
-                   TextDecorations="Underline"/>
+                   TextDecorations="Underline"
+                   TextColor="#0197f6"/>
             <Label Text="{x:Static resources:AppResources.CONS_Default}"
                    IsVisible="{Binding IsDefaultLocalization}"
                    Grid.Row="0"

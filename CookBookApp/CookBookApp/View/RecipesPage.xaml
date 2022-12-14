@@ -10,6 +10,7 @@
         <Style TargetType="Label">
             <Setter Property="VerticalOptions" Value="Center"/>
             <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="TextColor" Value="#02182b"/>
         </Style>
         <Style TargetType="Frame">
             <Setter Property="Padding" Value="0"/>
@@ -169,7 +170,8 @@
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
                                 <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
-                                <Label Text="{Binding LanguageName, Mode=TwoWay}"/>
+                                <Label Text="{Binding LanguageName, Mode=TwoWay}"
+                                       TextColor="#0197f6"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
@@ -188,7 +190,8 @@
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
                                 <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
-                                <Label Text="{Binding CategoryName, Mode=TwoWay}"/>
+                                <Label Text="{Binding CategoryName, Mode=TwoWay}"
+                                       TextColor="#0197f6"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
