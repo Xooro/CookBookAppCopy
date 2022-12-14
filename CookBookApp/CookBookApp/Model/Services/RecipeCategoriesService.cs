@@ -1,6 +1,6 @@
 ﻿using CookBookApp.Data;
-using CookBookApp.Models;
-using CookBookApp.Models.Services;
+using CookBookApp.Model;
+using CookBookApp.Model.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

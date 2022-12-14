@@ -2,7 +2,7 @@
 using System.IO;
 using Xamarin.Forms;
 
-namespace CookBookApp.Models
+namespace CookBookApp.Model
 {
     public class Language
     {

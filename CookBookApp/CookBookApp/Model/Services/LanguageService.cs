@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CookBookApp.Models.Services
+namespace CookBookApp.Model.Services
 {
     public class LanguageService
     {

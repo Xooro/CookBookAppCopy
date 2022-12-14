@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CookBookApp.Models
+namespace CookBookApp.Model
 {
     public class Recipe : ICloneable
     {

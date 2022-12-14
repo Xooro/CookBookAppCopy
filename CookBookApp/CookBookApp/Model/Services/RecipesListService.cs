@@ -1,11 +1,7 @@
 ﻿using CookBookApp.Data;
-using CookBookApp.Helpers;
-using CookBookApp.Models;
-using CookBookApp.Models.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CookBookApp.Model.Services
@@ -24,7 +20,6 @@ namespace CookBookApp.Model.Services
         }
 
         public RecipesListService(RecipeContext context)
-            : this()
         {
             _context = context;
             recipeService = new RecipeService(context);

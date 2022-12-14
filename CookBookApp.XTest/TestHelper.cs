@@ -1,7 +1,7 @@
 ﻿using CookBookApp.Data;
 using CookBookApp.Helpers;
 using CookBookApp.Model;
-using CookBookApp.Models;
+using CookBookApp.Model;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -50,16 +50,19 @@ namespace CookBookApp.XTest
             {
                 new Language()
                 {
+                    ID = 1,
                     LanguageName = "EN",
                     ImageBytes = ImageHelper.getFlagAsByteArray("EN")
                 },
                 new Language()
                 {
+                    ID = 2,
                     LanguageName = "HU",
                     ImageBytes = ImageHelper.getFlagAsByteArray("HU")
                 },
                 new Language()
                 {
+                    ID = 3,
                     LanguageName = "DE",
                     ImageBytes = ImageHelper.getFlagAsByteArray("DE")
                 }
@@ -73,72 +76,84 @@ namespace CookBookApp.XTest
                 {
                     new RecipeCategoryNames()
                     {
+                        ID = 1,
                         CategoryNameID = 1,
                         LanguageID = 1,
                         CategoryName = "Soup"
                     },
                     new RecipeCategoryNames()
                     {
+                        ID = 2,
                         CategoryNameID = 1,
                         LanguageID = 2,
                         CategoryName = "Leves"
                     },
                     new RecipeCategoryNames()
                     {
+                        ID = 3,
                         CategoryNameID = 1,
                         LanguageID = 3,
                         CategoryName = "Suppe"
                     },
                     new RecipeCategoryNames()
                     {
+                        ID = 4,
                         CategoryNameID = 2,
                         LanguageID = 1,
                         CategoryName = "Main course"
                     },
                     new RecipeCategoryNames()
                     {
+                        ID = 5,
                         CategoryNameID = 2,
                         LanguageID = 2,
                         CategoryName = "Főétel"
                     },
                     new RecipeCategoryNames()
                     {
+                        ID = 6,
                         CategoryNameID = 2,
                         LanguageID = 3,
                         CategoryName = "Hauptkurs"
                     },
                     new RecipeCategoryNames()
                     {
+                        ID = 7,
                         CategoryNameID = 3,
                         LanguageID = 1,
                         CategoryName = "Dessert"
                     },
                     new RecipeCategoryNames()
                     {
+                        ID = 8,
                         CategoryNameID = 3,
                         LanguageID = 2,
                         CategoryName = "Desszert"
                     },
                     new RecipeCategoryNames()
                     {
+                        ID = 9,
                         CategoryNameID = 3,
                         LanguageID = 3,
                         CategoryName = "Dessert"
                     },
                     new RecipeCategoryNames()
                     {
+                        ID = 10,
                         CategoryNameID = 4,
                         LanguageID = 1,
                         CategoryName = "Festive"
                     },
                     new RecipeCategoryNames()
                     {
+                        ID = 11,
                         CategoryNameID = 4,
                         LanguageID = 2,
                         CategoryName = "Ünnepi"
                     },
                     new RecipeCategoryNames()
                     {
+                        ID = 12,
                         CategoryNameID = 4,
                         LanguageID = 3,
                         CategoryName = "Festlich"

@@ -1,6 +1,6 @@
 ﻿using CookBookApp.Helpers;
-using CookBookApp.Models.Services;
-using CookBookApp.Models;
+using CookBookApp.Model.Services;
+using CookBookApp.Model;
 using CookBookApp.ViewModels.Base;
 using System;
 using System.Collections.Generic;

@@ -1,6 +1,6 @@
 ﻿using CookBookApp.Helpers;
-using CookBookApp.Models;
-using CookBookApp.Models.Services;
+using CookBookApp.Model;
+using CookBookApp.Model.Services;
 using CookBookApp.Resources;
 using CookBookApp.ViewModels.Base;
 using System.Threading;

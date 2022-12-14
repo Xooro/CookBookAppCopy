@@ -2,8 +2,8 @@
 using CookBookApp.Model;
 using CookBookApp.Model.Interfaces;
 using CookBookApp.Model.Services;
-using CookBookApp.Models;
-using CookBookApp.Models.Services;
+using CookBookApp.Model;
+using CookBookApp.Model.Services;
 using CookBookApp.Resources;
 using CookBookApp.View;
 using CookBookApp.ViewModels.Base;

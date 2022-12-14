@@ -1,4 +1,4 @@
-﻿using CookBookApp.Models;
+﻿using CookBookApp.Model;
 using CookBookApp.View;
 using CookBookApp.ViewModels;
 using System;
