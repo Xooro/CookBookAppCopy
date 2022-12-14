@@ -1,9 +1,7 @@
 ﻿using CookBookApp.Data;
-using CookBookApp.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CookBookApp.Model.Services
@@ -15,6 +13,7 @@ namespace CookBookApp.Model.Services
         {
             _context = new RecipeContext();
         }
+
         public LanguageService(RecipeContext context)
         {
             _context = context;

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CookBookApp.Model.Services
 {
-    class RecipeCategoriesService
+    public class RecipeCategoriesService
     {
         RecipeContext _context;
         public RecipeCategoriesService()

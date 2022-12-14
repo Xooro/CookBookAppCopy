@@ -66,6 +66,7 @@ namespace CookBookApp.XTest.Model.Services
             Assert.Equal(expectedListCount, actualRecipeList.Count);
         }
 
+
         [Fact]
         public async void getRecipesLocalizedAsync_TestElementsByAll()
         {
@@ -74,10 +75,37 @@ namespace CookBookApp.XTest.Model.Services
             var expectedListCount = 1;
 
             //Act
-            var actualRecipeList = await recipesListService.getRecipesLocalizedAsync(new int[] { }, new int[] { }, "Christ");
+            var actualRecipeList = await recipesListService.getRecipesLocalizedAsync(new int[] { 1}, new int[] { 1}, "Christ");
 
             //Assert
             Assert.Equal(expectedListCount, actualRecipeList.Count);
+        }
+
+        [Fact]
+        public void setJoinedRecipes_TestIsUpdated()
+        {
+            //Arrenge
+            RecipesListService recipesListService = new RecipesListService(TestHelper.getFilledMemoryRecipeContext());
+
+            //Act
+            bool isUpdated = recipesListService.setJoinedRecipes();
+
+            //Assert
+            Assert.True(isUpdated);
+        }
+        
+        [Fact]
+        public async void deleteMultipleJoinedRecipeAsync_TestIsDeleted()
+        {
+            //Arrenge
+            RecipesListService recipesListService = new RecipesListService(TestHelper.getFilledMemoryRecipeContext());
+
+            //Act
+            var recipesToDelete = await recipesListService.getRecipesLocalizedAsync(new int[] { 1 }, new int[] { 1 }, "Christ");
+            bool isDeleted = await recipesListService.deleteMultipleJoinedRecipeAsync(recipesToDelete);
+
+            //Assert
+            Assert.True(isDeleted);
         }
 
         //[Fact]

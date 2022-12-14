@@ -31,12 +31,20 @@ namespace CookBookApp.Model.Services
             setJoinedRecipes();
         }
 
-        public void setJoinedRecipes()
+        public bool setJoinedRecipes()
         {
-            Task.Run(async () =>
+            bool isUpdated = false;
+            try
             {
-                recipesJoined = await recipeService.getJoinedRecipesAsync();
-            }).Wait();
+                Task.Run(async () =>
+                {
+                    recipesJoined = await recipeService.getJoinedRecipesAsync();
+                    isUpdated = true;
+                }).Wait();
+            }
+            catch (Exception) { }
+
+            return isUpdated;
         }
 
         //Visszaadja a receptek listáját a megadott nyelvek alapján
@@ -215,7 +223,6 @@ namespace CookBookApp.Model.Services
             }
             catch (Exception)
             {
-                throw;
             }
             return isDeletesSucceeded;
         }
