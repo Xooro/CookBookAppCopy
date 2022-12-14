@@ -1,6 +1,6 @@
 ﻿using CookBookApp.Data;
 using CookBookApp.Helpers;
-using CookBookApp.Models;
+using CookBookApp.Model;
 using CookBookApp.ViewModels.Base;
 
 namespace CookBookApp.ViewModel

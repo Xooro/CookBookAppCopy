@@ -2,7 +2,7 @@
 using CookBookApp.Model;
 using CookBookApp.Model.Interfaces;
 using CookBookApp.Model.Services;
-using CookBookApp.Models;
+using CookBookApp.Model;
 using CookBookApp.ViewModels.Base;
 using System;
 using System.Collections.Generic;

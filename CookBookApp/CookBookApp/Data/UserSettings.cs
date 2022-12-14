@@ -1,5 +1,5 @@
 ﻿using CookBookApp.Helpers;
-using CookBookApp.Models;
+using CookBookApp.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;

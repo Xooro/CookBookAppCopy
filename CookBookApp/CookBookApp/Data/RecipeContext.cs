@@ -1,6 +1,6 @@
 ﻿using CookBookApp.Helpers;
 using CookBookApp.Model;
-using CookBookApp.Models;
+using CookBookApp.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

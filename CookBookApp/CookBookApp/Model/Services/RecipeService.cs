@@ -8,7 +8,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-namespace CookBookApp.Models.Services
+namespace CookBookApp.Model.Services
 {
     public class RecipeService
     {
@@ -126,7 +126,7 @@ namespace CookBookApp.Models.Services
 
 
         //Visszaadja a lokalizált recept kategóriákat
-        private List<RecipeCategories> getLocalizedRecipeGategories(Recipe joinedRecipe, int languageID)
+        List<RecipeCategories> getLocalizedRecipeGategories(Recipe joinedRecipe, int languageID)
         {
             List<RecipeCategoryNames> recipeCategoryNames = new List<RecipeCategoryNames>();
             List<RecipeCategories> recipeCategories = joinedRecipe.Categories;
@@ -201,10 +201,7 @@ namespace CookBookApp.Models.Services
                 _context.SaveChanges();
                 isLocalizationAdded = true;
             }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
+            catch(Exception) { }
             return isLocalizationAdded;
         }
 
@@ -222,10 +219,7 @@ namespace CookBookApp.Models.Services
                 await _context.SaveChangesAsync();
                 isUpdated = true;
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            catch (Exception) { }
 
             return await Task.FromResult(isUpdated);
         }
@@ -283,10 +277,7 @@ namespace CookBookApp.Models.Services
 
                 isDeleted = true;
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            catch (Exception ex) { }
 
             return await Task.FromResult(isDeleted);
         }

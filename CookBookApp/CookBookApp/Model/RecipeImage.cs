@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 using Xamarin.Forms;
 
-namespace CookBookApp.Models
+namespace CookBookApp.Model
 {
     public class RecipeImage
     {

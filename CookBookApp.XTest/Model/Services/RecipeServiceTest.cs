@@ -1,5 +1,5 @@
-﻿using CookBookApp.Models;
-using CookBookApp.Models.Services;
+﻿using CookBookApp.Model;
+using CookBookApp.Model.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +10,53 @@ namespace CookBookApp.XTest.Model.Services
 {
     public class RecipeServiceTest
     {
+        [Fact]
+        public void getDefaultEmptyRecipe_TestElement()
+        {
+            //Arrenge
+            RecipeService recipeService = new RecipeService(TestHelper.getFilledMemoryRecipeContext());
+            string expectedAuthor = "TESTER";
+
+            //Act
+            Recipe actualRecipe = recipeService.getDefaultEmptyRecipe(expectedAuthor, TestHelper.getTestLanguages().First());
+            string actualAuthor = actualRecipe.Author;
+
+            //Assert
+            Assert.Equal(expectedAuthor, actualAuthor);
+        }
+
+        [Fact]
+        public void getLocalizedRecipeByRecipe_TestElement()
+        {
+            //Arrenge
+            RecipeService recipeService = new RecipeService(TestHelper.getFilledMemoryRecipeContext());
+            var expectedAllergen = TestHelper.getTestRecipeLocalizations().First().Allergens;
+
+            //Act
+            var actualRecipe = recipeService.getLocalizedRecipeByRecipe(TestHelper.getTestRecipes().First(), 
+                TestHelper.getTestLanguages().First().ID);
+            var actualAllergen = actualRecipe.LocalizedRecipe.Allergens;
+
+            //Assert
+            Assert.Equal(expectedAllergen, actualAllergen);
+        }
+
+        [Fact]
+        public void getLocalizedRecipeByJoinedRecipe_TestElement()
+        {
+            //Arrenge
+            RecipeService recipeService = new RecipeService(TestHelper.getFilledMemoryRecipeContext());
+            var expectedAllergen = TestHelper.getTestRecipeLocalizations().First().Allergens;
+
+            //Act
+            var actualRecipe = recipeService.getLocalizedRecipeByJoinedRecipe(recipeService.getJoinedRecipeByRecipe(TestHelper.getTestRecipes().First()), 
+                TestHelper.getTestLanguages().First().ID);
+            var actualAllergen = actualRecipe.LocalizedRecipe.Allergens;
+
+            //Assert
+            Assert.Equal(expectedAllergen, actualAllergen);
+        }
+
         [Fact]
         public void getDefaultEmptyRecipe_TestValid()
         {
@@ -90,13 +137,103 @@ namespace CookBookApp.XTest.Model.Services
         {
             //Arrenge
             RecipeService recipeService = new RecipeService(TestHelper.getFilledMemoryRecipeContext());
-
+            int expectedLocalizationCounts = 2;
 
             //Act
+            Recipe actualRecipe = TestHelper.getTestRecipes().First();
+            actualRecipe = recipeService.getJoinedRecipeByRecipe(actualRecipe);
 
             //Assert
-
+            Assert.Equal(expectedLocalizationCounts, actualRecipe.Localizations.Count);
         }
+
+        [Fact]
+        public void addRecipeLocalization_TestIsAdded()
+        {
+            //Arrenge
+            RecipeService recipeService = new RecipeService(TestHelper.getFilledMemoryRecipeContext());
+
+            //Act
+            bool isAdded = recipeService.addRecipeLocalization(new RecipeLocalization());
+
+            //Assert
+            Assert.True(isAdded);
+        }
+
+        [Fact]
+        public void addRecipeLocalization_TestIsNotAdded()
+        {
+            //Arrenge
+            RecipeService recipeService = new RecipeService(TestHelper.getFilledMemoryRecipeContext());
+
+            //Act
+            bool isAdded = recipeService.addRecipeLocalization(new RecipeLocalization { ID = 1});
+
+            //Assert
+            Assert.False(isAdded);
+        }
+
+        [Fact]
+        public async void updateLocalizedRecipeAsync_TestIsUpdated()
+        {
+            //Arrenge
+            RecipeService recipeService = new RecipeService(TestHelper.getFilledMemoryRecipeContext());
+            string expectedAllergens = "NO ALLERGENS";
+
+            //Act
+            Recipe recipe = recipeService.getLocalizedRecipeByRecipe(TestHelper.getTestRecipes().First(), 1);
+            recipe.LocalizedRecipe.Allergens = expectedAllergens;
+            await recipeService.updateLocalizedRecipeAsync(recipe);
+            
+            recipe = recipeService.getLocalizedRecipeByRecipe(TestHelper.getTestRecipes().First(), 1);
+            string actualAllergens = recipe.LocalizedRecipe.Allergens;
+
+            //Assert
+            Assert.Equal(expectedAllergens, actualAllergens);
+        }
+
+        [Fact]
+        public async void deleteRecipeLocalizationAsync_TestIsDeleted()
+        {
+            //Arrenge
+            RecipeService recipeService = new RecipeService(TestHelper.getFilledMemoryRecipeContext());
+
+            //Act
+            Recipe recipe = recipeService.getLocalizedRecipeByRecipe(TestHelper.getTestRecipes().First(), 1);
+            bool isDeleted = await recipeService.deleteRecipeLocalizationAsync(recipe.LocalizedRecipe);
+
+            //Assert
+            Assert.True(isDeleted);
+        }
+
+        [Fact]
+        public async void deleteRecipeLocalizationAsync_TestIsDeletedByRecipe()
+        {
+            //Arrenge
+            RecipeService recipeService = new RecipeService(TestHelper.getFilledMemoryRecipeContext());
+
+            //Act
+            Recipe recipe = recipeService.getJoinedRecipeByRecipe(TestHelper.getTestRecipes().First());
+            bool isDeleted = await recipeService.deleteRecipeLocalizationAsync(recipe, TestHelper.getTestLanguages().First());
+
+            //Assert
+            Assert.True(isDeleted);
+        }
+
+        [Fact]
+        public async void deleteRecipeAsync_TestIsDeleted()
+        {
+            //Arrenge
+            RecipeService recipeService = new RecipeService(TestHelper.getFilledMemoryRecipeContext());
+
+            //Act
+            bool isDeleted = await recipeService.deleteRecipeAsync(TestHelper.getTestRecipes().First());
+
+            //Assert
+            Assert.True(isDeleted);
+        }
+
+        
 
         //[Fact]
         //public void _Test()
@@ -104,7 +241,9 @@ namespace CookBookApp.XTest.Model.Services
         //    //Arrenge
         //    RecipeService recipeService = new RecipeService(TestHelper.getFilledMemoryRecipeContext());
 
+
         //    //Act
+
 
         //    //Assert
 

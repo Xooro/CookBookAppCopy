@@ -1,5 +1,5 @@
 ﻿using CookBookApp.Helpers;
-using CookBookApp.Models;
+using CookBookApp.Model;
 
 namespace CookBookApp.ViewModel
 {
