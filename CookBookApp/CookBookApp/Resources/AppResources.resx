@@ -276,6 +276,9 @@
   <data name="setting_ntrUserName" xml:space="preserve">
     <value>John Doe</value>
   </data>
+  <data name="setting_restartAppLanguage" xml:space="preserve">
+    <value>Restart the application to change the language</value>
+  </data>
   <data name="viewRecipes_bttnDelete" xml:space="preserve">
     <value>Delete</value>
   </data>

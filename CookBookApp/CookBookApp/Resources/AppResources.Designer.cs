@@ -538,6 +538,15 @@ namespace CookBookApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restart the application to change the language.
+        /// </summary>
+        public static string setting_restartAppLanguage {
+            get {
+                return ResourceManager.GetString("setting_restartAppLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add localization.
         /// </summary>
         public static string viewRecipe_bttnAddLocalization {

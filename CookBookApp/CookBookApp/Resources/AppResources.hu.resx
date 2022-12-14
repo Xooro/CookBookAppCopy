@@ -273,6 +273,9 @@
   <data name="setting_ntrUserName" xml:space="preserve">
     <value>Vicc Elek</value>
   </data>
+  <data name="setting_restartAppLanguage" xml:space="preserve">
+    <value>A nyelv megváltoztatásának életbelépéséhez ajánlott újraindítani az alkalmazás</value>
+  </data>
   <data name="viewRecipes_bttnDelete" xml:space="preserve">
     <value>Törlés</value>
   </data>

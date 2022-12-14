@@ -276,6 +276,9 @@
   <data name="setting_ntrUserName" xml:space="preserve">
     <value>John Doe...</value>
   </data>
+  <data name="setting_restartAppLanguage" xml:space="preserve">
+    <value>Starten Sie die Anwendung neu, damit die Änderungen wirksam werden</value>
+  </data>
   <data name="viewRecipes_bttnDelete" xml:space="preserve">
     <value>Streichen</value>
   </data>

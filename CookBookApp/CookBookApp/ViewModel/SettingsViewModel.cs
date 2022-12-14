@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using CookBookApp.Resources;
 
 namespace CookBookApp.ViewModel
 {
@@ -55,6 +56,7 @@ namespace CookBookApp.ViewModel
         async void setLanguage()
         {
             await userSettingsManager.setUserLanguage(SelectedLanguage);
+            await App.Current.MainPage.DisplayAlert(AppResources.CONS_Message, AppResources.setting_restartAppLanguage, "OK");
         }
     }
 }
