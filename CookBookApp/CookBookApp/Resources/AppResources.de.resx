@@ -117,13 +117,178 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="addRecipes_bttnUpload" xml:space="preserve">
+    <value>Aufladung</value>
+  </data>
+  <data name="addRecipes_ntrAllergens" xml:space="preserve">
+    <value>Laktose, Hselnuss, usw...</value>
+  </data>
+  <data name="addRecipes_ntrAuthor" xml:space="preserve">
+    <value>Jogn Doe</value>
+  </data>
+  <data name="addRecipes_ntrPortion" xml:space="preserve">
+    <value>4...</value>
+  </data>
+  <data name="addRecipes_ntrPreparationTime" xml:space="preserve">
+    <value>2 Stunde...</value>
+  </data>
+  <data name="addRecipes_ntrPrice" xml:space="preserve">
+    <value>100...</value>
+  </data>
+  <data name="addRecipes_ntrRecipeName" xml:space="preserve">
+    <value>Lasagne</value>
+  </data>
+  <data name="CONS.FailedDelete" xml:space="preserve">
+    <value>erfolglos Streichung</value>
+  </data>
+  <data name="CONS.Message" xml:space="preserve">
+    <value>Botschaft</value>
+  </data>
+  <data name="CONS.SuccessfulDelete" xml:space="preserve">
+    <value>erfolgreich Streichung</value>
+  </data>
+  <data name="CONS_Back" xml:space="preserve">
+    <value>zurück</value>
+  </data>
+  <data name="CONS_bttnUpload" xml:space="preserve">
+    <value>Aufladung</value>
+  </data>
+  <data name="CONS_Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="CONS_Difficulty_Advanced" xml:space="preserve">
+    <value>Fortgeschrittene</value>
+  </data>
+  <data name="CONS_Difficulty_Beginner" xml:space="preserve">
+    <value>Anfänger</value>
+  </data>
+  <data name="CONS_Difficulty_Intermediate" xml:space="preserve">
+    <value>Dazwischenliegenden</value>
+  </data>
+  <data name="CONS_FailedUpdate" xml:space="preserve">
+    <value>erfolglos Anspannung</value>
+  </data>
+  <data name="CONS_FailedUpload" xml:space="preserve">
+    <value>erfolglos Aufladung</value>
+  </data>
+  <data name="CONS_Forward" xml:space="preserve">
+    <value>Nächste</value>
+  </data>
+  <data name="CONS_Ingredients" xml:space="preserve">
+    <value>Zubehören</value>
+  </data>
+  <data name="CONS_lblAllergens" xml:space="preserve">
+    <value>Allergen</value>
+  </data>
+  <data name="CONS_lblAuthor" xml:space="preserve">
+    <value>Verfasser</value>
+  </data>
+  <data name="CONS_lblCategories" xml:space="preserve">
+    <value>Kategorie</value>
+  </data>
+  <data name="CONS_lblCreationDate" xml:space="preserve">
+    <value>Zeugung Datum</value>
+  </data>
+  <data name="CONS_lblDifficulty" xml:space="preserve">
+    <value>Gewichtigkeit</value>
+  </data>
+  <data name="CONS_lblPortion" xml:space="preserve">
+    <value>Portion</value>
+  </data>
+  <data name="CONS_lblPreparationTime" xml:space="preserve">
+    <value>Herstellung Zeit</value>
+  </data>
+  <data name="CONS_lblPrice" xml:space="preserve">
+    <value>Preis</value>
+  </data>
+  <data name="CONS_lblRecipeName" xml:space="preserve">
+    <value>Rezept Name</value>
+  </data>
+  <data name="CONS_Preparation" xml:space="preserve">
+    <value>Herstellung</value>
+  </data>
+  <data name="CONS_Price_Average" xml:space="preserve">
+    <value>Mittelmaß</value>
+  </data>
+  <data name="CONS_Price_Cheap" xml:space="preserve">
+    <value>Billig</value>
+  </data>
+  <data name="CONS_Price_Expensive" xml:space="preserve">
+    <value>Teuer</value>
+  </data>
+  <data name="CONS_RetryAddRecipe" xml:space="preserve">
+    <value>Wieder von Vorne Versuchen</value>
+  </data>
+  <data name="CONS_SuccessfulLocalizationDelete" xml:space="preserve">
+    <value>Lokalisierung streichen</value>
+  </data>
+  <data name="CONS_SuccessfulUpdate" xml:space="preserve">
+    <value>Erfolgreich Anspannung</value>
+  </data>
+  <data name="CONS_SuccessfulUpload" xml:space="preserve">
+    <value>Erfolgreich Aufladung</value>
+  </data>
+  <data name="CONS_Uploading" xml:space="preserve">
+    <value>Anspannung im Gange</value>
+  </data>
+  <data name="CONS_ViewRecipe" xml:space="preserve">
+    <value>Rezept zusehen</value>
+  </data>
+  <data name="EditRecipe_bttnCancel" xml:space="preserve">
+    <value>Vernichten</value>
+  </data>
+  <data name="EditRecipe_bttnSave" xml:space="preserve">
+    <value>Bergung</value>
+  </data>
+  <data name="menu_bttnAddRecipes" xml:space="preserve">
+    <value>Rezept zusetzen</value>
+  </data>
   <data name="menu_bttnRecipes" xml:space="preserve">
     <value>Rezepturen</value>
+  </data>
+  <data name="menu_bttnSettings" xml:space="preserve">
+    <value>Einstellungen</value>
   </data>
   <data name="menu_lblMenu" xml:space="preserve">
     <value>Hauptseite</value>
   </data>
+  <data name="recipePage_bttnRefreshRecipe" xml:space="preserve">
+    <value>Rezept auffüllend</value>
+  </data>
   <data name="recipes_bttnFilter" xml:space="preserve">
     <value>Filtration</value>
+  </data>
+  <data name="recipes_srchBrRecipes" xml:space="preserve">
+    <value>Suche...</value>
+  </data>
+  <data name="setting_bttnLanguage" xml:space="preserve">
+    <value>Sprache anspannend</value>
+  </data>
+  <data name="setting_bttnUserName" xml:space="preserve">
+    <value>Benutzer anspannend</value>
+  </data>
+  <data name="setting_lblLanguage" xml:space="preserve">
+    <value>jetzige Sprache</value>
+  </data>
+  <data name="setting_lblUserName" xml:space="preserve">
+    <value>jetzige Benutzer(Verfasser)</value>
+  </data>
+  <data name="setting_ntrUserName" xml:space="preserve">
+    <value>John Doe...</value>
+  </data>
+  <data name="viewRecipes_bttnDelete" xml:space="preserve">
+    <value>Streichen</value>
+  </data>
+  <data name="viewRecipes_bttnEdit" xml:space="preserve">
+    <value>Aufbereiten</value>
+  </data>
+  <data name="viewRecipes_lblGeneralInformation" xml:space="preserve">
+    <value>Allgemeine Information</value>
+  </data>
+  <data name="viewRecipe_bttnAddLocalization" xml:space="preserve">
+    <value>Lokalisierung zusetzen</value>
+  </data>
+  <data name="viewRecipe_bttnRemoveLocalization" xml:space="preserve">
+    <value>Lokalisierung streichen</value>
   </data>
 </root>
